@@ -64,7 +64,7 @@
         <!--First Time User View Controller-->
         <scene sceneID="wY4-kh-Wk0">
             <objects>
-                <viewController id="Xme-Ue-E7G" customClass="FirstTimeUserViewController" customModule="rizzle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstTimeUser" id="Xme-Ue-E7G" customClass="FirstTimeUserViewController" customModule="rizzle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rge-Rh-TrI"/>
                         <viewControllerLayoutGuide type="bottom" id="LsQ-0h-WsP"/>

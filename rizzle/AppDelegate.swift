@@ -36,13 +36,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loginView: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginView")
         let mainView: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainUserView")
+        let firstTimeUserView: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "FirstTimeUser")
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         //Display Login View if there are no currentUser and Main User View if there is one
         let currentUser = PFUser.current()
+        let currentUserName = currentUser?["rizzleName"] as? String
+        
         if currentUser != nil {
-            self.window?.rootViewController = mainView
-            self.window?.makeKeyAndVisible()
+            if currentUserName != nil {
+                self.window?.rootViewController = mainView
+                self.window?.makeKeyAndVisible()
+            }else {
+                self.window?.rootViewController = firstTimeUserView
+                self.window?.makeKeyAndVisible()
+            }
+            
         }else {
             self.window?.rootViewController = loginView
             self.window?.makeKeyAndVisible()
