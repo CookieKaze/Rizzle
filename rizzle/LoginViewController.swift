@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  rizzle
 //
 //  Created by Erin Luu on 2016-12-15.
@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import Parse
 import FacebookLogin
 import ParseFacebookUtilsV4
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
+    
+    @IBOutlet weak var statusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     
     @IBAction func FBLoginTapped(_ sender: UIButton) {
         parseFacebookSignIn()
@@ -26,12 +30,15 @@ class ViewController: UIViewController {
             if let user = user {
                 if user.isNew {
                     print("User signed up and logged in through Facebook!")
+                    self.performSegue(withIdentifier: "firstTimeUser", sender: nil)
                     
                 } else {
                     print("User logged in through Facebook!")
+                    self.performSegue(withIdentifier: "loginToMain", sender: nil)
                 }
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
+                self.statusLabel.text = "The user cancelled the Facebook login"
             }
         })
     }

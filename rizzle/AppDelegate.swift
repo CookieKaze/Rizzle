@@ -32,6 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        //Setup initial view
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginView: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginView")
+        let mainView: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainUserView")
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        //Display Login View if there are no currentUser and Main User View if there is one
+        let currentUser = PFUser.current()
+        if currentUser != nil {
+            self.window?.rootViewController = mainView
+            self.window?.makeKeyAndVisible()
+        }else {
+            self.window?.rootViewController = loginView
+            self.window?.makeKeyAndVisible()
+        }
+        
         return true
     }
     
@@ -63,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return SDKApplicationDelegate.shared.application(app, open: url, options: options)
         
     }
-
+    
     
     // MARK: - Core Data stack
     

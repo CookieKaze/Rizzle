@@ -9,5 +9,6 @@
 import UIKit
 
 class UserManager: NSObject {
-
+    var currentUser: User?
+    
 }
