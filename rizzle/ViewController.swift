@@ -8,6 +8,7 @@
 
 import UIKit
 import FacebookLogin
+import ParseFacebookUtilsV4
 
 class ViewController: UIViewController {
     
@@ -16,41 +17,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func FBLoginTapped(_ sender: UIButton) {
-        facebookSignIn()
+        parseFacebookSignIn()
     }
     
-    @objc fileprivate func facebookSignIn() {
-        //        let loginManager = LoginManager()
-        //        print("LOGIN MANAGER: \(loginManager)")
-        //        loginManager.logIn([ .publicProfile, .email ], viewController: self) { loginResult in
-        //            print("LOGIN RESULT! \(loginResult)")
-        //            switch loginResult {
-        //            case .failed(let error):
-        //                print("FACEBOOK LOGIN FAILED: \(error)")
-        //            case .cancelled:
-        //                print("User cancelled login.")
-        //            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-        //                print("Logged in!")
-        //                print("GRANTED PERMISSIONS: \(grantedPermissions)")
-        //                print("DECLINED PERMISSIONS: \(declinedPermissions)")
-        //                print("ACCESS TOKEN \(accessToken)")
-        //            }
-        //        }
-        
-        let loginManager = LoginManager()
-        loginManager.logIn([ .publicProfile, .email ], viewController: self) { loginResult in
-            switch loginResult {
-            case .failed(let error):
-                print(error)
-            case .cancelled:
-                print("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                print("Logged in!")
-                print("GRANTED PERMISSIONS: \(grantedPermissions)")
-                print("DECLINED PERMISSIONS: \(declinedPermissions)")
-                print("ACCESS TOKEN \(accessToken)")
+    func parseFacebookSignIn() {
+        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"], block: {
+            (user, error) in
+            if let user = user {
+                if user.isNew {
+                    print("User signed up and logged in through Facebook!")
+                } else {
+                    print("User logged in through Facebook!")
+                }
+            } else {
+                print("Uh oh. The user cancelled the Facebook login.")
             }
-        }
+        })
     }
     
 }
