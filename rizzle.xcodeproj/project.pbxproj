@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DEB3FF31E030618008BE0B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB3FF21E030618008BE0B7 /* AppDelegate.swift */; };
+		1DEB3FF51E030618008BE0B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB3FF41E030618008BE0B7 /* ViewController.swift */; };
+		1DEB3FF81E030618008BE0B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB3FF61E030618008BE0B7 /* Main.storyboard */; };
+		1DEB3FFB1E030618008BE0B7 /* rizzle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB3FF91E030618008BE0B7 /* rizzle.xcdatamodeld */; };
+		1DEB3FFD1E030618008BE0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB3FFC1E030618008BE0B7 /* Assets.xcassets */; };
+		1DEB40001E030618008BE0B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB3FFE1E030618008BE0B7 /* LaunchScreen.storyboard */; };
+		1DEB400B1E030618008BE0B7 /* rizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB400A1E030618008BE0B7 /* rizzleTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1DEB40071E030618008BE0B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1DEB3FE71E030618008BE0B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1DEB3FEE1E030618008BE0B7;
+			remoteInfo = rizzle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1DEB3FEF1E030618008BE0B7 /* rizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DEB3FF21E030618008BE0B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1DEB3FF41E030618008BE0B7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1DEB3FF71E030618008BE0B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1DEB3FFA1E030618008BE0B7 /* rizzle.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rizzle.xcdatamodel; sourceTree = "<group>"; };
+		1DEB3FFC1E030618008BE0B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1DEB3FFF1E030618008BE0B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1DEB40011E030618008BE0B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DEB40061E030618008BE0B7 /* rizzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rizzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DEB400A1E030618008BE0B7 /* rizzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rizzleTests.swift; sourceTree = "<group>"; };
+		1DEB400C1E030618008BE0B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1DEB3FEC1E030618008BE0B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DEB40031E030618008BE0B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1DEB3FE61E030618008BE0B7 = {
+			isa = PBXGroup;
+			children = (
+				1DEB3FF11E030618008BE0B7 /* rizzle */,
+				1DEB40091E030618008BE0B7 /* rizzleTests */,
+				1DEB3FF01E030618008BE0B7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1DEB3FF01E030618008BE0B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1DEB3FEF1E030618008BE0B7 /* rizzle.app */,
+				1DEB40061E030618008BE0B7 /* rizzleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1DEB3FF11E030618008BE0B7 /* rizzle */ = {
+			isa = PBXGroup;
+			children = (
+				1DEB3FF21E030618008BE0B7 /* AppDelegate.swift */,
+				1DEB3FF41E030618008BE0B7 /* ViewController.swift */,
+				1DEB3FF61E030618008BE0B7 /* Main.storyboard */,
+				1DEB3FFC1E030618008BE0B7 /* Assets.xcassets */,
+				1DEB3FFE1E030618008BE0B7 /* LaunchScreen.storyboard */,
+				1DEB40011E030618008BE0B7 /* Info.plist */,
+				1DEB3FF91E030618008BE0B7 /* rizzle.xcdatamodeld */,
+			);
+			path = rizzle;
+			sourceTree = "<group>";
+		};
+		1DEB40091E030618008BE0B7 /* rizzleTests */ = {
+			isa = PBXGroup;
+			children = (
+				1DEB400A1E030618008BE0B7 /* rizzleTests.swift */,
+				1DEB400C1E030618008BE0B7 /* Info.plist */,
+			);
+			path = rizzleTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1DEB3FEE1E030618008BE0B7 /* rizzle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB400F1E030618008BE0B7 /* Build configuration list for PBXNativeTarget "rizzle" */;
+			buildPhases = (
+				1DEB3FEB1E030618008BE0B7 /* Sources */,
+				1DEB3FEC1E030618008BE0B7 /* Frameworks */,
+				1DEB3FED1E030618008BE0B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = rizzle;
+			productName = rizzle;
+			productReference = 1DEB3FEF1E030618008BE0B7 /* rizzle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1DEB40051E030618008BE0B7 /* rizzleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB40121E030618008BE0B7 /* Build configuration list for PBXNativeTarget "rizzleTests" */;
+			buildPhases = (
+				1DEB40021E030618008BE0B7 /* Sources */,
+				1DEB40031E030618008BE0B7 /* Frameworks */,
+				1DEB40041E030618008BE0B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1DEB40081E030618008BE0B7 /* PBXTargetDependency */,
+			);
+			name = rizzleTests;
+			productName = rizzleTests;
+			productReference = 1DEB40061E030618008BE0B7 /* rizzleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1DEB3FE71E030618008BE0B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Erin Luu";
+				TargetAttributes = {
+					1DEB3FEE1E030618008BE0B7 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 6393SND2S6;
+						ProvisioningStyle = Automatic;
+					};
+					1DEB40051E030618008BE0B7 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 6393SND2S6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1DEB3FEE1E030618008BE0B7;
+					};
+				};
+			};
+			buildConfigurationList = 1DEB3FEA1E030618008BE0B7 /* Build configuration list for PBXProject "rizzle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1DEB3FE61E030618008BE0B7;
+			productRefGroup = 1DEB3FF01E030618008BE0B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1DEB3FEE1E030618008BE0B7 /* rizzle */,
+				1DEB40051E030618008BE0B7 /* rizzleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1DEB3FED1E030618008BE0B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DEB40001E030618008BE0B7 /* LaunchScreen.storyboard in Resources */,
+				1DEB3FFD1E030618008BE0B7 /* Assets.xcassets in Resources */,
+				1DEB3FF81E030618008BE0B7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DEB40041E030618008BE0B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1DEB3FEB1E030618008BE0B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DEB3FF51E030618008BE0B7 /* ViewController.swift in Sources */,
+				1DEB3FFB1E030618008BE0B7 /* rizzle.xcdatamodeld in Sources */,
+				1DEB3FF31E030618008BE0B7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DEB40021E030618008BE0B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DEB400B1E030618008BE0B7 /* rizzleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1DEB40081E030618008BE0B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1DEB3FEE1E030618008BE0B7 /* rizzle */;
+			targetProxy = 1DEB40071E030618008BE0B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1DEB3FF61E030618008BE0B7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DEB3FF71E030618008BE0B7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1DEB3FFE1E030618008BE0B7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DEB3FFF1E030618008BE0B7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB400D1E030618008BE0B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1DEB400E1E030618008BE0B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1DEB40101E030618008BE0B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6393SND2S6;
+				INFOPLIST_FILE = rizzle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsuzuna.rizzle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1DEB40111E030618008BE0B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6393SND2S6;
+				INFOPLIST_FILE = rizzle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsuzuna.rizzle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		1DEB40131E030618008BE0B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 6393SND2S6;
+				INFOPLIST_FILE = rizzleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsuzuna.rizzleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rizzle.app/rizzle";
+			};
+			name = Debug;
+		};
+		1DEB40141E030618008BE0B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 6393SND2S6;
+				INFOPLIST_FILE = rizzleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsuzuna.rizzleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rizzle.app/rizzle";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB3FEA1E030618008BE0B7 /* Build configuration list for PBXProject "rizzle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB400D1E030618008BE0B7 /* Debug */,
+				1DEB400E1E030618008BE0B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB400F1E030618008BE0B7 /* Build configuration list for PBXNativeTarget "rizzle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB40101E030618008BE0B7 /* Debug */,
+				1DEB40111E030618008BE0B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1DEB40121E030618008BE0B7 /* Build configuration list for PBXNativeTarget "rizzleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB40131E030618008BE0B7 /* Debug */,
+				1DEB40141E030618008BE0B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1DEB3FF91E030618008BE0B7 /* rizzle.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1DEB3FFA1E030618008BE0B7 /* rizzle.xcdatamodel */,
+			);
+			currentVersion = 1DEB3FFA1E030618008BE0B7 /* rizzle.xcdatamodel */;
+			path = rizzle.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1DEB3FE71E030618008BE0B7 /* Project object */;
+}
