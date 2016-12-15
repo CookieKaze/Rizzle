@@ -26,6 +26,7 @@ class ViewController: UIViewController {
             if let user = user {
                 if user.isNew {
                     print("User signed up and logged in through Facebook!")
+                    
                 } else {
                     print("User logged in through Facebook!")
                 }
