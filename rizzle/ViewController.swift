@@ -7,19 +7,51 @@
 //
 
 import UIKit
+import FacebookLogin
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func FBLoginTapped(_ sender: UIButton) {
+        facebookSignIn()
     }
-
-
+    
+    @objc fileprivate func facebookSignIn() {
+        //        let loginManager = LoginManager()
+        //        print("LOGIN MANAGER: \(loginManager)")
+        //        loginManager.logIn([ .publicProfile, .email ], viewController: self) { loginResult in
+        //            print("LOGIN RESULT! \(loginResult)")
+        //            switch loginResult {
+        //            case .failed(let error):
+        //                print("FACEBOOK LOGIN FAILED: \(error)")
+        //            case .cancelled:
+        //                print("User cancelled login.")
+        //            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+        //                print("Logged in!")
+        //                print("GRANTED PERMISSIONS: \(grantedPermissions)")
+        //                print("DECLINED PERMISSIONS: \(declinedPermissions)")
+        //                print("ACCESS TOKEN \(accessToken)")
+        //            }
+        //        }
+        
+        let loginManager = LoginManager()
+        loginManager.logIn([ .publicProfile, .email ], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                print("Logged in!")
+                print("GRANTED PERMISSIONS: \(grantedPermissions)")
+                print("DECLINED PERMISSIONS: \(declinedPermissions)")
+                print("ACCESS TOKEN \(accessToken)")
+            }
+        }
+    }
+    
 }
 

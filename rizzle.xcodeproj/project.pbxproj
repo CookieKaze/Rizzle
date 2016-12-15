@@ -14,6 +14,8 @@
 		1DEB3FFD1E030618008BE0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB3FFC1E030618008BE0B7 /* Assets.xcassets */; };
 		1DEB40001E030618008BE0B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB3FFE1E030618008BE0B7 /* LaunchScreen.storyboard */; };
 		1DEB400B1E030618008BE0B7 /* rizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB400A1E030618008BE0B7 /* rizzleTests.swift */; };
+		65512EE1603948A457F8B37E /* Pods_rizzleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DAC87259A91C81BC88BD07 /* Pods_rizzleTests.framework */; };
+		7F6EEEDA6F9911EF0DCD38EC /* Pods_rizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC99776E99BD4D3F81B7E56 /* Pods_rizzle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,12 @@
 		1DEB40061E030618008BE0B7 /* rizzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rizzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DEB400A1E030618008BE0B7 /* rizzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rizzleTests.swift; sourceTree = "<group>"; };
 		1DEB400C1E030618008BE0B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		312A8E9180D6FDC745619B27 /* Pods-rizzleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-rizzleTests/Pods-rizzleTests.release.xcconfig"; sourceTree = "<group>"; };
+		81DAC87259A91C81BC88BD07 /* Pods_rizzleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rizzleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8734F78F914DA0D2BC0BD0A5 /* Pods-rizzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rizzle/Pods-rizzle.debug.xcconfig"; sourceTree = "<group>"; };
+		A41D9F2620614F6F7567B309 /* Pods-rizzleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rizzleTests/Pods-rizzleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AFC99776E99BD4D3F81B7E56 /* Pods_rizzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rizzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F29E7A163C7CCFBE4820DFEB /* Pods-rizzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzle.release.xcconfig"; path = "Pods/Target Support Files/Pods-rizzle/Pods-rizzle.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F6EEEDA6F9911EF0DCD38EC /* Pods_rizzle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,18 +61,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65512EE1603948A457F8B37E /* Pods_rizzleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E9C2657F581A2C7F6485A3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFC99776E99BD4D3F81B7E56 /* Pods_rizzle.framework */,
+				81DAC87259A91C81BC88BD07 /* Pods_rizzleTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1DEB3FE61E030618008BE0B7 = {
 			isa = PBXGroup;
 			children = (
 				1DEB3FF11E030618008BE0B7 /* rizzle */,
 				1DEB40091E030618008BE0B7 /* rizzleTests */,
 				1DEB3FF01E030618008BE0B7 /* Products */,
+				F8A2DF23116240F70A875D97 /* Pods */,
+				0E9C2657F581A2C7F6485A3C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +120,17 @@
 			path = rizzleTests;
 			sourceTree = "<group>";
 		};
+		F8A2DF23116240F70A875D97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8734F78F914DA0D2BC0BD0A5 /* Pods-rizzle.debug.xcconfig */,
+				F29E7A163C7CCFBE4820DFEB /* Pods-rizzle.release.xcconfig */,
+				A41D9F2620614F6F7567B309 /* Pods-rizzleTests.debug.xcconfig */,
+				312A8E9180D6FDC745619B27 /* Pods-rizzleTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +138,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB400F1E030618008BE0B7 /* Build configuration list for PBXNativeTarget "rizzle" */;
 			buildPhases = (
+				5DC122F522D913BCC2AB4E85 /* [CP] Check Pods Manifest.lock */,
 				1DEB3FEB1E030618008BE0B7 /* Sources */,
 				1DEB3FEC1E030618008BE0B7 /* Frameworks */,
 				1DEB3FED1E030618008BE0B7 /* Resources */,
+				522DAA5811713C5E96B012E7 /* [CP] Embed Pods Frameworks */,
+				11CBC8CA725B951BDE99CEF9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,9 +158,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB40121E030618008BE0B7 /* Build configuration list for PBXNativeTarget "rizzleTests" */;
 			buildPhases = (
+				7E4C3A7CC2D00C7F150F2E95 /* [CP] Check Pods Manifest.lock */,
 				1DEB40021E030618008BE0B7 /* Sources */,
 				1DEB40031E030618008BE0B7 /* Frameworks */,
 				1DEB40041E030618008BE0B7 /* Resources */,
+				B173F84180399526D1AE64B5 /* [CP] Embed Pods Frameworks */,
+				AE81E0BF11C94C83D512212F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,6 +236,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11CBC8CA725B951BDE99CEF9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rizzle/Pods-rizzle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		522DAA5811713C5E96B012E7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rizzle/Pods-rizzle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DC122F522D913BCC2AB4E85 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7E4C3A7CC2D00C7F150F2E95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AE81E0BF11C94C83D512212F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rizzleTests/Pods-rizzleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B173F84180399526D1AE64B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rizzleTests/Pods-rizzleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1DEB3FEB1E030618008BE0B7 /* Sources */ = {
@@ -343,6 +474,7 @@
 		};
 		1DEB40101E030618008BE0B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8734F78F914DA0D2BC0BD0A5 /* Pods-rizzle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6393SND2S6;
@@ -356,6 +488,7 @@
 		};
 		1DEB40111E030618008BE0B7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F29E7A163C7CCFBE4820DFEB /* Pods-rizzle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6393SND2S6;
@@ -369,6 +502,7 @@
 		};
 		1DEB40131E030618008BE0B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A41D9F2620614F6F7567B309 /* Pods-rizzleTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -384,6 +518,7 @@
 		};
 		1DEB40141E030618008BE0B7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 312A8E9180D6FDC745619B27 /* Pods-rizzleTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
