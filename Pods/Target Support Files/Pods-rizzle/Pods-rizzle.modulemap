@@ -1,0 +1,6 @@
+framework module Pods_rizzle {
+  umbrella header "Pods-rizzle-umbrella.h"
+
+  export *
+  module * { export * }
+}

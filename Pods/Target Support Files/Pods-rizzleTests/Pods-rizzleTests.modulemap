@@ -1,0 +1,6 @@
+framework module Pods_rizzleTests {
+  umbrella header "Pods-rizzleTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
