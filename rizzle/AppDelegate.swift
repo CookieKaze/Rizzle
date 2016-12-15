@@ -9,13 +9,13 @@
 import UIKit
 import CoreData
 import Parse
-import Google
+
 import FacebookCore
 import FacebookLogin
 import ParseFacebookUtilsV4
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
@@ -31,13 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         //Facebook Setup
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        
-        // Google sign-in
-        var configureError: NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
-        
-        GIDSignIn.sharedInstance().delegate = self
         
         return true
     }
@@ -116,49 +109,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
         }
     }
-    
-    
-    //MARK: - Google nonsense
-    private func application(application: UIApplication,
-                             openURL url: URL, options: [String: AnyObject]) -> Bool {
-        //UIApplicationOpenURLOptionsSourceApplicationKey
-        // UIApplicationOpenURLOptionsKey
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication: options["UIApplicationOpenURLOptionsSourceApplicationKey"] as? String, annotation: options["UIApplicationOpenURLOptionsAnnotationKey"])
-    }
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-                withError error: NSError!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            let _ = user.userID                  // For client-side use only!
-            let _ = user.authentication.idToken // Safe to send to the server
-            let _ = user.profile.name
-            let _ = user.profile.givenName
-            let _ = user.profile.familyName
-            let _ = user.profile.email
-            // ...
-        } else {
-            print("\(error.localizedDescription)")
-        }
-    }
-    public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            let _ = user.userID                  // For client-side use only!
-            let _ = user.authentication.idToken // Safe to send to the server
-            let _ = user.profile.name
-            let _ = user.profile.givenName
-            let _ = user.profile.familyName
-            let _ = user.profile.email
-            // ...
-        } else {
-            print("\(error.localizedDescription)")
-        }
-    }
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user:GIDGoogleUser!,
-              withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-    }
-    
 }
 
