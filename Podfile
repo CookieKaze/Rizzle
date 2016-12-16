@@ -6,7 +6,7 @@ target 'rizzle' do
   use_frameworks!
 
   # Pods for rizzle
-	pod ‘Parse’
+	pod 'Parse'
 	pod 'FacebookCore'
 	pod 'FacebookLogin'
 	pod 'ParseFacebookUtilsV4'
