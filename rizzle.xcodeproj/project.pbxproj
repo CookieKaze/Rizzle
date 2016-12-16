@@ -134,6 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				1D8D55671E0487A300EAB3A0 /* Rizzle.storyboard */,
+				1D8D55691E04974C00EAB3A0 /* letterBank.swift */,
+				1D8D556A1E04974C00EAB3A0 /* LetterCell.swift */,
+				1D8D556B1E04974C00EAB3A0 /* Rizzle.swift */,
 			);
 			name = Rizzle;
 			sourceTree = "<group>";
@@ -161,9 +164,6 @@
 		1DEB3FF11E030618008BE0B7 /* rizzle */ = {
 			isa = PBXGroup;
 			children = (
-				1D8D55691E04974C00EAB3A0 /* letterBank.swift */,
-				1D8D556A1E04974C00EAB3A0 /* LetterCell.swift */,
-				1D8D556B1E04974C00EAB3A0 /* Rizzle.swift */,
 				1DEB3FF61E030618008BE0B7 /* Main.storyboard */,
 				1D8D555F1E047D3300EAB3A0 /* Login */,
 				1D8D55621E047E5C00EAB3A0 /* User */,
