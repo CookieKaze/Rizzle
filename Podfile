@@ -6,10 +6,9 @@ target 'rizzle' do
   use_frameworks!
 
   # Pods for rizzle
-	pod ‘Parse’
+	pod 'Parse'
 	pod 'FacebookCore'
 	pod 'FacebookLogin'
-	pod 'Google/SignIn'
 	pod 'ParseFacebookUtilsV4'
   target 'rizzleTests' do
     inherit! :search_paths

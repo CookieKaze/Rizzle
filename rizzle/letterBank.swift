@@ -108,7 +108,6 @@ class letterBank: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
         default:
             break
         }
-        
         return cell
     }
 }
