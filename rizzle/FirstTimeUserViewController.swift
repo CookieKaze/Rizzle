@@ -27,12 +27,17 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
         let unCheckedUsername = rizzleNameField.text
         
         //Check for dup username
-        let query = PFQuery(className: "User")
-        if rizzleNameField.text != nil || (rizzleNameField.text?.characters.count)! > 0 {
-            query.whereKey("rizzleName", equalTo:unCheckedUsername!)
-            query.findObjectsInBackground(block: { (objects, error) in
+        let query = PFUser.query()
+        if rizzleNameField.text != nil && (rizzleNameField.text?.characters.count)! > 0 {
+            query?.whereKey("rizzleName", equalTo:unCheckedUsername!)
+            query?.findObjectsInBackground(block: { (objects, error) in
                 
-                if error == nil {
+                guard let objects = objects else {
+                    print("User object is nil")
+                    return
+                }
+                
+                if objects.count > 0 {
                     // The find succeeded.
                     self.statusLabel.text = "Username already exist"
                 } else {
