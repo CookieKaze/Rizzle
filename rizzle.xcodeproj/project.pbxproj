@@ -110,6 +110,18 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		1D8D55651E04832900EAB3A0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1DEB3FF21E030618008BE0B7 /* AppDelegate.swift */,
+				1DEB3FFC1E030618008BE0B7 /* Assets.xcassets */,
+				1DEB3FFE1E030618008BE0B7 /* LaunchScreen.storyboard */,
+				1DEB40011E030618008BE0B7 /* Info.plist */,
+				1DEB3FF91E030618008BE0B7 /* rizzle.xcdatamodeld */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
 		1DEB3FE61E030618008BE0B7 = {
 			isa = PBXGroup;
 			children = (
@@ -136,11 +148,7 @@
 				1DEB3FF61E030618008BE0B7 /* Main.storyboard */,
 				1D8D555F1E047D3300EAB3A0 /* Login */,
 				1D8D55621E047E5C00EAB3A0 /* User */,
-				1DEB3FF21E030618008BE0B7 /* AppDelegate.swift */,
-				1DEB3FFC1E030618008BE0B7 /* Assets.xcassets */,
-				1DEB3FFE1E030618008BE0B7 /* LaunchScreen.storyboard */,
-				1DEB40011E030618008BE0B7 /* Info.plist */,
-				1DEB3FF91E030618008BE0B7 /* rizzle.xcdatamodeld */,
+				1D8D55651E04832900EAB3A0 /* Support Files */,
 			);
 			path = rizzle;
 			sourceTree = "<group>";
