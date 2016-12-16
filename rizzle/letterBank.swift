@@ -86,7 +86,7 @@ class letterBank: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
             characterArray.add(self.letters[number])
         }
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LetterCell
-        cell.configure(image: )
+        //cell.configure(image: )
         return cell
     }
 }
