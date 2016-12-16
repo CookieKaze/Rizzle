@@ -38,12 +38,19 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
                     return
                 }
                 
+                guard let currentUser = PFUser.current() else {
+                    print("Current user is nil")
+                    return
+                }
+                
                 if objects.count > 0 {
                     // The find succeeded.
                     self.statusLabel.text = "Username already exist"
                 } else {
-                    PFUser.current()?["rizzleName"] = self.rizzleNameField.text
-                    PFUser.current()?.saveInBackground(block: {(success, error) in
+                    currentUser["rizzleName"] = self.rizzleNameField.text
+                    currentUser["weeklyScore"] = NSNumber(integerLiteral: 0)
+                    currentUser["totalScore"] = NSNumber(integerLiteral: 0)
+                    currentUser.saveInBackground(block: {(success, error) in
                         if (success) {
                             self.performSegue(withIdentifier: "loginToMain", sender: self)
                         } else {

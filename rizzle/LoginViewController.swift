@@ -43,5 +43,14 @@ class LoginViewController: UIViewController {
         })
     }
     
+    static func storyboardInstance() -> LoginViewController? {
+//        let storyboard = UIStoryboard(name:
+//            “HomeViewController”, bundle: nil) return
+//                storyboard.instantiateInitialViewController() as?
+//        HomeViewController
+        
+        let storyboard = 
+    }
+    
 }
 
