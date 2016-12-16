@@ -18,8 +18,8 @@ class letterBank: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
      }
      */
     
-    let letters:Array = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    let numbers:Array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    let letters:Array<String> = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    let numbers:Array<String> = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     
     let dummyStringAnswer = "spider"
     let dummyNumberAnswer = "42"
@@ -77,33 +77,49 @@ class letterBank: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
         let more = (self.dummyRizzle?.answer?.characters.count)!
         return (self.dummyRizzle?.answer?.characters.count)!+more
     }
+    
+    // I seriously hope this works
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let answerString = self.dummyRizzle?.answer!.uppercased()
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LetterCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LetterCell
         let characterArray = NSMutableArray()
+        let addedCharacters = NSMutableArray()
         
+        // switch statement based on Rizzle.Type enum
         switch self.dummyRizzle?.type?.rawValue {
         case 0?:
             cell.configure(image: (self.letters[indexPath.row]))
             break
         case 1?:
-            for char in (self.dummyRizzle?.answer?.characters)! {
-                characterArray.add(char)
-                let ind = arc4random_uniform(9)
+            for char in (answerString?.characters)! {
+                let indC = arc4random_uniform(UInt32((self.dummyRizzle?.answer?.characters.count)! as Int))
+                let charNumber = Int(indC)
+                if addedCharacters.contains(charNumber) == false {
+                    addedCharacters.add(charNumber)
+                    characterArray.add(char)
+                }
+                let ind = arc4random_uniform(27)
                 let number = Int(ind)
                 characterArray.add(self.letters[number])
             }
-            cell.configure(image: characterArray.object(at: indexPath.row))
+            let cells = (characterArray as NSArray) as! [String]
+            cell.configure(image: cells[indexPath.row])
             break
         case 2?:
-            for char in (self.dummyRizzle?.answer?.characters)! {
-                characterArray.add(char)
+            for char in (answerString?.characters)! {
+                let indC = arc4random_uniform(UInt32((self.dummyRizzle?.answer?.characters.count)! as Int))
+                let charNumber = Int(indC)
+                if addedCharacters.contains(charNumber) == false {
+                    addedCharacters.add(charNumber)
+                    characterArray.add(char)
+                }
                 let ind = arc4random_uniform(9)
                 let number = Int(ind)
                 characterArray.add(self.numbers[number])
             }
-            cell.configure(image: characterArray.object(at: indexPath.row))
+            let cells = (characterArray as NSArray) as! [String]
+            cell.configure(image: cells[indexPath.row])
             break
         default:
             break
