@@ -33,10 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //Setup initial view
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginView: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginView")
-        let mainView: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainUserView")
-        let firstTimeUserView: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "FirstTimeUser")
+        let loginStoryboard: UIStoryboard = UIStoryboard(name: "LoginStart", bundle: nil)
+        let userStoryboard: UIStoryboard = UIStoryboard(name: "User", bundle: nil)
+        
+        let loginView: LoginViewController = loginStoryboard.instantiateViewController(withIdentifier: "LoginView") as! LoginViewController
+        let firstTimeUserView: FirstTimeUserViewController = loginStoryboard.instantiateViewController(withIdentifier: "FirstTimeUser") as! FirstTimeUserViewController
+        
+        let userDashboardView: UserDashboardViewController = userStoryboard.instantiateViewController(withIdentifier: "userDashboard") as! UserDashboardViewController
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -46,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if currentUser != nil {
             if currentUserName != nil && currentUserName != ""{
-                self.window?.rootViewController = mainView
+                self.window?.rootViewController = userDashboardView
                 self.window?.makeKeyAndVisible()
             }else {
                 self.window?.rootViewController = firstTimeUserView

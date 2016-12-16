@@ -26,7 +26,7 @@ class UserDashboardViewController: UIViewController {
 
     func logoutButtonTapped () {
         PFUser.logOut()
-        guard let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "LoginView") as? LoginViewController else {
+        guard let vc = UIStoryboard(name:"LoginStart", bundle:nil).instantiateViewController(withIdentifier: "LoginView") as? LoginViewController else {
             print("Could not instantiate view controller with identifier of type LoginViewController")
             return
         }

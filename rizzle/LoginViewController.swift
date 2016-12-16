@@ -34,7 +34,11 @@ class LoginViewController: UIViewController {
                     
                 } else {
                     print("User logged in through Facebook!")
-                    self.performSegue(withIdentifier: "loginToMain", sender: nil)
+                    //User Dashboard Segue setup
+                    let userStoryboard = UIStoryboard.init(name: "User", bundle: nil)
+                    let dashboardView: UserDashboardViewController = userStoryboard.instantiateViewController(withIdentifier: "userDashboard") as! UserDashboardViewController
+                    self.present(dashboardView, animated: true, completion: nil)
+                    
                 }
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
@@ -42,15 +46,7 @@ class LoginViewController: UIViewController {
             }
         })
     }
-    
-    static func storyboardInstance() -> LoginViewController? {
-//        let storyboard = UIStoryboard(name:
-//            “HomeViewController”, bundle: nil) return
-//                storyboard.instantiateInitialViewController() as?
-//        HomeViewController
-        
-        let storyboard = 
-    }
-    
 }
+
+
 
