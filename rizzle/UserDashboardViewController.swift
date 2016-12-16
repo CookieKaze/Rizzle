@@ -7,29 +7,37 @@
 //
 
 import UIKit
+import Parse
 
 class UserDashboardViewController: UIViewController {
-
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var weeklyScoreLabel: UILabel!
+    @IBOutlet weak var totalScoreLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        guard let currentUser = PFUser.current() else{
+            print("No current user")
+            logout()
+            return
+        }
+        
+        usernameLabel.text = currentUser.object(forKey: "rizzleName") as! String?
+        weeklyScoreLabel.text = String(describing: currentUser.object(forKey: "weeklyScore") ?? "0")
+        totalScoreLabel.text = String(describing: currentUser.object(forKey: "totalScore") ?? "0")
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func logoutButtonTapped(_ sender: UIButton) {
+        logout()
     }
-    */
-
+    
+    func logout () {
+        PFUser.logOut()
+        guard let vc = UIStoryboard(name:"LoginStart", bundle:nil).instantiateViewController(withIdentifier: "LoginView") as? LoginViewController else {
+            print("Could not instantiate view controller with identifier of type LoginViewController")
+            return
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
 }
