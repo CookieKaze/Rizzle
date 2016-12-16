@@ -74,10 +74,14 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String)-> Bool
     {
-        let set = NSCharacterSet(charactersIn: allowedCharacters);
-        let notAllowedCharacters = set as CharacterSet
-        let filtered = string.components(separatedBy:notAllowedCharacters).joined(separator: "")
-        return filtered != string;
+        let set = NSCharacterSet(charactersIn: allowedCharacters)
+        let notAllowedCharacters = set.inverted
         
+        let textFieldInvalidCharPosition = string.rangeOfCharacter(from: notAllowedCharacters)
+        if (textFieldInvalidCharPosition != nil) {
+            return false
+        } else {
+            return true
+        }
     }
 }
