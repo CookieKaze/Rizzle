@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let currentUserName = currentUser?["rizzleName"] as? String
         
         if currentUser != nil {
-            if currentUserName != nil {
+            if currentUserName != nil && currentUserName != ""{
                 self.window?.rootViewController = mainView
                 self.window?.makeKeyAndVisible()
             }else {

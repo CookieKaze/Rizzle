@@ -12,8 +12,12 @@ class UserDashboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let logoutButton: UIButton = UIButton(type: .custom)
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.backgroundColor = .gray
+        logoutButton.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
+        view.addSubview(logoutButton)
+        
     }
 
     override func didReceiveMemoryWarning() {

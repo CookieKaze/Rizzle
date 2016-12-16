@@ -16,6 +16,7 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        rizzleNameField.delegate = self
         
     }
     
@@ -64,6 +65,19 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        resignFirstResponder()
+        rizzleNameField.resignFirstResponder()
+    }
+    
+    
+    // Prevent typing of special characters
+    let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String)-> Bool
+    {
+        let set = NSCharacterSet(charactersIn: allowedCharacters);
+        let notAllowedCharacters = set as CharacterSet
+        let filtered = string.components(separatedBy:notAllowedCharacters).joined(separator: "")
+        return filtered != string;
+        
     }
 }
