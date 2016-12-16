@@ -10,32 +10,34 @@ import UIKit
 import Parse
 
 class UserDashboardViewController: UIViewController {
-
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var weeklyScoreLabel: UILabel!
+    @IBOutlet weak var totalScoreLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let currentUser = PFUser.current() else{
+            print("No current user")
+            logout()
+            return
+        }
         
-        let logoutButton: UIButton = UIButton(type: .custom)
-        logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.backgroundColor = .gray
-        logoutButton.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
-        logoutButton.center = view.center;
-        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-        view.addSubview(logoutButton)
+        usernameLabel.text = currentUser.object(forKey: "rizzleName") as! String?
+        weeklyScoreLabel.text = String(describing: currentUser.object(forKey: "weeklyScore") ?? "0")
+        totalScoreLabel.text = String(describing: currentUser.object(forKey: "totalScore") ?? "0")
         
     }
-
-    func logoutButtonTapped () {
+    
+    @IBAction func logoutButtonTapped(_ sender: UIButton) {
+        logout()
+    }
+    
+    func logout () {
         PFUser.logOut()
         guard let vc = UIStoryboard(name:"LoginStart", bundle:nil).instantiateViewController(withIdentifier: "LoginView") as? LoginViewController else {
             print("Could not instantiate view controller with identifier of type LoginViewController")
             return
         }
-        self.present(vc, animated: true, completion: nil)   
+        self.present(vc, animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
