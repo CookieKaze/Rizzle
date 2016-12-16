@@ -25,6 +25,7 @@ class letterBank: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     let dummyNumberAnswer = "42"
     let dummyMultipleChoice = "c"
     var dummyRizzle:Rizzle?
+    let usedIndexes = NSMutableArray()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -78,15 +79,36 @@ class letterBank: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let characterArray = NSMutableArray()
-        for char in (self.dummyRizzle?.answer?.characters)! {
-            characterArray.add(char)
-            let ind = arc4random_uniform(27)
-            let number = Int(ind)
-            characterArray.add(self.letters[number])
-        }
+        let answerString = self.dummyRizzle?.answer!.uppercased()
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LetterCell
-        cell.configure(image: )
+        let characterArray = NSMutableArray()
+        
+        switch self.dummyRizzle?.type?.rawValue {
+        case 0?:
+            cell.configure(image: (self.letters[indexPath.row]))
+            break
+        case 1?:
+            for char in (self.dummyRizzle?.answer?.characters)! {
+                characterArray.add(char)
+                let ind = arc4random_uniform(9)
+                let number = Int(ind)
+                characterArray.add(self.letters[number])
+            }
+            cell.configure(image: characterArray.object(at: indexPath.row))
+            break
+        case 2?:
+            for char in (self.dummyRizzle?.answer?.characters)! {
+                characterArray.add(char)
+                let ind = arc4random_uniform(9)
+                let number = Int(ind)
+                characterArray.add(self.numbers[number])
+            }
+            cell.configure(image: characterArray.object(at: indexPath.row))
+            break
+        default:
+            break
+        }
+        
         return cell
     }
 }
