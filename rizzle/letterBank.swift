@@ -10,20 +10,18 @@ import UIKit
 
 class letterBank: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
     
-    let letters:Array<String> = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    //
+    // FAIR WARNING
+    //
+    // ANSWER ENTERING AND CHECKING HAS NOT BEEN WRITTEN YET!!!
+    
+    let letters:Array<String> = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     let numbers:Array<String> = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     
     let dummyStringAnswer = "spider"
     let dummyNumberAnswer = "42"
-    let dummyMultipleChoice = "c"
+    let dummyMultipleChoice = "C"
     var dummyRizzle:Rizzle?
     let usedIndexes = NSMutableArray()
     
@@ -126,4 +124,7 @@ class letterBank: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
         }
         return cell
     }
+    
+    // letterCell.swift will have function to test if userAnswer is corrent or not
+
 }
