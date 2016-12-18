@@ -233,8 +233,8 @@
                         <outlet property="hintsView" destination="JXc-KX-Tb7" id="7w3-x0-SlS"/>
                         <outlet property="imageUploadView" destination="LIW-As-Ll2" id="SSB-aR-9yz"/>
                         <outlet property="imageView" destination="rPF-Cp-0Bq" id="GBL-2h-Q6H"/>
-                        <outlet property="quesitonView" destination="NC6-nb-KPi" id="9fF-Jv-Qrl"/>
                         <outlet property="questionTextView" destination="P41-W3-QwT" id="Jaz-WK-Xaz"/>
+                        <outlet property="questionView" destination="NC6-nb-KPi" id="mZ2-dL-HAk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1x-An-b2k" userLabel="First Responder" sceneMemberID="firstResponder"/>

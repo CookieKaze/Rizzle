@@ -12,10 +12,10 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var currentPageCount = 0
     var animationDuration = 0.3
-
+    
     
     //Form Views
-    @IBOutlet weak var quesitonView: UIView!
+    @IBOutlet weak var questionView: UIView!
     @IBOutlet weak var imageUploadView: UIView!
     @IBOutlet weak var answerView: UIView!
     @IBOutlet weak var hintsView: UIView!
@@ -38,14 +38,14 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
         animationDuration = 0
         switch lastPageCount {
         case 1:
-            removeViews(view: quesitonView)
+            removeViews(view: questionView)
             break
         case 2:
-            removeViews(view: quesitonView)
+            removeViews(view: questionView)
             removeViews(view: imageUploadView)
             break
         case 3:
-            removeViews(view: quesitonView)
+            removeViews(view: questionView)
             removeViews(view: imageUploadView)
             removeViews(view: answerView)
             break
@@ -56,7 +56,27 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveRizzle(_ sender: UIBarButtonItem) {
-        
+        print("saved")
+        checkValidField()
+    }
+    
+    func checkValidField() {
+        if hint1TextField.text == "" || hint2TextField.text == "" || hint3TextField.text == "" {
+            print("Hints cannot be blank")
+            return
+        }
+        if answerTextField.text == "" {
+            print("Answer field cannot be blank")
+            restoreView(view: answerView)
+            return
+        }
+        if questionTextView.text == "" {
+            print("Question field cannot be blank")
+            restoreView(view: answerView)
+            restoreView(view: imageUploadView)
+            restoreView(view: questionView)
+            return
+        } 
     }
     
     //MARK: Form Transitions
@@ -69,7 +89,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
         case 1:
             //Remove Question View
             questionTextView.resignFirstResponder()
-            removeViews(view: quesitonView)
+            removeViews(view: questionView)
             break
         case 2:
             //Remove Image View
@@ -111,7 +131,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
             break
         case 3:
             //Restore Question View
-            restoreView(view: quesitonView)
+            restoreView(view: questionView)
             break
         default:
             break
@@ -125,7 +145,6 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
             view.center = CGPoint(x: self.view.center.x, y: self.view.center.y + 10)
         })
         currentPageCount -= 1
-        
     }
     
     //MARK: Keyboard Resign
