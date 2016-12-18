@@ -146,20 +146,42 @@
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rPF-Cp-0Bq">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kV8-Ei-BqF">
                                         <rect key="frame" x="28" y="74" width="319" height="200"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWh-o2-9Ih">
+                                                <rect key="frame" x="106" y="90" width="106.5" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rPF-Cp-0Bq">
+                                                <rect key="frame" x="0.0" y="0.0" width="319" height="200"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Jjl-dL-f7J" appends="YES" id="FX7-EM-3V5"/>
+                                                </connections>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="xNt-rn-NvN"/>
+                                            <constraint firstItem="rPF-Cp-0Bq" firstAttribute="leading" secondItem="kV8-Ei-BqF" secondAttribute="leading" id="83R-X8-0uJ"/>
+                                            <constraint firstItem="rPF-Cp-0Bq" firstAttribute="top" secondItem="kV8-Ei-BqF" secondAttribute="top" id="AMO-BQ-s8w"/>
+                                            <constraint firstItem="fWh-o2-9Ih" firstAttribute="centerX" secondItem="kV8-Ei-BqF" secondAttribute="centerX" id="CjH-yg-eqU"/>
+                                            <constraint firstAttribute="bottom" secondItem="rPF-Cp-0Bq" secondAttribute="bottom" id="Fh4-WD-W8n"/>
+                                            <constraint firstItem="fWh-o2-9Ih" firstAttribute="centerY" secondItem="kV8-Ei-BqF" secondAttribute="centerY" id="Rl0-89-7q2"/>
+                                            <constraint firstAttribute="trailing" secondItem="rPF-Cp-0Bq" secondAttribute="trailing" id="SQS-OX-UQJ"/>
+                                            <constraint firstAttribute="height" constant="200" id="qnY-GM-fRD"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="rPF-Cp-0Bq" firstAttribute="top" secondItem="DnP-aC-NGe" secondAttribute="bottom" constant="30" id="9T1-r6-mav"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="rPF-Cp-0Bq" secondAttribute="trailing" constant="20" id="agf-4W-7vy"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="kV8-Ei-BqF" secondAttribute="trailing" constant="20" id="1AD-7l-HoV"/>
+                                    <constraint firstItem="kV8-Ei-BqF" firstAttribute="leading" secondItem="LIW-As-Ll2" secondAttribute="leadingMargin" constant="20" id="PG3-cw-Jrl"/>
+                                    <constraint firstItem="kV8-Ei-BqF" firstAttribute="top" secondItem="DnP-aC-NGe" secondAttribute="bottom" constant="30" id="fG9-nf-gBY"/>
                                     <constraint firstAttribute="trailing" secondItem="DnP-aC-NGe" secondAttribute="trailing" id="jrt-YC-HTb"/>
                                     <constraint firstItem="DnP-aC-NGe" firstAttribute="leading" secondItem="LIW-As-Ll2" secondAttribute="leading" id="oYI-V9-UJr"/>
-                                    <constraint firstItem="rPF-Cp-0Bq" firstAttribute="leading" secondItem="LIW-As-Ll2" secondAttribute="leadingMargin" constant="20" id="sGo-n1-hwm"/>
                                     <constraint firstItem="DnP-aC-NGe" firstAttribute="top" secondItem="LIW-As-Ll2" secondAttribute="top" id="zsu-4O-W2p"/>
                                 </constraints>
                             </view>
@@ -203,6 +225,10 @@
                                     <constraint firstAttribute="trailing" secondItem="nD4-lm-exn" secondAttribute="trailing" id="aeH-Wz-V89"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Z2e-zG-a5a">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -225,6 +251,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Z2e-zG-a5a" id="qtK-np-qTF"/>
                         <outlet property="answerTextField" destination="Usb-6M-aEV" id="Y8f-lP-un4"/>
                         <outlet property="answerView" destination="sZK-MD-78s" id="YGC-rf-Ud2"/>
                         <outlet property="hint1TextField" destination="BLf-YS-vfZ" id="ia5-kN-i4o"/>
@@ -238,6 +265,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1x-An-b2k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Jjl-dL-f7J">
+                    <connections>
+                        <action selector="imageUploadTapped:" destination="X7Z-0R-u1Z" id="cfB-5E-Esf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-634.39999999999998" y="-298.2008995502249"/>
         </scene>

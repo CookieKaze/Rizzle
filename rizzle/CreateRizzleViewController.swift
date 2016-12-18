@@ -9,11 +9,12 @@
 import UIKit
 import Parse
 
-class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
+class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     //MARK: Properties
     var currentPageCount = 0
     var animationDuration = 0.3
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //Form Views
     @IBOutlet weak var questionView: UIView!
@@ -33,6 +34,10 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
     //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.stopAnimating()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.center = view.center
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,7 +65,9 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveRizzle(_ sender: UIBarButtonItem) {
         if checkValidField() {
+            self.activityIndicator.startAnimating()
             let rizzle = PFObject(className:"Rizzle")
+            rizzle["user"] = PFUser.current()
             rizzle["question"] = questionTextView.text
             rizzle["answer"] = answerTextField.text
             rizzle["hint1"] = hint1TextField.text
@@ -76,16 +83,44 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
                 rizzle["imageFile"] = imageFile
             }
             
-            rizzle.saveInBackground {
-                (success, error) in
-                if (success) {
+            rizzle.saveInBackground(block: { (success, error) in
+                self.activityIndicator.stopAnimating()
+                if error != nil {
+                    print(error!)
+                }else {
                     print("Rizzle Saved")
-                } else {
-                    print ("There is an error!")
+                    self.dismiss(animated: true, completion: nil)
                 }
-            }
+                
+            })
         }
     }
+    
+    
+    //MARK: Image Upload
+    @IBAction func imageUploadTapped(_ sender: UITapGestureRecognizer) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+        let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        guard let image = pickedImage else {
+            print ("Cannot get image")
+            return
+        }
+        
+        imageView.image = image
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     func checkValidField() -> Bool {
         var shouldSave = true
