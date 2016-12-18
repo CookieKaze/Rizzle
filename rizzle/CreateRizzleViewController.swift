@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
@@ -28,6 +29,8 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var hint2TextField: UITextField!
     @IBOutlet weak var hint3TextField: UITextField!
     
+    
+    //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -56,27 +59,53 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveRizzle(_ sender: UIBarButtonItem) {
-        print("saved")
-        checkValidField()
+        if checkValidField() {
+            let rizzle = PFObject(className:"Rizzle")
+            rizzle["question"] = questionTextView.text
+            rizzle["answer"] = answerTextField.text
+            rizzle["hint1"] = hint1TextField.text
+            rizzle["hint2"] = hint2TextField.text
+            rizzle["hint3"] = hint3TextField.text
+            
+            if imageView.image != nil {
+                guard let imageData = UIImagePNGRepresentation(imageView.image!) else {
+                    print("Image cannot be converted to data. Image not stored.")
+                    return
+                }
+                let imageFile = PFFile(name:"rizzleImage.png", data:imageData)
+                rizzle["imageFile"] = imageFile
+            }
+            
+            rizzle.saveInBackground {
+                (success, error) in
+                if (success) {
+                    print("Rizzle Saved")
+                } else {
+                    print ("There is an error!")
+                }
+            }
+        }
     }
     
-    func checkValidField() {
+    func checkValidField() -> Bool {
+        var shouldSave = true
         if hint1TextField.text == "" || hint2TextField.text == "" || hint3TextField.text == "" {
             print("Hints cannot be blank")
-            return
+            shouldSave = false
         }
         if answerTextField.text == "" {
             print("Answer field cannot be blank")
             restoreView(view: answerView)
-            return
+            shouldSave = false
         }
         if questionTextView.text == "" {
             print("Question field cannot be blank")
             restoreView(view: answerView)
             restoreView(view: imageUploadView)
             restoreView(view: questionView)
-            return
-        } 
+            shouldSave = false
+        }
+        return shouldSave
     }
     
     //MARK: Form Transitions
