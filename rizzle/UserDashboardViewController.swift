@@ -28,6 +28,11 @@ class UserDashboardViewController: UIViewController {
         
     }
     
+    @IBAction func createRizzleTapped(_ sender: UIButton) {
+        let createRizzleStoryboard = UIStoryboard(name: "CreateRizzle", bundle: nil)
+        let createRizzleView = createRizzleStoryboard.instantiateViewController(withIdentifier: "createRizzle")
+        present(createRizzleView, animated: true, completion: nil)
+    }
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
         logout()
     }
