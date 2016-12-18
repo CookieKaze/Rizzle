@@ -75,11 +75,12 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             rizzle["hint3"] = hint3TextField.text
             
             if imageView.image != nil {
-                guard let imageData = UIImagePNGRepresentation(imageView.image!) else {
+                
+            guard let imageData = UIImageJPEGRepresentation(imageView.image!, 0.75) else {
                     print("Image cannot be converted to data. Image not stored.")
                     return
                 }
-                let imageFile = PFFile(name:"rizzleImage.png", data:imageData)
+                let imageFile = PFFile(name:"rizzleImage.jpeg", data:imageData)
                 rizzle["imageFile"] = imageFile
             }
             
