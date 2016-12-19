@@ -427,13 +427,8 @@
 				1D57CEE61E033FE400D29B7E /* UserManager.swift in Sources */,
 				1DEB3FF31E030618008BE0B7 /* AppDelegate.swift in Sources */,
 				1D57CEEA1E034F6700D29B7E /* FirstTimeUserViewController.swift in Sources */,
-<<<<<<< HEAD
 				95FCB1231E05A8FE00FDBA2B /* SolveRizzleViewController.swift in Sources */,
 				1D8D556C1E04974C00EAB3A0 /* LetterBank.swift in Sources */,
-=======
-				1D40C7011E06261900ECA190 /* CreateRizzleViewController.swift in Sources */,
-				1D8D556C1E04974C00EAB3A0 /* letterBank.swift in Sources */,
->>>>>>> 0628ec2941eff2147a00f1d42f32764e382db82b
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
