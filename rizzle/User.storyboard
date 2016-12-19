@@ -121,12 +121,37 @@
                                     <action selector="createRizzleTapped:" destination="1Hf-uY-rSP" eventType="touchUpInside" id="XIY-r0-866"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recently Completed Rizzles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZD-nb-LUi">
+                                <rect key="frame" x="16" y="414" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xxj-bA-uUC">
+                                <rect key="frame" x="16" y="443" width="343" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="bB9-Pd-h9E"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="teL-iW-3jO">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="teL-iW-3jO" id="i5W-3D-6TP">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.78625133199999997" green="0.55356937090000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="JYR-1Q-bhN" secondAttribute="trailing" id="0i6-ZF-kaI"/>
                             <constraint firstItem="8XQ-Pa-v8H" firstAttribute="top" secondItem="zb4-n8-ELs" secondAttribute="bottom" id="0rU-FY-YqK"/>
                             <constraint firstItem="JYR-1Q-bhN" firstAttribute="leading" secondItem="ZEd-7k-mQP" secondAttribute="leadingMargin" id="1Dd-PS-wel"/>
+                            <constraint firstItem="uZD-nb-LUi" firstAttribute="leading" secondItem="ZEd-7k-mQP" secondAttribute="leadingMargin" id="2fa-Fe-KaL"/>
+                            <constraint firstItem="uZD-nb-LUi" firstAttribute="top" secondItem="yFl-jJ-ZA5" secondAttribute="bottom" constant="15" id="3Qc-yL-gnv"/>
                             <constraint firstItem="zb4-n8-ELs" firstAttribute="leading" secondItem="ZEd-7k-mQP" secondAttribute="leading" id="3mn-2A-BrC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iby-TN-oC0" secondAttribute="trailing" id="6VE-3h-TmG"/>
                             <constraint firstItem="iby-TN-oC0" firstAttribute="top" secondItem="U01-dw-YCP" secondAttribute="bottom" constant="20" id="7Qj-DP-5nm"/>
@@ -136,16 +161,20 @@
                             <constraint firstItem="iby-TN-oC0" firstAttribute="leading" secondItem="ZEd-7k-mQP" secondAttribute="leadingMargin" id="Bki-JK-o0x"/>
                             <constraint firstItem="IV0-54-Bci" firstAttribute="trailing" secondItem="ZEd-7k-mQP" secondAttribute="trailingMargin" id="H84-yW-rph"/>
                             <constraint firstItem="hEl-qP-pNN" firstAttribute="top" secondItem="iby-TN-oC0" secondAttribute="bottom" constant="10" id="OHk-Lo-q8b"/>
+                            <constraint firstItem="xxj-bA-uUC" firstAttribute="leading" secondItem="ZEd-7k-mQP" secondAttribute="leadingMargin" id="RPh-mE-E5F"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xxj-bA-uUC" secondAttribute="trailing" id="Tsw-uP-Aj9"/>
                             <constraint firstItem="LvJ-ZN-5Vj" firstAttribute="top" secondItem="JYR-1Q-bhN" secondAttribute="bottom" constant="10" id="V79-DF-b2y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LvJ-ZN-5Vj" secondAttribute="trailing" id="VFW-Kd-fMZ"/>
                             <constraint firstItem="IV0-54-Bci" firstAttribute="centerY" secondItem="LvJ-ZN-5Vj" secondAttribute="centerY" id="c17-XS-6q4"/>
                             <constraint firstItem="U01-dw-YCP" firstAttribute="centerX" secondItem="ZEd-7k-mQP" secondAttribute="centerX" id="cPT-6b-pmm"/>
                             <constraint firstItem="hEl-qP-pNN" firstAttribute="leading" secondItem="ZEd-7k-mQP" secondAttribute="leadingMargin" id="dqN-UU-RMo"/>
+                            <constraint firstItem="xxj-bA-uUC" firstAttribute="top" secondItem="uZD-nb-LUi" secondAttribute="bottom" constant="8" id="fg1-uB-Apz"/>
                             <constraint firstItem="LvJ-ZN-5Vj" firstAttribute="leading" secondItem="ZEd-7k-mQP" secondAttribute="leadingMargin" id="mwc-s8-XaR"/>
                             <constraint firstItem="U01-dw-YCP" firstAttribute="top" secondItem="Ms6-0L-3y3" secondAttribute="bottom" constant="30" id="nQ1-QW-ilk"/>
                             <constraint firstItem="yFl-jJ-ZA5" firstAttribute="trailing" secondItem="ZEd-7k-mQP" secondAttribute="trailingMargin" id="ngn-lG-7cy"/>
                             <constraint firstItem="yFl-jJ-ZA5" firstAttribute="leading" secondItem="ZEd-7k-mQP" secondAttribute="leadingMargin" id="pf7-Z9-CMc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hEl-qP-pNN" secondAttribute="trailing" id="r67-bx-xri"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uZD-nb-LUi" secondAttribute="trailing" id="ysc-Lq-dUU"/>
                         </constraints>
                     </view>
                     <connections>

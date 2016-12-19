@@ -116,7 +116,6 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             shouldSave = true
         }
         return shouldSave
-        
     }
     
     func showAlert (message: String) {
@@ -142,7 +141,6 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             print ("Cannot get image")
             return
         }
-        
         imageView.image = image
         dismiss(animated: true, completion: nil)
     }
