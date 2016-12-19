@@ -76,7 +76,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             
             if imageView.image != nil {
                 
-            guard let imageData = UIImageJPEGRepresentation(imageView.image!, 0.75) else {
+                guard let imageData = UIImageJPEGRepresentation(imageView.image!, 0.75) else {
                     print("Image cannot be converted to data. Image not stored.")
                     return
                 }
@@ -97,6 +97,36 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
         }
     }
     
+    func checkValidField() -> Bool {
+        var shouldSave = false
+        if hint1TextField.text == "" || hint2TextField.text == "" || hint3TextField.text == "" {
+            showAlert(message: "The hint fields cannot be blank.")
+            return shouldSave
+        } else if answerTextField.text == "" {
+            showAlert(message: "The answer field cannot be blank.")
+            restoreView(view: answerView)
+            return shouldSave
+        } else if questionTextView.text == "" {
+            showAlert(message: "The question field cannot be blank.")
+            restoreView(view: answerView)
+            restoreView(view: imageUploadView)
+            restoreView(view: questionView)
+            return shouldSave
+        }else {
+            shouldSave = true
+        }
+        return shouldSave
+        
+    }
+    
+    func showAlert (message: String) {
+        let alertView = UIAlertController(title: "Oh no!", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "Okay", style: .default, handler: {(action)in
+        })
+        
+        alertView.addAction(defaultAction)
+        present(alertView, animated: true, completion: nil)
+    }
     
     //MARK: Image Upload
     @IBAction func imageUploadTapped(_ sender: UITapGestureRecognizer) {
@@ -119,29 +149,6 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
-    func checkValidField() -> Bool {
-        var shouldSave = true
-        if hint1TextField.text == "" || hint2TextField.text == "" || hint3TextField.text == "" {
-            print("Hints cannot be blank")
-            shouldSave = false
-        }
-        if answerTextField.text == "" {
-            print("Answer field cannot be blank")
-            restoreView(view: answerView)
-            shouldSave = false
-        }
-        if questionTextView.text == "" {
-            print("Question field cannot be blank")
-            restoreView(view: answerView)
-            restoreView(view: imageUploadView)
-            restoreView(view: questionView)
-            shouldSave = false
-        }
-        return shouldSave
     }
     
     //MARK: Form Transitions
