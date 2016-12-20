@@ -23,7 +23,9 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var hintLabel: UILabel!
     @IBOutlet weak var solvedImage: UIImageView!
     @IBOutlet weak var bank: LetterBank!
+    
     public var currentRizzle:Rizzle?
+    
     var answerArray = NSMutableArray()
     var user:PFUser?
     
@@ -56,6 +58,8 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
                 // render letterBank and answerArray to unInteractable
                 var completed = self.user?.object(forKey: "completedRizzles") as! Array<String>
                 completed.append(String(format: "%@", (self.currentRizzle?.objectId)!))
+                
+                
                 
                 self.solvedImage.backgroundColor = UIColor.blue
                 self.solvedImage.image = UIImage(named: "solved")

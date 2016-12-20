@@ -20,7 +20,8 @@ class User: NSObject {
         self.rizzleName = rizzleName
         self.weeklyScore = NSNumber(integerLiteral: 0)
         self.totalScore = NSNumber(integerLiteral: 0)
-        self.completedRizzles = Array<String>(arrayLiteral: "")
+        self.completedRizzles = Array<String>()
+        
     }
     
     

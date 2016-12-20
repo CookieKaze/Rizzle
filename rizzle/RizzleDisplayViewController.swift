@@ -51,11 +51,11 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    // Select cell, segue to SolveRizzle, with current rizzle in cell
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "solveRizzle", sender: self)
-    }
-    
+//    // Select cell, segue to SolveRizzle, with current rizzle in cell
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.performSegue(withIdentifier: "solveRizzle", sender: self)
+//    }
+//    
     //MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
