@@ -81,6 +81,12 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
         present(createRizzleView, animated: true, completion: nil)
     }
     
+    func solveRizzle(){
+        let rizzleStoryboard = UIStoryboard(name: "Rizzle", bundle: nil)
+        let solveRizzleView = rizzleStoryboard.instantiateViewController(withIdentifier: "rizzleDisplay")
+        present(solveRizzleView, animated: true, completion: nil)
+    }
+    
     func logout () {
         PFUser.logOut()
         guard let vc = UIStoryboard(name:"LoginStart", bundle:nil).instantiateViewController(withIdentifier: "LoginView") as? LoginViewController else {
@@ -93,6 +99,10 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     //MARK: Button Actions
     @IBAction func createRizzleTapped(_ sender: UIButton) {
         createEditRizzle(rizzleToEdit: nil)
+    }
+    
+    @IBAction func solveRizzleTapped(_ sender: UIButton) {
+        solveRizzle()
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {

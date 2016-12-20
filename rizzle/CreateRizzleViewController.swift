@@ -181,6 +181,8 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             return
         }
         imageView.image = image
+        removeImageBtn.isHidden = false
+        removeImageBtn.isEnabled = true
         dismiss(animated: true, completion: nil)
     }
     
@@ -190,31 +192,31 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     
     @IBAction func removeImageBtnTapped(_ sender: UIButton) {
         imageView.image = nil
-        deleteStoredImage()
+//        deleteStoredImage()
     }
     
-    func deleteStoredImage() {
-        if rizzleToEdit != nil {
-            let storedImage = rizzleToEdit!["imageFile"] as! PFFile
-            guard let storeImagePath = storedImage.url else {
-                return
-            }
-            guard let storeImageURL = URL(string: storeImagePath) else {
-                return
-            }
-            
-            var request = URLRequest(url: NSURL(string: "http://rizzle-puzzle.herokuapp.com/parse/files/rizzle-puzzle/0351e06cedb4d056e1484a00fe3bf9f8_rizzleImage.jpeg")! as URL)
-            
-            request.httpMethod = "DELETE"
-            request.setValue(Parse.getApplicationId(), forHTTPHeaderField: "X-Parse-Application-Id")
-            request.setValue("LightHouseLabs2016", forHTTPHeaderField: "X-Parse-Master-Key")
-            
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                print("Response: \(response)")
-            })
-            task.resume()
-        }
-    }
+//    func deleteStoredImage() {
+//        if rizzleToEdit != nil {
+//            let storedImage = rizzleToEdit!["imageFile"] as! PFFile
+//            guard let storeImagePath = storedImage.url else {
+//                return
+//            }
+//            guard let storeImageURL = URL(string: storeImagePath) else {
+//                return
+//            }
+//            
+//            var request = URLRequest(url: NSURL(string: "http://rizzle-puzzle.herokuapp.com/parse/files/rizzle-puzzle/0351e06cedb4d056e1484a00fe3bf9f8_rizzleImage.jpeg")! as URL)
+//            
+//            request.httpMethod = "DELETE"
+//            request.setValue(Parse.getApplicationId(), forHTTPHeaderField: "X-Parse-Application-Id")
+//            request.setValue("LightHouseLabs2016", forHTTPHeaderField: "X-Parse-Master-Key")
+//            
+//            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+//                print("Response: \(response)")
+//            })
+//            task.resume()
+//        }
+//    }
     
     //MARK: Form Transitions
     @IBAction func cancelBtnTapped(_ sender: UIBarButtonItem) {
