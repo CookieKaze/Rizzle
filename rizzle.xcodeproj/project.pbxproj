@@ -271,7 +271,6 @@
 				TargetAttributes = {
 					1DEB3FEE1E030618008BE0B7 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 6393SND2S6;
 						ProvisioningStyle = Automatic;
 					};
 					1DEB40051E030618008BE0B7 = {
@@ -575,7 +574,7 @@
 			baseConfigurationReference = 8734F78F914DA0D2BC0BD0A5 /* Pods-rizzle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6393SND2S6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = rizzle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsuzuna.rizzle;
@@ -589,7 +588,7 @@
 			baseConfigurationReference = F29E7A163C7CCFBE4820DFEB /* Pods-rizzle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6393SND2S6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = rizzle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsuzuna.rizzle;

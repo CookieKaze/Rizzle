@@ -22,6 +22,8 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
             print("No current user")
             return
         }
+        
+        // Query for Rizzles
         let query = PFQuery(className: "Rizzle")
         query.whereKey("_User", notEqualTo: currentUser.username!)
         query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
@@ -35,12 +37,28 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
                     return
                 }
                 let usedIndexes = NSMutableArray()
+                
+                // pull 5 Rizzles from 'objects' making sure non are repeated
                 for _ in 1...5 {
                     let rand = Int(arc4random_uniform(UInt32(objects.count)))
-                    
                     if usedIndexes.contains(rand) == false {
                         usedIndexes.add(rand)
-                        self.solvableRizzles.add(objects[rand])
+                        let comparison = objects[rand]
+                        // relay 'comparison' PFObject to Rizzle, and add to array
+                        // setup Hints from PFObject into a hints array
+                        let hints:Array<String> = [(comparison.object(forKey: "hint1") as? String)!,
+                                                   (comparison.object(forKey: "hint2") as? String)!,
+                                                   (comparison.object(forKey: "hint3") as? String)!]
+                        
+                        let toAdd = Rizzle.init(title: (comparison.object(forKey: "title") as! String),
+                                                question: (comparison.object(forKey: "question") as! String),
+                                                answer: (comparison.object(forKey: "answer") as! String),
+                                                creator: (comparison.object(forKey: "_User") as! String),
+                                                hints: hints)
+                        toAdd.objectId = (comparison.objectId)! as String
+                        
+                        //add to array and reloadData
+                        self.solvableRizzles.add(toAdd)
                         self.rizzleTableView.reloadData()
                     }
                 }
@@ -51,11 +69,10 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-//    // Select cell, segue to SolveRizzle, with current rizzle in cell
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.performSegue(withIdentifier: "solveRizzle", sender: self)
-//    }
-//    
+    // Select cell, segue to SolveRizzle, with current rizzle in cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.sendingRizzle = self.solvableRizzles[indexPath.row] as? Rizzle
+    }
     //MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

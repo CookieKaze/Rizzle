@@ -59,7 +59,13 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
                 var completed = self.user?.object(forKey: "completedRizzles") as! Array<String>
                 completed.append(String(format: "%@", (self.currentRizzle?.objectId)!))
                 
-                
+                self.user?.saveInBackground(block: { (success, error) in
+                    if error != nil {
+                        print(error!)
+                    }else {
+                        print("solved Rizzle ID stored")
+                    }
+                })
                 
                 self.solvedImage.backgroundColor = UIColor.blue
                 self.solvedImage.image = UIImage(named: "solved")
@@ -94,10 +100,7 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     @IBAction func returnToDashboard(_ sender: Any) {
-        if let dashboard = self.storyboard?.instantiateViewController(withIdentifier: "userDashboard") as? UserDashboardViewController {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController!.present(dashboard, animated: true, completion: nil)
-        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: - UICollectionViewDataSource
