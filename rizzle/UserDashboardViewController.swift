@@ -38,12 +38,8 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
             (objects, error) in
             if error == nil {
                 // The find succeeded.
-                print("Successfully retrieved \(objects!.count) objects.")
-                
-                guard let objects = objects else {
-                    print("No objects found")
-                    return
-                }
+                guard let objects = objects else { return }
+
                 self.myRizzles = objects.reversed()
                 self.myRizzleTableView.reloadData()
             } else {
@@ -74,17 +70,17 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     
     //MARK: Navigation and Segues
     
+    func newRizzle(){
+    }
+    
+    func continueRizzle(){
+    }
+    
     func createEditRizzle(rizzleToEdit: PFObject?) {
         let createRizzleStoryboard = UIStoryboard(name: "CreateRizzle", bundle: nil)
         let createRizzleView = createRizzleStoryboard.instantiateViewController(withIdentifier: "createRizzle") as! CreateRizzleViewController
         createRizzleView.rizzleToEdit = rizzleToEdit
         present(createRizzleView, animated: true, completion: nil)
-    }
-    
-    func solveRizzle(){
-        let rizzleStoryboard = UIStoryboard(name: "Rizzle", bundle: nil)
-        let solveRizzleView = rizzleStoryboard.instantiateViewController(withIdentifier: "rizzleDisplay")
-        present(solveRizzleView, animated: true, completion: nil)
     }
     
     func logout () {
@@ -101,8 +97,12 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
         createEditRizzle(rizzleToEdit: nil)
     }
     
-    @IBAction func solveRizzleTapped(_ sender: UIButton) {
-        solveRizzle()
+    @IBAction func newRizzleTapped(_ sender: UIButton) {
+        newRizzle()
+    }
+    
+    @IBAction func continueRizzleTapped(_ sender: UIButton) {
+        continueRizzle()
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {

@@ -51,10 +51,13 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
                     currentUser["weeklyScore"] = NSNumber(integerLiteral: 0)
                     currentUser["totalScore"] = NSNumber(integerLiteral: 0)
                     currentUser.saveInBackground(block: {(success, error) in
-                        if (success) {
-                            self.performSegue(withIdentifier: "loginToMain", sender: self)
-                        } else {
-                            self.statusLabel.text = "Problem saving username. Please try again later."
+                        DispatchQueue.main.async {
+                            if (success) {
+                                let userDashboard = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userDashboard")
+                                self.present(userDashboard, animated: true, completion: nil)
+                            } else {
+                                self.statusLabel.text = "Problem saving username. Please try again later."
+                            }
                         }
                     })
                 }
