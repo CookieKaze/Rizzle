@@ -26,7 +26,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SB2-1U-giS">
                                 <rect key="frame" x="16" y="157" width="343" height="490"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="0.31090634585889571" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="SB2-1U-giS" secondAttribute="height" multiplier="7:10" id="kqD-Gs-dnA"/>
                                 </constraints>
@@ -54,14 +54,34 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ejg-Mg-Rzn" kind="show" identifier="solveRizzle" id="f0b-C4-6vV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKW-B9-2sg">
+                                <rect key="frame" x="16" y="20" width="29" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KKW-B9-2sg" secondAttribute="height" multiplier="29:30" id="eiq-18-Dmv"/>
+                                    <constraint firstAttribute="height" constant="30" id="n6h-wa-6hH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnToDashboard:" destination="ejg-Mg-Rzn" eventType="touchUpInside" id="Yw7-eT-sf5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.34759379307551358" green="0.5952356216755319" blue="0.57441613780033141" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SB2-1U-giS" firstAttribute="centerY" secondItem="B1u-8J-Cwd" secondAttribute="centerY" multiplier="1.208" id="7f7-lh-Br6"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="KKW-B9-2sg" secondAttribute="leading" id="C0H-mS-Lk6"/>
                             <constraint firstItem="SB2-1U-giS" firstAttribute="width" secondItem="B1u-8J-Cwd" secondAttribute="width" multiplier="0.915" id="ZyH-Gk-VP7"/>
+                            <constraint firstItem="KKW-B9-2sg" firstAttribute="width" secondItem="KKW-B9-2sg" secondAttribute="height" multiplier="29:30" id="kT5-HQ-rls"/>
+                            <constraint firstItem="KKW-B9-2sg" firstAttribute="top" secondItem="shU-8a-cv2" secondAttribute="bottom" id="qid-F0-gjA"/>
                             <constraint firstItem="SB2-1U-giS" firstAttribute="centerX" secondItem="B1u-8J-Cwd" secondAttribute="centerX" id="xxO-tz-T1w"/>
                         </constraints>
                     </view>
@@ -197,7 +217,7 @@
                                     <constraint firstItem="69k-OA-eUg" firstAttribute="bottom" secondItem="wrp-RG-Ock" secondAttribute="bottom" constant="-8" id="Z8E-cG-qvZ"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-Ih-nui">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-Ih-nui">
                                 <rect key="frame" x="16" y="416" width="343" height="235"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Rrp-Ih-nui" secondAttribute="height" multiplier="343:235" id="7Jx-k5-1fU"/>

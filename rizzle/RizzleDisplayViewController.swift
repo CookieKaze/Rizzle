@@ -13,6 +13,7 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var rizzleTableView: UITableView!
     var solvableRizzles = NSMutableArray()
+    var sendingRizzle:Rizzle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +53,7 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
     
     // Select cell, segue to SolveRizzle, with current rizzle in cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let rizzleStoryboard: UIStoryboard = UIStoryboard(name: "Rizzle", bundle: nil)
-        let solveRizzleView: SolveRizzleViewController = rizzleStoryboard.instantiateViewController(withIdentifier: "solveRizzle") as! SolveRizzleViewController
-        solveRizzleView.currentRizzle = (solvableRizzles[indexPath.row] as! Rizzle)
-        self.present(solveRizzleView, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "solveRizzle", sender: self)
     }
     
     //MARK: - TableView DataSource
@@ -73,5 +71,13 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
         cell.detailTextLabel?.text = rizzle.description
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier?.isEqual("solveRizzle"))! {
+            if let vc: SolveRizzleViewController = segue.destination as? SolveRizzleViewController {
+                vc.currentRizzle = self.sendingRizzle
+            }
+        }
     }
 }
