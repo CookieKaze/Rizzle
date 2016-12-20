@@ -24,8 +24,6 @@ class User: NSObject {
     }
     
     
-    
-    
     //MARK: Archiving
     required init(coder decoder: NSCoder) {
         self.username = (decoder.decodeObject(forKey: "username") as? String)!
