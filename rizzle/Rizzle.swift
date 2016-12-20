@@ -37,6 +37,7 @@ class Rizzle: NSObject {
         self.hints = hints
         
     }
+    
     //MARK: Archiving
     required init(coder decoder: NSCoder) {
         self.title = (decoder.decodeObject(forKey: "title") as? String)!
