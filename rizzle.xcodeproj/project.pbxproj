@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D40C6FE1E0625FB00ECA190 /* CreateRizzle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D40C6FD1E0625FB00ECA190 /* CreateRizzle.storyboard */; };
-		1D40C7011E06261900ECA190 /* CreateRizzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40C7001E06261900ECA190 /* CreateRizzleViewController.swift */; };
 		1D57CEE41E033B3100D29B7E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57CEE31E033B3100D29B7E /* User.swift */; };
 		1D57CEE61E033FE400D29B7E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57CEE51E033FE400D29B7E /* UserManager.swift */; };
 		1D57CEE81E034CBD00D29B7E /* UserDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57CEE71E034CBD00D29B7E /* UserDashboardViewController.swift */; };
@@ -28,6 +27,8 @@
 		1DEB400B1E030618008BE0B7 /* rizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB400A1E030618008BE0B7 /* rizzleTests.swift */; };
 		65512EE1603948A457F8B37E /* Pods_rizzleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DAC87259A91C81BC88BD07 /* Pods_rizzleTests.framework */; };
 		7F6EEEDA6F9911EF0DCD38EC /* Pods_rizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC99776E99BD4D3F81B7E56 /* Pods_rizzle.framework */; };
+		9573070A1E08936D00F527A1 /* RizzleDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957307091E08936D00F527A1 /* RizzleDisplayViewController.swift */; };
+		9573070C1E08A41000F527A1 /* RizzleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9573070B1E08A41000F527A1 /* RizzleCell.swift */; };
 		95FCB1231E05A8FE00FDBA2B /* SolveRizzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FCB1221E05A8FE00FDBA2B /* SolveRizzleViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		312A8E9180D6FDC745619B27 /* Pods-rizzleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-rizzleTests/Pods-rizzleTests.release.xcconfig"; sourceTree = "<group>"; };
 		81DAC87259A91C81BC88BD07 /* Pods_rizzleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rizzleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8734F78F914DA0D2BC0BD0A5 /* Pods-rizzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rizzle/Pods-rizzle.debug.xcconfig"; sourceTree = "<group>"; };
+		957307091E08936D00F527A1 /* RizzleDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleDisplayViewController.swift; sourceTree = "<group>"; };
+		9573070B1E08A41000F527A1 /* RizzleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleCell.swift; sourceTree = "<group>"; };
 		95FCB1221E05A8FE00FDBA2B /* SolveRizzleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolveRizzleViewController.swift; sourceTree = "<group>"; };
 		A41D9F2620614F6F7567B309 /* Pods-rizzleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rizzleTests/Pods-rizzleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFC99776E99BD4D3F81B7E56 /* Pods_rizzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rizzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,7 +154,9 @@
 				1D8D55671E0487A300EAB3A0 /* Rizzle.storyboard */,
 				1D8D55691E04974C00EAB3A0 /* LetterBank.swift */,
 				95FCB1221E05A8FE00FDBA2B /* SolveRizzleViewController.swift */,
+				957307091E08936D00F527A1 /* RizzleDisplayViewController.swift */,
 				1D8D556A1E04974C00EAB3A0 /* LetterCell.swift */,
+				9573070B1E08A41000F527A1 /* RizzleCell.swift */,
 				1D8D556B1E04974C00EAB3A0 /* Rizzle.swift */,
 			);
 			name = Rizzle;
@@ -429,6 +434,8 @@
 				1D57CEEA1E034F6700D29B7E /* FirstTimeUserViewController.swift in Sources */,
 				95FCB1231E05A8FE00FDBA2B /* SolveRizzleViewController.swift in Sources */,
 				1D8D556C1E04974C00EAB3A0 /* LetterBank.swift in Sources */,
+				9573070C1E08A41000F527A1 /* RizzleCell.swift in Sources */,
+				9573070A1E08936D00F527A1 /* RizzleDisplayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

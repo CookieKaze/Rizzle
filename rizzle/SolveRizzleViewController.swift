@@ -25,26 +25,18 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var bank: LetterBank!
     public var currentRizzle:Rizzle?
     var answerArray = NSMutableArray()
+    var user:PFUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.bank.currentRizzle = self.currentRizzle
         // 'bank' is still set to create Dummy values for testing at this point
-        
         guard let currentUser = PFUser.current() else{
             print("No current user")
             return
         }
-        
-        let query = PFQuery(className: "Rizzle")
-        query.whereKey("_User", notEqualTo: currentUser.username!)
-        query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
-            if error == nil {
-                // find is successful
-                
-            }
-        }
+        self.user = currentUser
         
         self.rizzleTitle.text = self.currentRizzle?.title
         self.rizzleDescription.text = self.currentRizzle?.question
@@ -62,10 +54,13 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
                 self.rizzleTitle.text = "SOLVED!"
                 self.bank.characterArray.removeAllObjects()
                 // render letterBank and answerArray to unInteractable
+                var completed = self.user?.object(forKey: "completedRizzles") as! Array<String>
+                completed.append(String(format: "%@", (self.currentRizzle?.objectId)!))
                 
                 self.solvedImage.backgroundColor = UIColor.blue
                 self.solvedImage.image = UIImage(named: "solved")
                 self.solvedImage.isHidden = false
+                
                 
                 UIView.animate(withDuration: 1.5, animations: {
                     self.solvedImage.isHidden = true

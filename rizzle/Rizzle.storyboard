@@ -12,6 +12,67 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Rizzle Display View Controller-->
+        <scene sceneID="HL4-5Y-1RL">
+            <objects>
+                <viewController storyboardIdentifier="rizzleDisplay" id="yS6-2h-tKz" customClass="RizzleDisplayViewController" customModule="rizzle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="shU-8a-cv2"/>
+                        <viewControllerLayoutGuide type="bottom" id="lYq-dL-8oj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B1u-8J-Cwd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SB2-1U-giS">
+                                <rect key="frame" x="16" y="157" width="343" height="490"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SB2-1U-giS" secondAttribute="height" multiplier="7:10" id="kqD-Gs-dnA"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rizzleCell" textLabel="mQM-hy-LZZ" detailTextLabel="AAM-nJ-bJB" style="IBUITableViewCellStyleSubtitle" id="xzp-ZD-uGT">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xzp-ZD-uGT" id="Gow-NS-4hU">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mQM-hy-LZZ">
+                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AAM-nJ-bJB">
+                                                    <rect key="frame" x="15" y="25" width="33" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.34759379307551358" green="0.5952356216755319" blue="0.57441613780033141" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="SB2-1U-giS" firstAttribute="centerY" secondItem="B1u-8J-Cwd" secondAttribute="centerY" multiplier="1.208" id="7f7-lh-Br6"/>
+                            <constraint firstItem="SB2-1U-giS" firstAttribute="width" secondItem="B1u-8J-Cwd" secondAttribute="width" multiplier="0.915" id="ZyH-Gk-VP7"/>
+                            <constraint firstItem="SB2-1U-giS" firstAttribute="centerX" secondItem="B1u-8J-Cwd" secondAttribute="centerX" id="xxO-tz-T1w"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="rizzleTableView" destination="SB2-1U-giS" id="slg-QJ-2VM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAY-uY-dg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1975.2" y="113.79310344827587"/>
+        </scene>
         <!--Solve Rizzle View Controller-->
         <scene sceneID="CJX-dA-1yE">
             <objects>
