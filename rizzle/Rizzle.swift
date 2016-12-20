@@ -35,7 +35,6 @@ class Rizzle: NSObject {
         self.answer = answer as String?
         self.creator = creator as String?
         self.hints = hints
-        
     }
     
     //MARK: Archiving
@@ -46,6 +45,7 @@ class Rizzle: NSObject {
         self.creator = (decoder.decodeObject(forKey: "creator") as? String)!
         self.createdOn = (decoder.decodeObject(forKey: "createdOn") as? NSDate)!
         self.updatedOn = (decoder.decodeObject(forKey: "updatedOn") as? NSDate)!
+        self.objectId = (decoder.decodeObject(forKey: "objectId") as? String)!
     }
     
     func encode(with coder: NSCoder) {

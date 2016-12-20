@@ -1,92 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes>
-        <!--Rizzle Controller-->
-        <scene sceneID="TSY-dM-r8p">
-            <objects>
-                <viewController title="Rizzle Controller" id="Fww-W7-7Ly" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qUL-fW-ZMQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="zEk-u3-cmZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mTs-gI-40c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7D-QC-rxc" customClass="letterBank" customModule="rizzle" customModuleProvider="target">
-                                <rect key="frame" x="16" y="422" width="342" height="182"/>
-                                <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8l1-Iv-OsY">
-                                        <rect key="frame" x="0.0" y="0.0" width="342" height="122"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="8l1-Iv-OsY" secondAttribute="height" multiplier="171:61" id="6NH-fT-aeO"/>
-                                        </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LZW-Wt-uWU">
-                                            <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="wVF-tb-hGA" customClass="LetterCell" customModule="rizzle" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="X" translatesAutoresizingMaskIntoConstraints="NO" id="n68-dp-UFW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                </view>
-                                                <constraints>
-                                                    <constraint firstItem="n68-dp-UFW" firstAttribute="leading" secondItem="wVF-tb-hGA" secondAttribute="leading" id="0sa-go-LBw"/>
-                                                    <constraint firstItem="n68-dp-UFW" firstAttribute="top" secondItem="wVF-tb-hGA" secondAttribute="top" id="Vvg-aM-8vL"/>
-                                                    <constraint firstAttribute="bottom" secondItem="n68-dp-UFW" secondAttribute="bottom" id="XwG-AG-wWH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="n68-dp-UFW" secondAttribute="trailing" id="t9V-8i-dbu"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="imageView" destination="n68-dp-UFW" id="WkK-HY-eHl"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="8l1-Iv-OsY" secondAttribute="trailing" id="DMa-S9-7Ax"/>
-                                    <constraint firstItem="8l1-Iv-OsY" firstAttribute="width" secondItem="h7D-QC-rxc" secondAttribute="width" id="NtL-gb-aQG"/>
-                                    <constraint firstItem="8l1-Iv-OsY" firstAttribute="top" secondItem="h7D-QC-rxc" secondAttribute="top" id="edB-7m-oj7"/>
-                                    <constraint firstItem="8l1-Iv-OsY" firstAttribute="leading" secondItem="h7D-QC-rxc" secondAttribute="leading" id="xeo-97-Frf"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="zEk-u3-cmZ" firstAttribute="top" secondItem="h7D-QC-rxc" secondAttribute="bottom" constant="63" id="5Bq-oU-Abv"/>
-                            <constraint firstItem="h7D-QC-rxc" firstAttribute="width" secondItem="mTs-gI-40c" secondAttribute="width" multiplier="0.91" id="ghw-ZJ-avA"/>
-                            <constraint firstItem="h7D-QC-rxc" firstAttribute="centerX" secondItem="mTs-gI-40c" secondAttribute="centerX" id="xf3-lt-z0a"/>
-                            <constraint firstItem="h7D-QC-rxc" firstAttribute="top" secondItem="qUL-fW-ZMQ" secondAttribute="bottom" constant="402" id="yVc-aN-iB1"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="74s-2m-2jN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2280.8000000000002" y="438.53073463268368"/>
-        </scene>
-    </scenes>
-    <resources>
-        <image name="X" width="2048" height="2048"/>
-    </resources>
+    <scenes/>
 </document>
