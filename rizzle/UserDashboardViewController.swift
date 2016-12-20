@@ -39,7 +39,7 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
             if error == nil {
                 // The find succeeded.
                 guard let objects = objects else { return }
-
+                
                 self.myRizzles = objects.reversed()
                 self.myRizzleTableView.reloadData()
             } else {
@@ -71,6 +71,9 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     //MARK: Navigation and Segues
     
     func newRizzle(){
+        let newRizzleView = UIStoryboard(name: "Rizzle", bundle: nil).instantiateViewController(withIdentifier: "solveRizzle") as! SolveRizzleViewController
+        newRizzleView.solveRizzle = nil
+        present(newRizzleView, animated: true, completion: nil)
     }
     
     func continueRizzle(){
@@ -91,7 +94,7 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
         }
         self.present(vc, animated: true, completion: nil)
     }
-
+    
     //MARK: Button Actions
     @IBAction func createRizzleTapped(_ sender: UIButton) {
         createEditRizzle(rizzleToEdit: nil)

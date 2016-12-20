@@ -119,13 +119,14 @@
                                 <rect key="frame" x="172" y="262" width="31" height="30"/>
                                 <state key="normal" title="New"/>
                                 <connections>
-                                    <action selector="solveRizzleTapped:" destination="1Hf-uY-rSP" eventType="touchUpInside" id="qEI-Dc-1as"/>
+                                    <action selector="newRizzleTapped:" destination="1Hf-uY-rSP" eventType="touchUpInside" id="3BX-df-Y8G"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTM-BS-GBn">
                                 <rect key="frame" x="156" y="300" width="62" height="30"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
+                                    <action selector="continueRizzleTapped:" destination="1Hf-uY-rSP" eventType="touchUpInside" id="4vL-gn-CiC"/>
                                     <action selector="solveRizzleTapped:" destination="1Hf-uY-rSP" eventType="touchUpInside" id="6sp-Rr-WKI"/>
                                 </connections>
                             </button>

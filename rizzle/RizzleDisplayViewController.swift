@@ -94,11 +94,11 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier?.isEqual("solveRizzle"))! {
-            if let vc: SolveRizzleViewController = segue.destination as? SolveRizzleViewController {
-                vc.currentRizzle = self.sendingRizzle
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier?.isEqual("solveRizzle"))! {
+//            if let vc: SolveRizzleViewController = segue.destination as? SolveRizzleViewController {
+//                vc.currentRizzle = self.sendingRizzle
+//            }
+//        }
+//    }
 }
