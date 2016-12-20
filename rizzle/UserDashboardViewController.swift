@@ -44,17 +44,13 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
                     print("No objects found")
                     return
                 }
-                self.myRizzles = objects
+                self.myRizzles = objects.reversed()
                 self.myRizzleTableView.reloadData()
             } else {
                 // Log details of the failure
                 print("Error: \(error!)")
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
     }
     
     //MARK: My Rizzle Table View
@@ -71,17 +67,18 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
         
         return cell
     }
-
-    //MARK: Navigation
-    @IBAction func createRizzleTapped(_ sender: UIButton) {
-        let createRizzleStoryboard = UIStoryboard(name: "CreateRizzle", bundle: nil)
-        let createRizzleView = createRizzleStoryboard.instantiateViewController(withIdentifier: "createRizzle")
-        present(createRizzleView, animated: true, completion: nil)
-        
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        createEditRizzle(rizzleToEdit: myRizzles[indexPath.row])
     }
     
-    @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        logout()
+    //MARK: Navigation and Segues
+    
+    func createEditRizzle(rizzleToEdit: PFObject?) {
+        let createRizzleStoryboard = UIStoryboard(name: "CreateRizzle", bundle: nil)
+        let createRizzleView = createRizzleStoryboard.instantiateViewController(withIdentifier: "createRizzle") as! CreateRizzleViewController
+        createRizzleView.rizzleToEdit = rizzleToEdit
+        present(createRizzleView, animated: true, completion: nil)
     }
     
     func logout () {
@@ -91,5 +88,14 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
             return
         }
         self.present(vc, animated: true, completion: nil)
+    }
+
+    //MARK: Button Actions
+    @IBAction func createRizzleTapped(_ sender: UIButton) {
+        createEditRizzle(rizzleToEdit: nil)
+    }
+    
+    @IBAction func logoutButtonTapped(_ sender: UIButton) {
+        logout()
     }
 }

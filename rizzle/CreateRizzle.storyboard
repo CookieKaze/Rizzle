@@ -174,14 +174,24 @@
                                             <constraint firstAttribute="height" constant="200" id="qnY-GM-fRD"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmj-Fw-IUs">
+                                        <rect key="frame" x="28" y="284" width="319" height="30"/>
+                                        <state key="normal" title="Remove Image"/>
+                                        <connections>
+                                            <action selector="removeImageBtnTapped:" destination="X7Z-0R-u1Z" eventType="touchUpInside" id="lRo-Mm-OKP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="kV8-Ei-BqF" secondAttribute="trailing" constant="20" id="1AD-7l-HoV"/>
+                                    <constraint firstItem="Nmj-Fw-IUs" firstAttribute="top" secondItem="kV8-Ei-BqF" secondAttribute="bottom" constant="10" id="DWv-IL-mhG"/>
+                                    <constraint firstItem="Nmj-Fw-IUs" firstAttribute="leading" secondItem="LIW-As-Ll2" secondAttribute="leadingMargin" constant="20" id="Mu8-Yd-sfG"/>
                                     <constraint firstItem="kV8-Ei-BqF" firstAttribute="leading" secondItem="LIW-As-Ll2" secondAttribute="leadingMargin" constant="20" id="PG3-cw-Jrl"/>
                                     <constraint firstItem="kV8-Ei-BqF" firstAttribute="top" secondItem="DnP-aC-NGe" secondAttribute="bottom" constant="30" id="fG9-nf-gBY"/>
                                     <constraint firstAttribute="trailing" secondItem="DnP-aC-NGe" secondAttribute="trailing" id="jrt-YC-HTb"/>
                                     <constraint firstItem="DnP-aC-NGe" firstAttribute="leading" secondItem="LIW-As-Ll2" secondAttribute="leading" id="oYI-V9-UJr"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Nmj-Fw-IUs" secondAttribute="trailing" constant="20" id="vf1-xd-Bfi"/>
                                     <constraint firstItem="DnP-aC-NGe" firstAttribute="top" secondItem="LIW-As-Ll2" secondAttribute="top" id="zsu-4O-W2p"/>
                                 </constraints>
                             </view>
@@ -206,7 +216,7 @@
                                         </items>
                                     </navigationBar>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Question goes here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="P41-W3-QwT">
-                                        <rect key="frame" x="28" y="74" width="319" height="200"/>
+                                        <rect key="frame" x="28" y="104" width="319" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="jXF-90-beS"/>
@@ -214,15 +224,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTG-Au-bEd">
+                                        <rect key="frame" x="28" y="64" width="319" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="nD4-lm-exn" firstAttribute="leading" secondItem="NC6-nb-KPi" secondAttribute="leading" id="0g6-Dc-6GV"/>
-                                    <constraint firstItem="P41-W3-QwT" firstAttribute="top" secondItem="nD4-lm-exn" secondAttribute="bottom" constant="30" id="4cx-E5-x90"/>
+                                    <constraint firstItem="wTG-Au-bEd" firstAttribute="leading" secondItem="NC6-nb-KPi" secondAttribute="leadingMargin" constant="20" id="7FS-ub-tjK"/>
                                     <constraint firstItem="P41-W3-QwT" firstAttribute="leading" secondItem="NC6-nb-KPi" secondAttribute="leadingMargin" constant="20" id="7WA-WF-g8I"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="P41-W3-QwT" secondAttribute="trailing" constant="20" id="925-lu-Tgo"/>
+                                    <constraint firstItem="P41-W3-QwT" firstAttribute="top" secondItem="wTG-Au-bEd" secondAttribute="bottom" constant="10" id="9VY-oL-rf1"/>
                                     <constraint firstItem="nD4-lm-exn" firstAttribute="top" secondItem="NC6-nb-KPi" secondAttribute="top" id="MBM-aw-aaX"/>
                                     <constraint firstAttribute="trailing" secondItem="nD4-lm-exn" secondAttribute="trailing" id="aeH-Wz-V89"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="wTG-Au-bEd" secondAttribute="trailing" constant="20" id="hdL-Pg-KDd"/>
+                                    <constraint firstItem="wTG-Au-bEd" firstAttribute="top" secondItem="nD4-lm-exn" secondAttribute="bottom" constant="20" id="kI6-Di-xyj"/>
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Z2e-zG-a5a">
@@ -262,6 +281,8 @@
                         <outlet property="imageView" destination="rPF-Cp-0Bq" id="GBL-2h-Q6H"/>
                         <outlet property="questionTextView" destination="P41-W3-QwT" id="Jaz-WK-Xaz"/>
                         <outlet property="questionView" destination="NC6-nb-KPi" id="mZ2-dL-HAk"/>
+                        <outlet property="removeImageBtn" destination="Nmj-Fw-IUs" id="T6q-ky-rHq"/>
+                        <outlet property="titleTextField" destination="wTG-Au-bEd" id="wLt-lD-BCc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1x-An-b2k" userLabel="First Responder" sceneMemberID="firstResponder"/>

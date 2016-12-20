@@ -13,14 +13,18 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     //MARK: Properties
     var currentPageCount = 0
     var animationDuration = 0.3
+    var rizzleToEdit: PFObject?
+    var imageChanged: Bool = false
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //Form Views
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var questionView: UIView!
     @IBOutlet weak var imageUploadView: UIView!
     @IBOutlet weak var answerView: UIView!
     @IBOutlet weak var hintsView: UIView!
+    @IBOutlet weak var removeImageBtn: UIButton!
     
     //Form Fields
     @IBOutlet weak var questionTextView: UITextView!
@@ -38,6 +42,32 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
         activityIndicator.stopAnimating()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         activityIndicator.center = view.center
+        removeImageBtn.isHidden = true
+        removeImageBtn.isEnabled = false
+        
+        if rizzleToEdit != nil {
+            guard let rizzleToEdit = rizzleToEdit else {
+                return
+            }
+            titleTextField.text = rizzleToEdit["title"] as? String
+            questionTextView.text = rizzleToEdit["question"] as? String
+            answerTextField.text = rizzleToEdit["answer"] as? String
+            hint1TextField.text = rizzleToEdit["hint1"] as? String
+            hint2TextField.text = rizzleToEdit["hint2"] as? String
+            hint3TextField.text = rizzleToEdit["hint3"] as? String
+            
+            let rizzleImageFile = rizzleToEdit["imageFile"] as? PFFile
+            rizzleImageFile?.getDataInBackground(block: {(imageData, error) in
+                if error == nil {
+                    if let imageData = imageData {
+                        let image = UIImage(data:imageData)
+                        self.imageView.image = image
+                        self.removeImageBtn.isHidden = false
+                        self.removeImageBtn.isEnabled = true
+                    }
+                }
+            })
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -66,8 +96,16 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBAction func saveRizzle(_ sender: UIBarButtonItem) {
         if checkValidField() {
             self.activityIndicator.startAnimating()
-            let rizzle = PFObject(className:"Rizzle")
+            let rizzle: PFObject!
+            
+            if rizzleToEdit != nil {
+                rizzle = rizzleToEdit!
+            } else {
+                rizzle = PFObject(className:"Rizzle")
+            }
+            
             rizzle["user"] = PFUser.current()
+            rizzle["title"] = titleTextField.text
             rizzle["question"] = questionTextView.text
             rizzle["answer"] = answerTextField.text
             rizzle["hint1"] = hint1TextField.text
@@ -75,13 +113,14 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             rizzle["hint3"] = hint3TextField.text
             
             if imageView.image != nil {
-                
                 guard let imageData = UIImageJPEGRepresentation(imageView.image!, 0.75) else {
                     print("Image cannot be converted to data. Image not stored.")
                     return
                 }
                 let imageFile = PFFile(name:"rizzleImage.jpeg", data:imageData)
                 rizzle["imageFile"] = imageFile
+            } else {
+                rizzle.remove(forKey:"imageFile")
             }
             
             rizzle.saveInBackground(block: { (success, error) in
@@ -92,10 +131,10 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
                     print("Rizzle Saved")
                     self.dismiss(animated: true, completion: nil)
                 }
-                
             })
         }
     }
+    
     
     func checkValidField() -> Bool {
         var shouldSave = false
@@ -147,6 +186,34 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func removeImageBtnTapped(_ sender: UIButton) {
+        imageView.image = nil
+        deleteStoredImage()
+    }
+    
+    func deleteStoredImage() {
+        if rizzleToEdit != nil {
+            let storedImage = rizzleToEdit!["imageFile"] as! PFFile
+            guard let storeImagePath = storedImage.url else {
+                return
+            }
+            guard let storeImageURL = URL(string: storeImagePath) else {
+                return
+            }
+            
+            var request = URLRequest(url: NSURL(string: "http://rizzle-puzzle.herokuapp.com/parse/files/rizzle-puzzle/0351e06cedb4d056e1484a00fe3bf9f8_rizzleImage.jpeg")! as URL)
+            
+            request.httpMethod = "DELETE"
+            request.setValue(Parse.getApplicationId(), forHTTPHeaderField: "X-Parse-Application-Id")
+            request.setValue("LightHouseLabs2016", forHTTPHeaderField: "X-Parse-Master-Key")
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                print("Response: \(response)")
+            })
+            task.resume()
+        }
     }
     
     //MARK: Form Transitions
