@@ -18,6 +18,7 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //find current user
         guard let currentUser = PFUser.current() else{
             print("No current user")
             return
@@ -57,9 +58,12 @@ class RizzleDisplayViewController: UIViewController, UITableViewDelegate, UITabl
                                                 hints: hints)
                         toAdd.objectId = (comparison.objectId)! as String
                         
-                        //add to array and reloadData
-                        self.solvableRizzles.add(toAdd)
-                        self.rizzleTableView.reloadData()
+                        let completed = currentUser.object(forKey: "completedRizzles") as! Array<String>
+                        if completed.contains(toAdd.objectId!) == false {
+                            //add to array and reloadData
+                            self.solvableRizzles.add(toAdd)
+                            self.rizzleTableView.reloadData()
+                        }
                     }
                 }
             } else {
