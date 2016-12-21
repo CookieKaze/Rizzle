@@ -31,20 +31,17 @@ class SolveRizzleViewController: UIViewController {
         }
         self.currentUser = currentUser
         
-//        if solveRizzle == nil {
-//            //Get random Rizzle
-//            setRandomRizzle()
-//        }else{
-//            createSolvedRizzleTracker()
-//        }
-        
-        getRecords()
-        
+        if solveRizzle == nil {
+            //Get random Rizzle
+            setRandomRizzle()
+        }else{
+            createSolvedRizzleTracker()
+        }
     }
     
-    func getRecords() {
+    
+    func setRandomRizzle() {
         var solvedRizzleID = [String]()
-        var newRizzles = [PFObject]()
         // Get all trackers with current user
         let query = PFQuery(className: "SolvedRizzle")
         query.includeKey("rizzle")
@@ -57,7 +54,7 @@ class SolveRizzleViewController: UIViewController {
                     let rizzle = tracker.object(forKey: "rizzle") as! PFObject
                     solvedRizzleID.append(rizzle.objectId!)
                 }
-                
+                // Get 100 oldest Rizzles that haven't been started
                 let query2 = PFQuery(className: "Rizzle")
                 query2.whereKey("objectId", notContainedIn: solvedRizzleID)
                 query2.order(byAscending: "createdAt")
@@ -66,34 +63,11 @@ class SolveRizzleViewController: UIViewController {
                     if error != nil || rizzles == nil {
                         print("The rizzle request failed.")
                     }else {
-                        newRizzles = rizzles!
+                        let randomNumber = Int(arc4random_uniform(UInt32(rizzles!.count)))
+                        self.solveRizzle = rizzles?[randomNumber]
+                        self.createSolvedRizzleTracker()
                     }
                 })
-            }
-        })
-        
-        
-        
-        
-        
-        
-    }
-    
-    func setRandomRizzle() {
-        // Get 100 oldest Rizzles
-        let query = PFQuery(className: "Rizzle")
-        query.whereKey("user", notEqualTo: currentUser)
-        query.order(byAscending: "createdAt")
-        query.limit = 100
-        
-        query.findObjectsInBackground(block: { (rizzles, error) in
-            if error != nil || rizzles == nil {
-                print("The rizzle request failed.")
-            } else {
-                //Select one random Rizzle from query and set it
-                let randomNumber = Int(arc4random_uniform(UInt32(rizzles!.count)))
-                self.solveRizzle = rizzles?[randomNumber]
-                self.createSolvedRizzleTracker()
             }
         })
     }
