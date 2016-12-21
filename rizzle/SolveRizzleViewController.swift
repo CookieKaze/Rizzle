@@ -16,11 +16,14 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
     var solveRizzleTracker: PFObject?
     var currentUser: PFUser!
     
+    var startingLetter = [String]()
+    var feedingLetters = [String]()
+    
     @IBOutlet weak var letterBankCollectionView: UICollectionView!
     @IBOutlet weak var titleTextField: UILabel!
     @IBOutlet weak var questionTextView: UITextView!
     
-    //MARK: Methods
+    //MARK: Setup Methods
     override func viewDidLoad() {
         guard let currentUser = PFUser.current() else{
             print("No current user")
@@ -95,13 +98,54 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func setupView() {
-        self.titleTextField.text = self.solveRizzle?.object(forKey: "title") as? String
-        self.questionTextView.text = self.solveRizzle?.object(forKey: "question") as? String
+        guard let solveRizzle = self.solveRizzle else {
+            return
+        }
+        
+        titleTextField.text = solveRizzle.object(forKey: "title") as? String
+        questionTextView.text = solveRizzle.object(forKey: "question") as? String
+        
+        //Get letter sets
+        let answer = solveRizzle.object(forKey: "answer") as! String
+        let wordBank = answer.characters.map({ (character) -> String in
+            let letter = String(character).lowercased()
+            return letter})
+        let scramabledAnswer = scrambleLetters(array: wordBank)
+        createStartingAndFeedingBanks(scramabledAnswer: scramabledAnswer)
     }
     
-    //    func scrambleLetters {
-    //
-    //    }
+    
+    //MARK: Letter Handlers
+    func scrambleLetters(array: Array<String>) -> Array<String> {
+        var wordBank = [String]()
+        for _ in 0..<10
+        {
+            wordBank = array.sorted { (_,_) in arc4random() < arc4random() }
+        }
+        return wordBank
+    }
+    
+    func createStartingAndFeedingBanks (scramabledAnswer: Array<String>) {
+        let removeCount: Int!
+        
+        if scramabledAnswer.count <= 5 {
+            removeCount = 0
+        }else if scramabledAnswer.count <= 6 {
+            removeCount = 1
+        }else if scramabledAnswer.count <= 10 {
+            removeCount = 2
+        }else {
+            removeCount = 3
+        }
+        
+        feedingLetters += scramabledAnswer.suffix(removeCount)
+        startingLetter += scramabledAnswer.prefix(scramabledAnswer.count-removeCount)
+        print()
+    }
+    
+    @IBAction func solveButtonTapped(_ sender: UIButton) {
+    }
+    
     
     //MARK: Letter Bank Data Source
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
