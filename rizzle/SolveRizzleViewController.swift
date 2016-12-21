@@ -31,12 +31,50 @@ class SolveRizzleViewController: UIViewController {
         }
         self.currentUser = currentUser
         
-        if solveRizzle == nil {
-            //Get random Rizzle
-            setRandomRizzle()
-        }else{
-            createSolvedRizzleTracker()
-        }
+//        if solveRizzle == nil {
+//            //Get random Rizzle
+//            setRandomRizzle()
+//        }else{
+//            createSolvedRizzleTracker()
+//        }
+        
+        getRecords()
+        
+    }
+    
+    func getRecords() {
+        var solvedRizzleID = [String]()
+        var newRizzles = [PFObject]()
+        // Get all trackers with current user
+        let query = PFQuery(className: "SolvedRizzle")
+        query.includeKey("rizzle")
+        query.whereKey("user", equalTo: currentUser)
+        query.findObjectsInBackground(block: { (trackers, error) in
+            if error != nil || trackers == nil {
+                print("The rizzle request failed.")
+            } else {
+                for tracker in trackers! {
+                    let rizzle = tracker.object(forKey: "rizzle") as! PFObject
+                    solvedRizzleID.append(rizzle.objectId!)
+                }
+                
+                let query2 = PFQuery(className: "Rizzle")
+                query2.whereKey("objectId", notContainedIn: solvedRizzleID)
+                query2.order(byAscending: "createdAt")
+                query2.limit = 100
+                query2.findObjectsInBackground(block: { (rizzles, error) in
+                    if error != nil || rizzles == nil {
+                        print("The rizzle request failed.")
+                    }else {
+                        newRizzles = rizzles!
+                    }
+                })
+            }
+        })
+        
+        
+        
+        
         
         
     }
