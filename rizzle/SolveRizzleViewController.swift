@@ -16,8 +16,10 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
     var solveRizzleTracker: PFObject?
     var currentUser: PFUser!
     
-    var startingLetter = [String]()
+    var startingLetters = [String]()
     var feedingLetters = [String]()
+    var wordBankLimit = 0
+    var wordBank = [String]()
     
     @IBOutlet weak var letterBankCollectionView: UICollectionView!
     @IBOutlet weak var titleTextField: UILabel!
@@ -93,7 +95,6 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
                     self.setupView()
                 }
             })
-            
         }
     }
     
@@ -105,20 +106,29 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
         titleTextField.text = solveRizzle.object(forKey: "title") as? String
         questionTextView.text = solveRizzle.object(forKey: "question") as? String
         
-        //Get letter sets
         let answer = solveRizzle.object(forKey: "answer") as! String
+        //Set Letter Limit
+        if answer.characters.count <= 12 {
+            wordBankLimit = 12
+        } else {
+            wordBankLimit = answer.characters.count
+        }
+        
+        //Set letter sets
         let wordBank = answer.characters.map({ (character) -> String in
-            let letter = String(character).lowercased()
+            let letter = String(character).uppercased()
             return letter})
-        let scramabledAnswer = scrambleLetters(array: wordBank)
-        createStartingAndFeedingBanks(scramabledAnswer: scramabledAnswer)
+        
+        let scrambledAnswer = scrambleLetters(array: wordBank)
+        createStartingAndFeedingBanks(scramabledAnswer: scrambledAnswer)
+        createWordBank()
+        letterBankCollectionView.reloadData()
     }
-    
     
     //MARK: Letter Handlers
     func scrambleLetters(array: Array<String>) -> Array<String> {
         var wordBank = [String]()
-        for _ in 0..<10
+        for _ in 0..<50
         {
             wordBank = array.sorted { (_,_) in arc4random() < arc4random() }
         }
@@ -139,23 +149,38 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
         }
         
         feedingLetters += scramabledAnswer.suffix(removeCount)
-        startingLetter += scramabledAnswer.prefix(scramabledAnswer.count-removeCount)
-        print()
+        startingLetters += scramabledAnswer.prefix(scramabledAnswer.count-removeCount)
+    }
+    
+    func createWordBank () {
+        wordBank += startingLetters
+        let missingLetters = wordBankLimit - wordBank.count
+        
+        let allAlphaCharacters = ["H", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R" ,"S" ,"T" ,"U" ,"V" ,"W" ,"X" ,"Y" ,"Z"]
+        
+        for _ in 1...missingLetters {
+            let randomNumber = Int(arc4random_uniform(UInt32(allAlphaCharacters.count)))
+            wordBank.append(allAlphaCharacters[randomNumber])
+        }
+        
+        wordBank = scrambleLetters(array: wordBank)
+        print(wordBank)
     }
     
     @IBAction func solveButtonTapped(_ sender: UIButton) {
+        print()
     }
-    
-    
+
     //MARK: Letter Bank Data Source
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return wordBank.count
     }
     
-    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-    @available(iOS 6.0, *)
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = letterBankCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LetterCell
+        if wordBank.count != 0 {
+            cell.imageView.image = UIImage.init(named: wordBank[indexPath.row])
+        }
         return cell
     }
     
