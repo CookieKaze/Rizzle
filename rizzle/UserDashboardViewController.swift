@@ -71,7 +71,7 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     //MARK: Navigation and Segues
     
     func newRizzle(){
-        let newRizzleView = UIStoryboard(name: "Rizzle", bundle: nil).instantiateViewController(withIdentifier: "solveRizzle") as! SolveRizzleViewController
+        let newRizzleView = UIStoryboard(name: "Rizzle", bundle: nil).instantiateViewController(withIdentifier: "solveRizzle") as! RizzleSolveViewController
         newRizzleView.solveRizzle = nil
         present(newRizzleView, animated: true, completion: nil)
     }
