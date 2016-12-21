@@ -82,23 +82,26 @@ class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UIC
             solvedRizzleTracker.saveInBackground(block: { (success, error) in
                 if (success) {
                     print("Rizzle tracker saved")
-                    
-                    //Setup view
-                    DispatchQueue.main.async {
-                        self.titleTextField.text = self.solveRizzle?.object(forKey: "title") as? String
-                        self.questionTextView.text = self.solveRizzle?.object(forKey: "question") as? String
-                    }
                 }else {
                     print("Rizzle tracker no saved")
+                }
+                
+                DispatchQueue.main.async {
+                    self.setupView()
                 }
             })
             
         }
     }
     
-//    func scrambleLetters {
-//        
-//    }
+    func setupView() {
+        self.titleTextField.text = self.solveRizzle?.object(forKey: "title") as? String
+        self.questionTextView.text = self.solveRizzle?.object(forKey: "question") as? String
+    }
+    
+    //    func scrambleLetters {
+    //
+    //    }
     
     //MARK: Letter Bank Data Source
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
