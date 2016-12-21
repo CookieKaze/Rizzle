@@ -9,21 +9,18 @@
 import UIKit
 import Parse
 
-class SolveRizzleViewController: UIViewController {
-    // Check if there is a continue Rizzle
-    //If not, create one
-    //Get 100 oldest rizzle that doesn't belong to current user
-    //Get a random one and set it as solvingRizzle
-    //Create solveRizzleTracker
-    //Display title, question, images and hints
-    //If there is, continue
-    //load in the solveRizzleTracker
-    //Display title, question, images and hints
+class SolveRizzleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    //MARK: Properties
     var solveRizzle: PFObject?
     var solveRizzleTracker: PFObject?
     var currentUser: PFUser!
     
+    @IBOutlet weak var letterBankCollectionView: UICollectionView!
+    @IBOutlet weak var titleTextField: UILabel!
+    @IBOutlet weak var questionTextView: UITextView!
+    
+    //MARK: Methods
     override func viewDidLoad() {
         guard let currentUser = PFUser.current() else{
             print("No current user")
@@ -38,7 +35,6 @@ class SolveRizzleViewController: UIViewController {
             createSolvedRizzleTracker()
         }
     }
-    
     
     func setRandomRizzle() {
         var solvedRizzleID = [String]()
@@ -81,11 +77,17 @@ class SolveRizzleViewController: UIViewController {
             solvedRizzleTracker["hint2Used"] = false
             solvedRizzleTracker["hint3Used"] = false
             solvedRizzleTracker["completed"] = false
+            solvedRizzleTracker["score"] = 0
             
             solvedRizzleTracker.saveInBackground(block: { (success, error) in
                 if (success) {
                     print("Rizzle tracker saved")
-                    self.solveRizzleTracker = solvedRizzleTracker
+                    
+                    //Setup view
+                    DispatchQueue.main.async {
+                        self.titleTextField.text = self.solveRizzle?.object(forKey: "title") as? String
+                        self.questionTextView.text = self.solveRizzle?.object(forKey: "question") as? String
+                    }
                 }else {
                     print("Rizzle tracker no saved")
                 }
@@ -94,10 +96,23 @@ class SolveRizzleViewController: UIViewController {
         }
     }
     
+//    func scrambleLetters {
+//        
+//    }
+    
+    //MARK: Letter Bank Data Source
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    @available(iOS 6.0, *)
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = letterBankCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LetterCell
+        return cell
+    }
     
     
-    
-    //
     //    @IBOutlet weak var rizzleTitle: UILabel!
     //    @IBOutlet weak var rizzleDescription: UITextView!
     //    @IBOutlet weak var hintsRemainingLabel: UILabel!
