@@ -21,6 +21,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     var wordBankLimit = 0
     var wordBank = [String]()
     
+    @IBOutlet weak var answerView: UIView!
     @IBOutlet weak var letterBankCollectionView: UICollectionView!
     @IBOutlet weak var titleTextField: UILabel!
     @IBOutlet weak var questionTextView: UITextView!
@@ -128,7 +129,9 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         createWordBank()
         letterBankCollectionView.reloadData()
         
-        //Set blank answer blocks
+        //Set answer view
+        setupAnswerView()
+        
     }
     
     //MARK: Letter Handlers
@@ -189,4 +192,27 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         }
         return cell
     }
+    
+    //MARK: Answer Handle
+    
+    func setupAnswerView() {
+        let testWord = "Helloworld"
+        let letterArray = testWord.characters.map({ (character) -> String in
+            let letter = String(character).uppercased()
+            return letter})
+        let maxBlockHeight = 30
+        let blockPadding = CGFloat(5)
+        
+        let answerViewWidth = answerView.frame.width
+        let width = (answerViewWidth - ((CGFloat(letterArray.count) - 1) * blockPadding)) / CGFloat(letterArray.count)
+        
+        //Add views
+        for i in 0...letterArray.count - 1 {
+            let xPosition = CGFloat(i) * (width + blockPadding)
+            let blockView = UIView(frame: CGRect(x: xPosition , y: 0, width: width, height: width))
+            blockView.backgroundColor = UIColor.gray
+            answerView.addSubview(blockView)
+        }
+    }
+    
 }

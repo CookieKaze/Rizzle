@@ -23,8 +23,6 @@
 		1DEB3FFD1E030618008BE0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB3FFC1E030618008BE0B7 /* Assets.xcassets */; };
 		1DEB40001E030618008BE0B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB3FFE1E030618008BE0B7 /* LaunchScreen.storyboard */; };
 		1DEB400B1E030618008BE0B7 /* rizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB400A1E030618008BE0B7 /* rizzleTests.swift */; };
-		1DFFAD6E1E0B184F00606E29 /* RizzleAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFFAD6D1E0B184F00606E29 /* RizzleAnswerViewController.swift */; };
-		1DFFAD701E0B189900606E29 /* RizzleWordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFFAD6F1E0B189900606E29 /* RizzleWordCollectionViewCell.swift */; };
 		65512EE1603948A457F8B37E /* Pods_rizzleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DAC87259A91C81BC88BD07 /* Pods_rizzleTests.framework */; };
 		7F6EEEDA6F9911EF0DCD38EC /* Pods_rizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC99776E99BD4D3F81B7E56 /* Pods_rizzle.framework */; };
 		95FCB1231E05A8FE00FDBA2B /* RizzleSolveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FCB1221E05A8FE00FDBA2B /* RizzleSolveViewController.swift */; };
@@ -61,8 +59,6 @@
 		1DEB40061E030618008BE0B7 /* rizzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rizzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DEB400A1E030618008BE0B7 /* rizzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rizzleTests.swift; sourceTree = "<group>"; };
 		1DEB400C1E030618008BE0B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1DFFAD6D1E0B184F00606E29 /* RizzleAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleAnswerViewController.swift; sourceTree = "<group>"; };
-		1DFFAD6F1E0B189900606E29 /* RizzleWordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleWordCollectionViewCell.swift; sourceTree = "<group>"; };
 		312A8E9180D6FDC745619B27 /* Pods-rizzleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-rizzleTests/Pods-rizzleTests.release.xcconfig"; sourceTree = "<group>"; };
 		81DAC87259A91C81BC88BD07 /* Pods_rizzleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rizzleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8734F78F914DA0D2BC0BD0A5 /* Pods-rizzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rizzle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rizzle/Pods-rizzle.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,8 +144,6 @@
 			children = (
 				1D8D55671E0487A300EAB3A0 /* Rizzle.storyboard */,
 				95FCB1221E05A8FE00FDBA2B /* RizzleSolveViewController.swift */,
-				1DFFAD6D1E0B184F00606E29 /* RizzleAnswerViewController.swift */,
-				1DFFAD6F1E0B189900606E29 /* RizzleWordCollectionViewCell.swift */,
 				1D8D556A1E04974C00EAB3A0 /* LetterCell.swift */,
 			);
 			name = Rizzle;
@@ -414,14 +408,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DFFAD701E0B189900606E29 /* RizzleWordCollectionViewCell.swift in Sources */,
 				1D57CEE81E034CBD00D29B7E /* UserDashboardViewController.swift in Sources */,
 				1D57CEE41E033B3100D29B7E /* User.swift in Sources */,
 				1DEB3FF51E030618008BE0B7 /* LoginViewController.swift in Sources */,
 				1DEB3FFB1E030618008BE0B7 /* rizzle.xcdatamodeld in Sources */,
 				1D8D556D1E04974C00EAB3A0 /* LetterCell.swift in Sources */,
 				1D57CEE61E033FE400D29B7E /* UserManager.swift in Sources */,
-				1DFFAD6E1E0B184F00606E29 /* RizzleAnswerViewController.swift in Sources */,
 				1DEB3FF31E030618008BE0B7 /* AppDelegate.swift in Sources */,
 				1D1B258C1E0997E200EABA00 /* CreateRizzleViewController.swift in Sources */,
 				1D57CEEA1E034F6700D29B7E /* FirstTimeUserViewController.swift in Sources */,
