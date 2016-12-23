@@ -104,7 +104,7 @@ class RizzleManager: NSObject {
     func generateRizzleObject() {
         let rizzle = Rizzle(title: (currentRizzlePFObject?.object(forKey: "title") as? String)!,
                             question: (currentRizzlePFObject?.object(forKey: "question") as? String)!,
-                            answer: (currentRizzlePFObject?.object(forKey: "question") as? String)!,
+                            answer: (currentRizzlePFObject?.object(forKey: "answer") as? String)!,
                             hint1: (currentRizzlePFObject?.object(forKey: "hint1") as? String)!,
                             hint2: (currentRizzlePFObject?.object(forKey: "hint2") as? String)!,
                             hint3: (currentRizzlePFObject?.object(forKey: "hint3") as? String)!,

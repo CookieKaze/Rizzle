@@ -136,7 +136,12 @@
         <!--Rizzle Answer View Controller-->
         <scene sceneID="mrI-uK-aSS">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oI3-66-CbF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="3lf-si-ebi" customClass="RizzleAnswerViewController" customModule="rizzle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y0a-og-jCB"/>
+                        <viewControllerLayoutGuide type="bottom" id="rtA-er-TgU"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NVD-uX-mNx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,7 +183,6 @@
                         <outlet property="collectionView" destination="2cf-8I-XFF" id="1Nc-UW-bWT"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oI3-66-CbF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-788" y="1288"/>
         </scene>
