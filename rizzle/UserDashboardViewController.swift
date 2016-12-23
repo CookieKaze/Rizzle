@@ -12,6 +12,7 @@ import Parse
 class UserDashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //MARK: Properties
     var myRizzles = [PFObject]()
+    var rizzleManager: RizzleManager!
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var weeklyScoreLabel: UILabel!
@@ -20,6 +21,7 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        rizzleManager = RizzleManager.sharedInstance
         guard let currentUser = PFUser.current() else{
             print("No current user")
             logout()
@@ -72,7 +74,7 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     
     func newRizzle(){
         let newRizzleView = UIStoryboard(name: "Rizzle", bundle: nil).instantiateViewController(withIdentifier: "solveRizzle") as! RizzleSolveViewController
-        newRizzleView.solveRizzle = nil
+        rizzleManager.currentRizzlePFObject = nil
         present(newRizzleView, animated: true, completion: nil)
     }
     

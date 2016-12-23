@@ -49,7 +49,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Tai-ky-2rD" customClass="LetterCell" customModule="rizzle" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Tai-ky-2rD" customClass="RizzleLetterCell" customModule="rizzle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="4" width="44" height="49"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -90,52 +90,40 @@
                                     <action selector="solveButtonTapped:" destination="2X3-cS-abI" eventType="touchUpInside" id="De3-pl-zkk"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJJ-CD-Nva">
-                                <rect key="frame" x="0.0" y="493.5" width="375" height="133.5"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxN-MK-EYt">
-                                        <rect key="frame" x="10" y="10" width="355" height="113.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="cxN-MK-EYt" firstAttribute="leading" secondItem="aJJ-CD-Nva" secondAttribute="leading" constant="10" id="1Jj-c8-1C9"/>
-                                    <constraint firstAttribute="bottom" secondItem="cxN-MK-EYt" secondAttribute="bottom" constant="10" id="Mpj-Ui-g3H"/>
-                                    <constraint firstItem="cxN-MK-EYt" firstAttribute="top" secondItem="aJJ-CD-Nva" secondAttribute="top" constant="10" id="Zro-qU-Zhi"/>
-                                    <constraint firstAttribute="trailing" secondItem="cxN-MK-EYt" secondAttribute="trailing" constant="10" id="nkT-lM-0FJ"/>
-                                </constraints>
-                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMu-xs-JjP">
+                                <rect key="frame" x="0.0" y="494" width="375" height="133"/>
+                                <connections>
+                                    <segue destination="3lf-si-ebi" kind="embed" identifier="answerView" id="gyx-ff-nDO"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="aJJ-CD-Nva" secondAttribute="trailing" id="22n-bO-St5"/>
+                            <constraint firstItem="dMu-xs-JjP" firstAttribute="height" secondItem="9g6-u4-B3r" secondAttribute="height" multiplier="0.2" id="2FV-Rn-41T"/>
                             <constraint firstItem="4t6-eL-P4c" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="8Rq-SG-yCc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cV3-lM-16P" secondAttribute="trailing" constant="20" id="9Yu-dH-oe6"/>
-                            <constraint firstItem="aJJ-CD-Nva" firstAttribute="height" secondItem="9g6-u4-B3r" secondAttribute="height" multiplier="0.2" id="BwE-xH-2v8"/>
-                            <constraint firstItem="aJJ-CD-Nva" firstAttribute="top" secondItem="JtP-30-Nkb" secondAttribute="bottom" id="CNb-j2-9IV"/>
-                            <constraint firstItem="xa3-wb-mRB" firstAttribute="top" secondItem="aJJ-CD-Nva" secondAttribute="bottom" id="DWz-wa-DSo"/>
                             <constraint firstAttribute="trailing" secondItem="JtP-30-Nkb" secondAttribute="trailing" id="JKH-he-Fvc"/>
-                            <constraint firstItem="JtP-30-Nkb" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="Lhz-Iv-1Ek"/>
+                            <constraint firstItem="dMu-xs-JjP" firstAttribute="top" secondItem="JtP-30-Nkb" secondAttribute="bottom" id="XTG-7B-GZW"/>
                             <constraint firstItem="qf7-g6-CCV" firstAttribute="top" secondItem="xa3-wb-mRB" secondAttribute="bottom" id="Xm0-KQ-b4Z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4t6-eL-P4c" secondAttribute="trailing" constant="20" id="a7Z-ko-exa"/>
                             <constraint firstItem="cV3-lM-16P" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="aM0-DA-0Ve"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bHq-bE-wSc" secondAttribute="trailing" constant="20" id="bbR-Zg-2e9"/>
                             <constraint firstItem="cV3-lM-16P" firstAttribute="top" secondItem="4t6-eL-P4c" secondAttribute="bottom" constant="20" id="cJJ-5u-QPc"/>
                             <constraint firstAttribute="trailing" secondItem="xa3-wb-mRB" secondAttribute="trailing" id="hTf-tD-v2P"/>
-                            <constraint firstAttribute="trailing" secondItem="JtP-30-Nkb" secondAttribute="trailing" id="hoX-wt-XPT"/>
+                            <constraint firstItem="xa3-wb-mRB" firstAttribute="top" secondItem="dMu-xs-JjP" secondAttribute="bottom" id="j0h-y5-xyK"/>
                             <constraint firstItem="bHq-bE-wSc" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" constant="20" id="m5S-Es-m5c"/>
+                            <constraint firstAttribute="trailing" secondItem="dMu-xs-JjP" secondAttribute="trailing" id="nEY-In-ATy"/>
                             <constraint firstItem="JtP-30-Nkb" firstAttribute="height" secondItem="9g6-u4-B3r" secondAttribute="height" multiplier="0.1" constant="-10" id="nds-CY-9qf"/>
                             <constraint firstItem="4t6-eL-P4c" firstAttribute="top" secondItem="lsz-Cj-fhd" secondAttribute="bottom" constant="20" id="ndv-tG-IlS"/>
-                            <constraint firstItem="aJJ-CD-Nva" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="oUk-6W-ei2"/>
                             <constraint firstItem="xa3-wb-mRB" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="pon-bn-wRJ"/>
                             <constraint firstItem="JtP-30-Nkb" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="rPx-2U-zXI"/>
+                            <constraint firstItem="dMu-xs-JjP" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="vIB-GO-cuN"/>
                             <constraint firstItem="bHq-bE-wSc" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="xv7-zo-kfZ"/>
                             <constraint firstItem="JtP-30-Nkb" firstAttribute="top" secondItem="bHq-bE-wSc" secondAttribute="bottom" constant="20" id="zSR-MJ-NiF"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="answerView" destination="cxN-MK-EYt" id="YIA-tL-Aee"/>
+                        <outlet property="answerView" destination="dMu-xs-JjP" id="i1u-dV-U63"/>
                         <outlet property="letterBankCollectionView" destination="JtP-30-Nkb" id="ji6-QL-Ri7"/>
                         <outlet property="questionTextView" destination="cV3-lM-16P" id="8eY-lk-sVt"/>
                         <outlet property="titleTextField" destination="4t6-eL-P4c" id="H3h-i8-U6e"/>
@@ -144,6 +132,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSf-yr-zCA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1575.2" y="1064.6176911544228"/>
+        </scene>
+        <!--Rizzle Answer View Controller-->
+        <scene sceneID="mrI-uK-aSS">
+            <objects>
+                <viewController id="3lf-si-ebi" customClass="RizzleAnswerViewController" customModule="rizzle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NVD-uX-mNx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2cf-8I-XFF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Sx-Jp-JGo">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="rZr-pz-QFI" customClass="RizzleAnswerCollectionViewCell" customModule="rizzle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="3lf-si-ebi" id="HPW-cV-D94"/>
+                                    <outlet property="delegate" destination="3lf-si-ebi" id="GaT-TN-cIK"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2cf-8I-XFF" firstAttribute="leading" secondItem="NVD-uX-mNx" secondAttribute="leading" id="h0Y-b2-kXy"/>
+                            <constraint firstAttribute="bottom" secondItem="2cf-8I-XFF" secondAttribute="bottom" id="hDY-yI-42z"/>
+                            <constraint firstItem="2cf-8I-XFF" firstAttribute="top" secondItem="NVD-uX-mNx" secondAttribute="top" id="rpY-ql-jY5"/>
+                            <constraint firstAttribute="trailing" secondItem="2cf-8I-XFF" secondAttribute="trailing" id="zgs-Oj-wOq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="2cf-8I-XFF" id="1Nc-UW-bWT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oI3-66-CbF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-788" y="1288"/>
         </scene>
     </scenes>
     <resources>

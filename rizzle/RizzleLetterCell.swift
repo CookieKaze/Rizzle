@@ -1,5 +1,5 @@
 //
-//  LetterCell.swift
+//  RizzleLetterCell.swift
 //  rizzle
 //
 //  Created by Matthew Mauro on 2016-12-16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LetterCell: UICollectionViewCell {
+class RizzleLetterCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     

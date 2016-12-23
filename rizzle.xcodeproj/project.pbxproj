@@ -16,7 +16,11 @@
 		1D8D55611E047D4C00EAB3A0 /* LoginStart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D55601E047D4C00EAB3A0 /* LoginStart.storyboard */; };
 		1D8D55641E047E8300EAB3A0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D55631E047E8300EAB3A0 /* User.storyboard */; };
 		1D8D55681E0487A300EAB3A0 /* Rizzle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D55671E0487A300EAB3A0 /* Rizzle.storyboard */; };
-		1D8D556D1E04974C00EAB3A0 /* LetterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D556A1E04974C00EAB3A0 /* LetterCell.swift */; };
+		1D8D556D1E04974C00EAB3A0 /* RizzleLetterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D556A1E04974C00EAB3A0 /* RizzleLetterCell.swift */; };
+		1DDDACE41E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDDACE31E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift */; };
+		1DDDACE81E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDDACE71E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift */; };
+		1DDDACEA1E0C438B0030D0E6 /* RizzleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDDACE91E0C438B0030D0E6 /* RizzleManager.swift */; };
+		1DDDACEC1E0C48340030D0E6 /* Rizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDDACEB1E0C48340030D0E6 /* Rizzle.swift */; };
 		1DEB3FF31E030618008BE0B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB3FF21E030618008BE0B7 /* AppDelegate.swift */; };
 		1DEB3FF51E030618008BE0B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB3FF41E030618008BE0B7 /* LoginViewController.swift */; };
 		1DEB3FFB1E030618008BE0B7 /* rizzle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB3FF91E030618008BE0B7 /* rizzle.xcdatamodeld */; };
@@ -48,7 +52,11 @@
 		1D8D55601E047D4C00EAB3A0 /* LoginStart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginStart.storyboard; sourceTree = "<group>"; };
 		1D8D55631E047E8300EAB3A0 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		1D8D55671E0487A300EAB3A0 /* Rizzle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rizzle.storyboard; sourceTree = "<group>"; };
-		1D8D556A1E04974C00EAB3A0 /* LetterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterCell.swift; sourceTree = "<group>"; };
+		1D8D556A1E04974C00EAB3A0 /* RizzleLetterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleLetterCell.swift; sourceTree = "<group>"; };
+		1DDDACE31E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleAnswerViewController.swift; sourceTree = "<group>"; };
+		1DDDACE71E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
+		1DDDACE91E0C438B0030D0E6 /* RizzleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleManager.swift; sourceTree = "<group>"; };
+		1DDDACEB1E0C48340030D0E6 /* Rizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rizzle.swift; sourceTree = "<group>"; };
 		1DEB3FEF1E030618008BE0B7 /* rizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DEB3FF21E030618008BE0B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DEB3FF41E030618008BE0B7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -143,8 +151,12 @@
 			isa = PBXGroup;
 			children = (
 				1D8D55671E0487A300EAB3A0 /* Rizzle.storyboard */,
+				1DDDACE91E0C438B0030D0E6 /* RizzleManager.swift */,
+				1DDDACEB1E0C48340030D0E6 /* Rizzle.swift */,
 				95FCB1221E05A8FE00FDBA2B /* RizzleSolveViewController.swift */,
-				1D8D556A1E04974C00EAB3A0 /* LetterCell.swift */,
+				1D8D556A1E04974C00EAB3A0 /* RizzleLetterCell.swift */,
+				1DDDACE71E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift */,
+				1DDDACE31E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift */,
 			);
 			name = Rizzle;
 			sourceTree = "<group>";
@@ -409,13 +421,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D57CEE81E034CBD00D29B7E /* UserDashboardViewController.swift in Sources */,
+				1DDDACE41E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift in Sources */,
 				1D57CEE41E033B3100D29B7E /* User.swift in Sources */,
 				1DEB3FF51E030618008BE0B7 /* LoginViewController.swift in Sources */,
 				1DEB3FFB1E030618008BE0B7 /* rizzle.xcdatamodeld in Sources */,
-				1D8D556D1E04974C00EAB3A0 /* LetterCell.swift in Sources */,
+				1D8D556D1E04974C00EAB3A0 /* RizzleLetterCell.swift in Sources */,
+				1DDDACE81E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift in Sources */,
+				1DDDACEA1E0C438B0030D0E6 /* RizzleManager.swift in Sources */,
 				1D57CEE61E033FE400D29B7E /* UserManager.swift in Sources */,
 				1DEB3FF31E030618008BE0B7 /* AppDelegate.swift in Sources */,
 				1D1B258C1E0997E200EABA00 /* CreateRizzleViewController.swift in Sources */,
+				1DDDACEC1E0C48340030D0E6 /* Rizzle.swift in Sources */,
 				1D57CEEA1E034F6700D29B7E /* FirstTimeUserViewController.swift in Sources */,
 				95FCB1231E05A8FE00FDBA2B /* RizzleSolveViewController.swift in Sources */,
 			);
