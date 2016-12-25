@@ -14,7 +14,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     //MARK: Properties
     var currentUser: PFUser!
     let rizzleManager = RizzleManager.sharedInstance
-    var answerViewController: RizzleAnswerViewController
+    var answerViewController: RizzleAnswerViewController?
     
     var rizzle: Rizzle!
     var startingBank = [String]()
@@ -79,7 +79,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "answerView" {
-            answerViewController = segue.destination as! RizzleAnswerViewController
+            answerViewController = segue.destination as? RizzleAnswerViewController
         }
     }
     
