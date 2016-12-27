@@ -52,30 +52,35 @@ class RizzleManager: NSObject {
         query.whereKey("user", equalTo: currentUser)
         
         //Try finding the rizzles solve by the user
-        do {
-            let trackers = try query.findObjects()
-            //For all the user trackers get the rizzle ID of each and put it into an array
-            for tracker in trackers {
-                let rizzle = tracker.object(forKey: "rizzle") as! PFObject
-                solvedRizzleID.append(rizzle.objectId!)
+        query.findObjectsInBackground { (objects, error) in
+            if let error = error {
+                print("Problem finding solved rizzles \(error)")
+            } else if (objects != nil) {
+                //For all the user trackers get the rizzle ID of each and put it into an array
+                for tracker in objects! {
+                    let rizzle = tracker.object(forKey: "rizzle") as! PFObject
+                    solvedRizzleID.append(rizzle.objectId!)
+                }
+                // Get 100 oldest Rizzles that haven't been started
+                let query2 = PFQuery(className: "Rizzle")
+                query2.whereKey("objectId", notContainedIn: solvedRizzleID)
+                query2.order(byAscending: "createdAt")
+                query2.limit = 100
+                
+                query2.findObjectsInBackground(block: { (rizzles, errors) in
+                    //Pick a random rizzle from the bunch and set it as current
+                    if let error = error {
+                        print("Problem finding new rizzles \(error)")
+                    } else if (rizzles != nil) {
+                        let randomNumber = Int(arc4random_uniform(UInt32((rizzles?.count)!)))
+                        self.currentRizzlePFObject = rizzles?[randomNumber]
+                        //Create a new tracker for this rizzle and user
+                        self.createSolvedRizzleTracker()
+                        self.generateRizzleObject()
+                    }
+                })
             }
-            // Get 100 oldest Rizzles that haven't been started
-            let query2 = PFQuery(className: "Rizzle")
-            query2.whereKey("objectId", notContainedIn: solvedRizzleID)
-            query2.order(byAscending: "createdAt")
-            query2.limit = 100
-            
-            let rizzles = try query2.findObjects()
-            //Pick a random rizzle from the bunch and set it as current
-            let randomNumber = Int(arc4random_uniform(UInt32(rizzles.count)))
-            self.currentRizzlePFObject = rizzles[randomNumber]
-            //Create a new tracker for this rizzle and user
-            self.createSolvedRizzleTracker()
-            self.generateRizzleObject()
-        } catch {
-            print(error)
         }
-        
     }
     
     func createSolvedRizzleTracker() {
@@ -181,5 +186,5 @@ class RizzleManager: NSObject {
     }
     
     //MARK: Continue Rizzle
-
+    
 }

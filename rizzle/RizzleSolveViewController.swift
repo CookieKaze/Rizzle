@@ -16,7 +16,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     let rizzleManager = RizzleManager.sharedInstance
     var answerViewController: RizzleAnswerViewController?
     
-    var rizzle: Rizzle!
+    var rizzle: Rizzle?
     var startingBank = [String]()
     var feedingBank = [String]()
     var letterBank = [String]()
@@ -38,12 +38,14 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         self.rizzle = rizzleManager.getRizzle()
         
         //Extract rizzle letter banks
-        startingBank = rizzle.letterBanks["startingLetterBank"]!
-        feedingBank = rizzle.letterBanks["feedingLetterBank"]!
-        letterBank += startingBank
-        
-        //Create game letter bank
-        createLetterBank()
+        while rizzle?.letterBanks != nil {
+            startingBank = (rizzle?.letterBanks["startingLetterBank"]!)!
+            feedingBank = (rizzle?.letterBanks["feedingLetterBank"]!)!
+            letterBank += startingBank
+            
+            //Create game letter bank
+            createLetterBank()
+        }
         
     }
     
@@ -74,7 +76,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     @IBAction func solveButtonTapped(_ sender: UIButton) {
-        print(rizzle.answer)
+        print(rizzle?.answer)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
