@@ -9,6 +9,11 @@
 import UIKit
 import Parse
 
+protocol RizzleSolverDelegate {
+    func setCurrentRizzle(rizzle: Rizzle)
+    func updateLoadStatus(update: String)
+}
+
 class RizzleManager: NSObject {
     //MARK: Shared Instance
     
@@ -16,10 +21,13 @@ class RizzleManager: NSObject {
         let instance = RizzleManager()
         return instance
     }()
+    
+    var delegate: RizzleSolverDelegate?
     var currentUser: PFUser!
     var currentRizzlePFObject: PFObject?
-    var currentrizzle: Rizzle?
+    var currentRizzle: Rizzle?
     var currentTracker: PFObject?
+    var solvedRizzleIDs: Array<String>?
     
     var letterBankLimit = 0
     
@@ -32,78 +40,100 @@ class RizzleManager: NSObject {
         self.currentUser = user
     }
     
-    func getRizzle () -> Rizzle? {
-        if currentRizzlePFObject != nil {
-            //continue rizzle
-        }else {
-            generateNewRizzle()
-            return currentrizzle
-        }
-        return nil
-    }
-    
     //MARK: New Rizzle
     func generateNewRizzle() {
-        //Declare array of all the rizzle solved by the user
-        var solvedRizzleID = [String]()
+        let rizzleQueue = DispatchQueue(label: "rizzleQueue", qos: .userInitiated)
+        //Get solved Rizzles
+        rizzleQueue.async {
+            self.delegate?.updateLoadStatus(update: "Loading Rizzles")
+            self.findSolvedRizzleIDs()
+        }
+        //Get Unsolved Rizzles
+        rizzleQueue.async {
+            if self.solvedRizzleIDs != nil {
+                self.delegate?.updateLoadStatus(update: "Searching for new Rizzles")
+                self.findRandomUnsolvedRizzle()
+            }
+        }
+        //Create a new tracker for this rizzle and user
+        rizzleQueue.async {
+            if self.currentRizzlePFObject != nil {
+                self.delegate?.updateLoadStatus(update: "Creating trackers")
+                self.createSolvedRizzleTracker()
+                self.delegate?.updateLoadStatus(update: "Generating new Rizzle")
+                self.generateRizzleObject()
+            }
+        }
+        //Set Rizzle in SolverDelegate
+        rizzleQueue.async {
+            if self.currentRizzle != nil {
+                self.delegate?.setCurrentRizzle(rizzle: self.currentRizzle!)
+            }
+        }
+        
+    }
+    
+    func findSolvedRizzleIDs(){
         // Get all Rizzle trackers with current user
         let query = PFQuery(className: "SolvedRizzle")
         query.includeKey("rizzle")
         query.whereKey("user", equalTo: currentUser)
         
         //Try finding the rizzles solve by the user
-        query.findObjectsInBackground { (objects, error) in
-            if let error = error {
-                print("Problem finding solved rizzles \(error)")
-            } else if (objects != nil) {
-                //For all the user trackers get the rizzle ID of each and put it into an array
-                for tracker in objects! {
-                    let rizzle = tracker.object(forKey: "rizzle") as! PFObject
-                    solvedRizzleID.append(rizzle.objectId!)
-                }
-                // Get 100 oldest Rizzles that haven't been started
-                let query2 = PFQuery(className: "Rizzle")
-                query2.whereKey("objectId", notContainedIn: solvedRizzleID)
-                query2.order(byAscending: "createdAt")
-                query2.limit = 100
-                
-                query2.findObjectsInBackground(block: { (rizzles, errors) in
-                    //Pick a random rizzle from the bunch and set it as current
-                    if let error = error {
-                        print("Problem finding new rizzles \(error)")
-                    } else if (rizzles != nil) {
-                        let randomNumber = Int(arc4random_uniform(UInt32((rizzles?.count)!)))
-                        self.currentRizzlePFObject = rizzles?[randomNumber]
-                        //Create a new tracker for this rizzle and user
-                        self.createSolvedRizzleTracker()
-                        self.generateRizzleObject()
-                    }
-                })
+        do {
+            let objects = try query.findObjects()
+            
+            //Declare array of all the rizzle solved by the user
+            var solvedRizzleID = [String]()
+            
+            //For all the user trackers get the rizzle ID of each and put it into an array
+            for tracker in objects {
+                let rizzle = tracker.object(forKey: "rizzle") as! PFObject
+                solvedRizzleID.append(rizzle.objectId!)
             }
+            
+            self.solvedRizzleIDs = solvedRizzleID
+            
+        } catch {
+            print("Problem finding solved rizzles \(error)")
+        }
+    }
+    
+    func findRandomUnsolvedRizzle() {
+        // Get 100 oldest Rizzles that haven't been started
+        let query = PFQuery(className: "Rizzle")
+        query.whereKey("objectId", notContainedIn: self.solvedRizzleIDs!)
+        query.order(byAscending: "createdAt")
+        query.limit = 100
+        
+        do {
+            let rizzles = try query.findObjects()
+            let randomNumber = Int(arc4random_uniform(UInt32((rizzles.count))))
+            self.currentRizzlePFObject = rizzles[randomNumber]
+        } catch {
+            print("Problem finding new rizzles \(error)")
         }
     }
     
     func createSolvedRizzleTracker() {
-        //Check if there is a current Rizzle
-        if currentRizzlePFObject != nil {
-            //Create a new rizzle trackers for current user
-            let solvedRizzleTracker = PFObject(className:"SolvedRizzle")
-            solvedRizzleTracker["user"] = currentUser
-            solvedRizzleTracker["rizzle"] = currentRizzlePFObject
-            solvedRizzleTracker["hint1Used"] = false
-            solvedRizzleTracker["hint2Used"] = false
-            solvedRizzleTracker["hint3Used"] = false
-            solvedRizzleTracker["completed"] = false
-            solvedRizzleTracker["score"] = 0
-            
-            solvedRizzleTracker.saveInBackground(block: { (success, error) in
-                if (success) {
-                    print("Rizzle tracker saved")
-                }else {
-                    print("Rizzle tracker no saved")
-                }
-            })
-        }
+        //Create a new rizzle trackers for current user
+        let solvedRizzleTracker = PFObject(className:"SolvedRizzle")
+        solvedRizzleTracker["user"] = currentUser
+        solvedRizzleTracker["rizzle"] = currentRizzlePFObject
+        solvedRizzleTracker["hint1Used"] = false
+        solvedRizzleTracker["hint2Used"] = false
+        solvedRizzleTracker["hint3Used"] = false
+        solvedRizzleTracker["completed"] = false
+        solvedRizzleTracker["score"] = 0
+        
+        solvedRizzleTracker.saveInBackground(block: { (success, error) in
+            if (success) {
+                print("Rizzle tracker saved")
+                self.currentTracker = solvedRizzleTracker
+            }else {
+                print("Rizzle tracker no saved")
+            }
+        })
     }
     
     func generateRizzleObject() {
@@ -115,7 +145,7 @@ class RizzleManager: NSObject {
                             hint3: (currentRizzlePFObject?.object(forKey: "hint3") as? String)!,
                             letterBanks: generateLetterBanks()
         )
-        currentrizzle = rizzle
+        currentRizzle = rizzle
     }
     
     func generateLetterBanks () -> Dictionary<String, Array<String>> {
