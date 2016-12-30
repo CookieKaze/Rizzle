@@ -1,0 +1,6 @@
+framework module DNDDragAndDrop {
+  umbrella header "DNDDragAndDrop-umbrella.h"
+
+  export *
+  module * { export * }
+}

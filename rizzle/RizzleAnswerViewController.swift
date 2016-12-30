@@ -13,7 +13,8 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     
     //MARK: Properties
     var answer: String?
-    var answerViewsArray = [UIView]()
+    var answerWordBlocksArray = [UIView]()
+    var answerLetterBlocksArray = [RizzleAnswerCollectionViewCell]()
     var letterIndexTracker = 0
     var lastCellView: RizzleAnswerCollectionViewCell?
     
@@ -57,6 +58,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
                 
                 blockvView.backgroundColor = UIColor.lightGray
                 parentView.addSubview(blockvView)
+                answerLetterBlocksArray.append(blockvView)
             }
             
             //Resize parent based on children
@@ -71,26 +73,27 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
             parentView.frame = CGRect(x: 0, y: 0, width: parentWidth, height: parentHeight)
             
             //Add parent view to array
-            answerViewsArray.append(parentView)
+            answerWordBlocksArray.append(parentView)
         }
         collectionView.reloadData()
+        answerLetterBlocksArray[0].letterCellTapped()
     }
     
     //MARK: Collection View Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return answerViewsArray.count
+        return answerWordBlocksArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.addSubview(answerViewsArray[indexPath.row])
+        cell.addSubview(answerWordBlocksArray[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var cellSize = CGSize(width: 0, height: 0)
-        if answerViewsArray.count > 0 {
-            let wordView = answerViewsArray[indexPath.row]
+        if answerWordBlocksArray.count > 0 {
+            let wordView = answerWordBlocksArray[indexPath.row]
             cellSize = CGSize(width: wordView.frame.size.width, height: wordView.frame.size.height)
         }
         return cellSize

@@ -109,8 +109,11 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     
+    //When letter is tapped, pass it to answerViewController and remove from bank
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         answerViewController?.passLetterToCell(letter: letterBank[indexPath.row])
+        letterBank.remove(at: indexPath.row)
+        letterBankCollectionView.reloadData()
     }
     
     
