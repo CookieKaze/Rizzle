@@ -146,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2cf-8I-XFF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
+                                <rect key="frame" x="10" y="10" width="355" height="113"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Sx-Jp-JGo">
                                     <size key="itemSize" width="50" height="50"/>
@@ -172,10 +172,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2cf-8I-XFF" firstAttribute="leading" secondItem="NVD-uX-mNx" secondAttribute="leading" id="h0Y-b2-kXy"/>
-                            <constraint firstAttribute="bottom" secondItem="2cf-8I-XFF" secondAttribute="bottom" id="hDY-yI-42z"/>
-                            <constraint firstItem="2cf-8I-XFF" firstAttribute="top" secondItem="NVD-uX-mNx" secondAttribute="top" id="rpY-ql-jY5"/>
-                            <constraint firstAttribute="trailing" secondItem="2cf-8I-XFF" secondAttribute="trailing" id="zgs-Oj-wOq"/>
+                            <constraint firstItem="2cf-8I-XFF" firstAttribute="leading" secondItem="NVD-uX-mNx" secondAttribute="leading" constant="10" id="h0Y-b2-kXy"/>
+                            <constraint firstAttribute="bottom" secondItem="2cf-8I-XFF" secondAttribute="bottom" constant="10" id="hDY-yI-42z"/>
+                            <constraint firstItem="2cf-8I-XFF" firstAttribute="top" secondItem="NVD-uX-mNx" secondAttribute="top" constant="10" id="rpY-ql-jY5"/>
+                            <constraint firstAttribute="trailing" secondItem="2cf-8I-XFF" secondAttribute="trailing" constant="10" id="zgs-Oj-wOq"/>
                         </constraints>
                     </view>
                     <connections>

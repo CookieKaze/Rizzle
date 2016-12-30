@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KTCenterFlowLayout
 
 class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -19,6 +20,11 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        let layout = KTCenterFlowLayout()
+        layout.minimumInteritemSpacing = 20.0
+        layout.minimumLineSpacing = 10.0
+        collectionView.collectionViewLayout = layout
+
         turnAnswerIntoWordViews()
         collectionView.reloadData()
     }

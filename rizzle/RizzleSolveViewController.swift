@@ -53,7 +53,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         loadingLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
         loadingView.addSubview(loadingLabel)
         
-        rizzleManager.generateNewRizzle()
+        rizzleManager.generateNewRizzle()        
     }
     
     func updateLoadStatus(update: String) {
@@ -90,6 +90,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             let randomNumber = Int(arc4random_uniform(UInt32(allAlphaCharacters.count)))
             letterBank.append(allAlphaCharacters[randomNumber])
         }
+        
         //Scramble new letter bank
         letterBank = rizzleManager.scrambleLetters(array: letterBank)
     }
@@ -107,8 +108,9 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     
+    
     @IBAction func solveButtonTapped(_ sender: UIButton) {
-        print(rizzle?.answer)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
