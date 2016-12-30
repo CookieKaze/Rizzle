@@ -10,12 +10,13 @@ import UIKit
 
 
 protocol AnswerCollectionCellDelegate {
-    func updateTracker(currentTracker: Int, lastCellView: UIView)
+    func updateTracker(currentTracker: Int, lastCellView: RizzleAnswerCollectionViewCell)
 }
 
 class RizzleAnswerCollectionViewCell: UIView {
  
     var letter: String!
+    var letterLabel = UILabel(frame: .zero)
     var letterPosition: Int!
     var delegate: AnswerCollectionCellDelegate?
     
@@ -26,19 +27,24 @@ class RizzleAnswerCollectionViewCell: UIView {
         self.delegate = delegate
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(letterCellTapped))
         self.addGestureRecognizer(tapGesture)
+        
+        //Setup letter label
+        letterLabel.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        letterLabel.textAlignment = .center
+        letterLabel.font = letterLabel.font.withSize(20)
+        self.addSubview(letterLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //Letter cell selection, passing to answer view controller
     func letterCellTapped () {
         delegate?.updateTracker(currentTracker: letterPosition, lastCellView: self)
         layer.borderWidth = 1
         layer.borderColor = UIColor.red.cgColor
     }
-    
-   
     
 //    func updateLetter(tempLetter: String) {
 //        letterLabel.text = tempLetter

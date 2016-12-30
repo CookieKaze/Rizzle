@@ -74,6 +74,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         DispatchQueue.main.async {
             self.titleTextField.text = rizzle.title
             self.questionTextView.text = rizzle.question
+            self.answerViewController?.turnAnswerIntoWordViews(answer: rizzle.answer)
             self.letterBankCollectionView.reloadData()
             UIView.animate(withDuration: 1, animations: {
                 self.loadingView.frame = CGRect(x: self.view.frame.width, y: 0, width: self.loadingView.frame.width, height: self.loadingView.frame.height)
@@ -109,12 +110,12 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //answerViewController.
+        answerViewController?.passLetterToCell(letter: letterBank[indexPath.row])
     }
     
     
     @IBAction func solveButtonTapped(_ sender: UIButton) {
-        
+        //BLAH BLAH BLAH CATS!
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

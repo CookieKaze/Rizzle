@@ -15,7 +15,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     var answer: String?
     var answerViewsArray = [UIView]()
     var letterIndexTracker = 0
-    var lastCellView: UIView?
+    var lastCellView: RizzleAnswerCollectionViewCell?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -26,19 +26,16 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         layout.minimumInteritemSpacing = 20.0
         layout.minimumLineSpacing = 10.0
         collectionView.collectionViewLayout = layout
-
-        turnAnswerIntoWordViews()
-        collectionView.reloadData()
     }
     
     //MARK: Answer Handle
-    func turnAnswerIntoWordViews() {
-        let testWord = "Fluffy cats are fluffy"
+    func turnAnswerIntoWordViews(answer: String) {
+        self.answer = answer
         let maxBlockHeight: CGFloat = 30
         let blockPadding = CGFloat(5)
         
         //Convert string to word array
-        let wordArray = testWord.components(separatedBy: " ")
+        let wordArray = answer.components(separatedBy: " ")
         
         //Loop through all words in wordArray
         for word in wordArray {
@@ -76,6 +73,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
             //Add parent view to array
             answerViewsArray.append(parentView)
         }
+        collectionView.reloadData()
     }
     
     //MARK: Collection View Data Source
@@ -98,12 +96,13 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         return cellSize
     }
     
-//    func displayLetter (cell: Int, letter: String) {
-//       let cell = collectionView.cellForItem(at: IndexPath(item: cell, section: 0) as! RizzleAnswerCollectionViewCell
-//        cell
-//    }
+    //Take letter from letterbank and pass it to current answer cell
+    func passLetterToCell (letter: String) {
+        lastCellView?.letterLabel.text = letter
+    }
     
-    func updateTracker(currentTracker: Int, lastCellView: UIView) {
+    //Update tracker with selected answer cell
+    func updateTracker(currentTracker: Int, lastCellView: RizzleAnswerCollectionViewCell) {
         letterIndexTracker = currentTracker
         if self.lastCellView != nil {
             self.lastCellView?.layer.borderWidth = 0
