@@ -108,6 +108,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //answerViewController.
+    }
+    
     
     @IBAction func solveButtonTapped(_ sender: UIButton) {
         

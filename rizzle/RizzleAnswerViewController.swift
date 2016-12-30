@@ -9,11 +9,13 @@
 import UIKit
 import KTCenterFlowLayout
 
-class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AnswerCollectionCellDelegate {
     
     //MARK: Properties
     var answer: String?
     var answerViewsArray = [UIView]()
+    var letterIndexTracker = 0
+    var lastCellView: UIView?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -54,11 +56,10 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
             let parentView = UIView()
             for i in 0...letterArray.count - 1 {
                 let xPosition = CGFloat(i) * (width + blockPadding)
-                let blockView = UIView(frame: CGRect(x: xPosition , y: 0, width: width, height: width))
-                blockView.backgroundColor = UIColor.gray
-                blockView.layer.borderWidth = 1
-                blockView.layer.borderColor = UIColor.red.cgColor
-                parentView.addSubview(blockView)
+                let blockvView = RizzleAnswerCollectionViewCell(frame: CGRect(x: xPosition , y: 0, width: width, height: width), letter: letterArray[i], position: i, delegate: self)
+                
+                blockvView.backgroundColor = UIColor.lightGray
+                parentView.addSubview(blockvView)
             }
             
             //Resize parent based on children
@@ -83,9 +84,8 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RizzleAnswerCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.addSubview(answerViewsArray[indexPath.row])
-        
         return cell
     }
     
@@ -97,4 +97,20 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         }
         return cellSize
     }
+    
+//    func displayLetter (cell: Int, letter: String) {
+//       let cell = collectionView.cellForItem(at: IndexPath(item: cell, section: 0) as! RizzleAnswerCollectionViewCell
+//        cell
+//    }
+    
+    func updateTracker(currentTracker: Int, lastCellView: UIView) {
+        letterIndexTracker = currentTracker
+        if self.lastCellView != nil {
+            self.lastCellView?.layer.borderWidth = 0
+        }
+        self.lastCellView = lastCellView
+        
+    }
+
+    
 }
