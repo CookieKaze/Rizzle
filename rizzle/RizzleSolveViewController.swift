@@ -121,6 +121,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             letterBank.append(feedingBank.first!)
             feedingBank.remove(at: 0)
         }
+        
         letterBankCollectionView.reloadData()
     }
     

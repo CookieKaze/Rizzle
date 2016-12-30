@@ -39,6 +39,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         let wordArray = answer.components(separatedBy: " ")
         
         //Loop through all words in wordArray
+        var positionCount = 0
         for word in wordArray {
             //Convert word to array
             let letterArray = word.characters.map({ (character) -> String in
@@ -54,11 +55,16 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
             let parentView = UIView()
             for i in 0...letterArray.count - 1 {
                 let xPosition = CGFloat(i) * (width + blockPadding)
-                let blockvView = RizzleAnswerCollectionViewCell(frame: CGRect(x: xPosition , y: 0, width: width, height: width), letter: letterArray[i], position: i, delegate: self)
+                let blockvView = RizzleAnswerCollectionViewCell(
+                    frame: CGRect(x: xPosition , y: 0, width: width, height: width),
+                    letter: letterArray[i],
+                    position: positionCount,
+                    delegate: self)
                 
                 blockvView.backgroundColor = UIColor.lightGray
                 parentView.addSubview(blockvView)
                 answerLetterBlocksArray.append(blockvView)
+                positionCount += 1
             }
             
             //Resize parent based on children
@@ -74,6 +80,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
             
             //Add parent view to array
             answerWordBlocksArray.append(parentView)
+            
         }
         collectionView.reloadData()
         answerLetterBlocksArray[0].letterCellTapped()
@@ -102,6 +109,17 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     //Take letter from letterbank and pass it to current answer cell
     func passLetterToCell (letter: String) {
         lastCellView?.letterLabel.text = letter
+        
+        //Move to the next answer cell
+        if letterIndexTracker < answerLetterBlocksArray.count - 1 {
+            
+            lastCellView?.layer.borderWidth = 0
+
+            letterIndexTracker += 1
+            lastCellView = answerLetterBlocksArray[letterIndexTracker]
+            lastCellView?.layer.borderWidth = 1
+            lastCellView?.layer.borderColor = UIColor.red.cgColor
+        }
     }
     
     //Update tracker with selected answer cell
@@ -113,6 +131,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         self.lastCellView = lastCellView
         
     }
+    
 
     
 }
