@@ -129,6 +129,24 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBAction func solveButtonTapped(_ sender: UIButton) {
         //BLAH BLAH BLAH CATS!
     }
+    @IBAction func resetButtonTapped(_ sender: UIButton) {
+        resetSolvedView()
+    }
+    
+    func resetSolvedView() {
+        //Clear Letter Banks
+        startingBank = [String]()
+        feedingBank = [String]()
+        letterBank = [String]()
+        
+        //Clear Answer View
+        answerViewController?.answerWordBlocksArray = [UIView]()
+        answerViewController?.answerLetterBlocksArray = [RizzleAnswerCollectionViewCell]()
+        answerViewController?.letterIndexTracker = 0
+        answerViewController?.lastCellView = nil
+        
+        setCurrentRizzle(rizzle: self.rizzle!)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "answerView" {

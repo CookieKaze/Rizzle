@@ -78,16 +78,16 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xa3-wb-mRB">
-                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
-                                <color key="backgroundColor" red="0.78625133199999997" green="0.55356937090000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="627" width="187.5" height="40"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LOq-3J-4Hm"/>
                                 </constraints>
-                                <state key="normal" title="Solve">
+                                <state key="normal" title="Reset">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="solveButtonTapped:" destination="2X3-cS-abI" eventType="touchUpInside" id="De3-pl-zkk"/>
+                                    <action selector="resetButtonTapped:" destination="2X3-cS-abI" eventType="touchUpInside" id="dvk-N6-URu"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMu-xs-JjP">
@@ -96,20 +96,36 @@
                                     <segue destination="3lf-si-ebi" kind="embed" identifier="answerView" id="gyx-ff-nDO"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFm-L7-QXU">
+                                <rect key="frame" x="187" y="627" width="187.5" height="40"/>
+                                <color key="backgroundColor" red="0.78625133199999997" green="0.55356937090000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="qlE-7H-6et"/>
+                                </constraints>
+                                <state key="normal" title="Solve">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="solveButtonTapped:" destination="2X3-cS-abI" eventType="touchUpInside" id="WrV-NN-hqr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dMu-xs-JjP" firstAttribute="height" secondItem="9g6-u4-B3r" secondAttribute="height" multiplier="0.2" id="2FV-Rn-41T"/>
                             <constraint firstItem="4t6-eL-P4c" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="8Rq-SG-yCc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cV3-lM-16P" secondAttribute="trailing" constant="20" id="9Yu-dH-oe6"/>
+                            <constraint firstAttribute="trailing" secondItem="FFm-L7-QXU" secondAttribute="trailing" id="G0U-5g-9cF"/>
                             <constraint firstAttribute="trailing" secondItem="JtP-30-Nkb" secondAttribute="trailing" id="JKH-he-Fvc"/>
+                            <constraint firstItem="FFm-L7-QXU" firstAttribute="width" secondItem="9g6-u4-B3r" secondAttribute="width" multiplier="0.5" id="NH1-Fc-tnQ"/>
+                            <constraint firstItem="qf7-g6-CCV" firstAttribute="top" secondItem="FFm-L7-QXU" secondAttribute="bottom" id="V4a-kv-ujH"/>
+                            <constraint firstItem="xa3-wb-mRB" firstAttribute="width" secondItem="9g6-u4-B3r" secondAttribute="width" multiplier="0.5" id="XTB-gJ-fUp"/>
                             <constraint firstItem="dMu-xs-JjP" firstAttribute="top" secondItem="JtP-30-Nkb" secondAttribute="bottom" id="XTG-7B-GZW"/>
                             <constraint firstItem="qf7-g6-CCV" firstAttribute="top" secondItem="xa3-wb-mRB" secondAttribute="bottom" id="Xm0-KQ-b4Z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4t6-eL-P4c" secondAttribute="trailing" constant="20" id="a7Z-ko-exa"/>
                             <constraint firstItem="cV3-lM-16P" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="aM0-DA-0Ve"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bHq-bE-wSc" secondAttribute="trailing" constant="20" id="bbR-Zg-2e9"/>
                             <constraint firstItem="cV3-lM-16P" firstAttribute="top" secondItem="4t6-eL-P4c" secondAttribute="bottom" constant="20" id="cJJ-5u-QPc"/>
-                            <constraint firstAttribute="trailing" secondItem="xa3-wb-mRB" secondAttribute="trailing" id="hTf-tD-v2P"/>
                             <constraint firstItem="xa3-wb-mRB" firstAttribute="top" secondItem="dMu-xs-JjP" secondAttribute="bottom" id="j0h-y5-xyK"/>
                             <constraint firstItem="bHq-bE-wSc" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" constant="20" id="m5S-Es-m5c"/>
                             <constraint firstAttribute="trailing" secondItem="dMu-xs-JjP" secondAttribute="trailing" id="nEY-In-ATy"/>
