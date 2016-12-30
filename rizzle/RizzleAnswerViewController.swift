@@ -107,19 +107,27 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     //Take letter from letterbank and pass it to current answer cell
-    func passLetterToCell (letter: String) {
-        lastCellView?.letterLabel.text = letter
+    func passLetterToCell (letter: String) -> Bool {
+        var shouldRemoveLetterFrombank = true
         
         //Move to the next answer cell
-        if letterIndexTracker < answerLetterBlocksArray.count - 1 {
-            
-            lastCellView?.layer.borderWidth = 0
-
-            letterIndexTracker += 1
-            lastCellView = answerLetterBlocksArray[letterIndexTracker]
-            lastCellView?.layer.borderWidth = 1
-            lastCellView?.layer.borderColor = UIColor.red.cgColor
+        if letterIndexTracker < answerLetterBlocksArray.count {
+            if lastCellView?.letterLabel.text == "" || lastCellView?.letterLabel.text == nil {
+                lastCellView?.letterLabel.text = letter
+                lastCellView?.layer.borderWidth = 0
+                letterIndexTracker += 1
+                if letterIndexTracker == answerLetterBlocksArray.count {
+                    letterIndexTracker -= 1
+                }else {
+                    lastCellView = answerLetterBlocksArray[letterIndexTracker]
+                    lastCellView?.layer.borderWidth = 1
+                    lastCellView?.layer.borderColor = UIColor.red.cgColor
+                }
+            }else {
+                shouldRemoveLetterFrombank = false
+            }
         }
+        return shouldRemoveLetterFrombank
     }
     
     //Update tracker with selected answer cell
@@ -132,6 +140,6 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         
     }
     
-
+    
     
 }

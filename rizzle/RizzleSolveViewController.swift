@@ -53,7 +53,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         loadingLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
         loadingView.addSubview(loadingLabel)
         
-        rizzleManager.generateNewRizzle()        
+        rizzleManager.generateNewRizzle()
     }
     
     func updateLoadStatus(update: String) {
@@ -112,17 +112,18 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     //When letter is tapped
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //Pass letter to answer view controller
-        answerViewController?.passLetterToCell(letter: letterBank[indexPath.row])
-        //Remove letter from bank
-        letterBank.remove(at: indexPath.row)
-        
-        //Add new letter from feeder
-        if feedingBank.count > 0 {
-            letterBank.append(feedingBank.first!)
-            feedingBank.remove(at: 0)
+        if (answerViewController?.passLetterToCell(letter: letterBank[indexPath.row]))! {
+            //Remove letter from bank
+            letterBank.remove(at: indexPath.row)
+            
+            //Add new letter from feeder
+            if feedingBank.count > 0 {
+                letterBank.append(feedingBank.first!)
+                feedingBank.remove(at: 0)
+            }
+            
+            letterBankCollectionView.reloadData()
         }
-        
-        letterBankCollectionView.reloadData()
     }
     
     
