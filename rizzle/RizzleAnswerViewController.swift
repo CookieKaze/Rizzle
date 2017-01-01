@@ -9,6 +9,11 @@
 import UIKit
 import KTCenterFlowLayout
 
+
+protocol AnswerCollectionDelegate {
+    func resetLetter (letter: String)
+}
+
 class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AnswerCollectionCellDelegate {
     
     //MARK: Properties
@@ -17,6 +22,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     var answerLetterBlocksArray = [RizzleAnswerCollectionViewCell]()
     var letterIndexTracker = 0
     var lastCellView: RizzleAnswerCollectionViewCell?
+    var delegate: AnswerCollectionDelegate?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -83,7 +89,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
             
         }
         collectionView.reloadData()
-        answerLetterBlocksArray[0].letterCellTapped()
+        updateTracker(currentTracker: 0, lastCellView: answerLetterBlocksArray[0])
     }
     
     //MARK: Collection View Data Source
@@ -130,6 +136,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         return shouldRemoveLetterFrombank
     }
     
+    //MARK: RizzleCell Delegate
     //Update tracker with selected answer cell
     func updateTracker(currentTracker: Int, lastCellView: RizzleAnswerCollectionViewCell) {
         letterIndexTracker = currentTracker
@@ -138,6 +145,11 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         }
         self.lastCellView = lastCellView
         
+    }
+    
+    //Get current letter from cell and send it back to RizzleSolve VC
+    func resetLetter (letter: String) {
+        delegate?.resetLetter(letter: letter)
     }
     
     

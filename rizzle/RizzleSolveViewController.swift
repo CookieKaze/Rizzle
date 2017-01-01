@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, RizzleSolverDelegate {
+class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, RizzleSolverDelegate, AnswerCollectionDelegate {
     
     //MARK: Properties
     var currentUser: PFUser!
@@ -149,10 +149,19 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         setCurrentRizzle(rizzle: self.rizzle!)
     }
     
+    //Setup AnswerViewController variables
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "answerView" {
             answerViewController = segue.destination as? RizzleAnswerViewController
+            answerViewController?.delegate = self
         }
+    }
+    
+    //MARK: AnswerViewController delegate
+    //Put deleted letter back into bank
+    func resetLetter (letter: String) {
+        letterBank.append(letter)
+        letterBankCollectionView.reloadData()
     }
     
 }

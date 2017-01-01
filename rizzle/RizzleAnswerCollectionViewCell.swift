@@ -11,6 +11,7 @@ import UIKit
 
 protocol AnswerCollectionCellDelegate {
     func updateTracker(currentTracker: Int, lastCellView: RizzleAnswerCollectionViewCell)
+    func resetLetter (letter: String)
 }
 
 class RizzleAnswerCollectionViewCell: UIView {
@@ -44,6 +45,10 @@ class RizzleAnswerCollectionViewCell: UIView {
         delegate?.updateTracker(currentTracker: letterPosition, lastCellView: self)
         layer.borderWidth = 1
         layer.borderColor = UIColor.red.cgColor
+        if letterLabel.text != "" && letterLabel.text != nil {
+            delegate?.resetLetter(letter: letterLabel.text!)
+            letterLabel.text = ""
+        }
     }
     
 //    func updateLetter(tempLetter: String) {
