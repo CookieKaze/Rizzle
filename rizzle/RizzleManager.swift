@@ -22,6 +22,11 @@ class RizzleManager: NSObject {
         return instance
     }()
     
+    let defaultScore = 50
+    let incorrectScoreDeduction = 10
+    let minimumScore = 10
+    
+    var currentScore = 1
     var delegate: RizzleSolverDelegate?
     var currentUser: PFUser!
     var currentRizzlePFObject: PFObject?
@@ -55,13 +60,17 @@ class RizzleManager: NSObject {
                 self.findRandomUnsolvedRizzle()
             }
         }
-        //Create a new tracker for this rizzle and user
+        //Create a new tracker for this rizzle and user.
         rizzleQueue.async {
             if self.currentRizzlePFObject != nil {
                 self.delegate?.updateLoadStatus(update: "Creating trackers")
                 self.createSolvedRizzleTracker()
                 self.delegate?.updateLoadStatus(update: "Generating new Rizzle")
                 self.generateRizzleObject()
+                
+                //Setup original score.
+                let difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
+                self.currentScore = difficultyLevel * self.defaultScore
             }
         }
         //Set Rizzle in SolverDelegate
@@ -217,4 +226,35 @@ class RizzleManager: NSObject {
     
     //MARK: Continue Rizzle
     
+    
+    //MARK: Score Manager 
+    func incorrectGuess() {
+       let difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
+        if currentScore - incorrectScoreDeduction * difficultyLevel > minimumScore {
+            currentScore -= incorrectScoreDeduction * difficultyLevel
+        }
+        
+        //Save to DB
+        guard let currentTracker = currentTracker else { return }
+        currentTracker["score"] = currentScore
+        currentTracker.saveInBackground { (success, error) in
+            if error != nil {
+                print(error!)
+            }
+        }
+    }
+    
+    func correctGuess() {
+        guard let currentTracker = currentTracker else { return }
+
+        //Update and save rizzle tracker
+        currentTracker["score"] = currentScore
+        currentTracker["completed"] = true
+        currentTracker.saveInBackground { (success, error) in
+            if error != nil {
+                print(error!)
+            }
+        }
+    }
+
 }

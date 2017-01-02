@@ -37,19 +37,21 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     
     //MARK: Answer Handle
     func turnAnswerIntoWordViews(answer: String) {
-        self.answer = answer
         let maxBlockHeight: CGFloat = 30
         let blockPadding = CGFloat(5)
         
         //Convert string to word array
         let wordArray = answer.components(separatedBy: " ")
+        self.answer = answer.uppercased().components(separatedBy: .whitespaces).joined(separator: "")
+        
+        
         
         //Loop through all words in wordArray
         var positionCount = 0
         for word in wordArray {
             //Convert word to array
-            let letterArray = word.characters.map({ (character) -> String in
-                let letter = String(character).uppercased()
+            let letterArray = word.characters.map({(character) -> String in
+                let letter = String(character)
                 return letter})
             
             //Get size of letter blocks, height should not be over maxHeight
@@ -150,6 +152,27 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     //Get current letter from cell and send it back to RizzleSolve VC
     func resetLetter (letter: String) {
         delegate?.resetLetter(letter: letter)
+    }
+    
+    //MARK: Solve Rizzle
+    func checkAnswer() -> String {
+        var cellAnswer = ""
+        var returnTask = "INCORRECT"
+        //Check that all answer cells are filled out
+        for answer in answerLetterBlocksArray {
+            if answer.letterLabel.text == nil || answer.letterLabel.text == "" {
+                returnTask = "BLANK"
+                break
+            }else {
+                cellAnswer.append(answer.letterLabel.text!)
+            }
+        }
+        
+        if cellAnswer == answer {
+            returnTask = "CORRECT"
+        }
+        
+        return returnTask
     }
     
     

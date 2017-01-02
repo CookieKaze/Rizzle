@@ -109,6 +109,15 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     
+    //MARK: AnswerViewController
+    //Setup variables
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "answerView" {
+            answerViewController = segue.destination as? RizzleAnswerViewController
+            answerViewController?.delegate = self
+        }
+    }
+    
     //When letter is tapped
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //Pass letter to answer view controller
@@ -126,10 +135,13 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
-    
-    @IBAction func solveButtonTapped(_ sender: UIButton) {
-        //BLAH BLAH BLAH CATS!
+    //Put deleted letter back into bank
+    func resetLetter (letter: String) {
+        letterBank.append(letter)
+        letterBankCollectionView.reloadData()
     }
+    
+    //MARK: Reset views
     @IBAction func resetButtonTapped(_ sender: UIButton) {
         resetSolvedView()
     }
@@ -149,19 +161,42 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         setCurrentRizzle(rizzle: self.rizzle!)
     }
     
-    //Setup AnswerViewController variables
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "answerView" {
-            answerViewController = segue.destination as? RizzleAnswerViewController
-            answerViewController?.delegate = self
+    //MARK: Solve Rizzle
+    @IBAction func solveButtonTapped(_ sender: UIButton) {
+        solveRizzle()
+    }
+    
+    func solveRizzle() {
+        guard let answerStatus = answerViewController?.checkAnswer() else {
+            return
         }
+        //Scoring System
+        //Start at 50 per puzzle
+        //Minimum score 10
+        //Cost 10 to use a hint
+        //5 difficulty levels
+        
+        switch answerStatus {
+        case "INCORRECT":
+            rizzleManager.incorrectGuess()
+            break
+        case "BLANK":
+            //Cells can't be blank, show alert
+            let blankAlertMessageController = UIAlertController(title: "Blank Answer", message: "Please fill in all answer blocks and try again.", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default)
+            blankAlertMessageController.addAction(okAction)
+            present(blankAlertMessageController, animated: true, completion: nil)
+            break
+        case "CORRECT":
+            rizzleManager.correctGuess()
+            dismiss(animated: true, completion: nil)
+            break
+        default:
+            //
+            break
+        }
+        //reset if not correct
+        //let manager update tracker with score
+        //end game
     }
-    
-    //MARK: AnswerViewController delegate
-    //Put deleted letter back into bank
-    func resetLetter (letter: String) {
-        letterBank.append(letter)
-        letterBankCollectionView.reloadData()
-    }
-    
 }
