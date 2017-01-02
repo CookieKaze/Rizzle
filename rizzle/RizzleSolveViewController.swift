@@ -28,6 +28,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var answerView: UIView!
     @IBOutlet weak var letterBankCollectionView: UICollectionView!
     @IBOutlet weak var titleTextField: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionTextView: UITextView!
     
     //MARK: Setup Methods
@@ -62,8 +63,9 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     
     func setCurrentRizzle(rizzle: Rizzle) {
         self.rizzle = rizzle
-        //Extract rizzle letter banks
+        setCurrentScore()
         
+        //Extract rizzle letter banks
         startingBank = (rizzle.letterBanks["startingLetterBank"]!)
         feedingBank = (rizzle.letterBanks["feedingLetterBank"]!)
         letterBank += startingBank
@@ -80,6 +82,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
                 self.loadingView.frame = CGRect(x: self.view.frame.width, y: 0, width: self.loadingView.frame.width, height: self.loadingView.frame.height)
             })
         }
+    }
+    
+    func setCurrentScore() {
+        scoreLabel.text = "Score: \(rizzleManager.currentScore) / \(rizzleManager.maxScore)"
     }
     
     func createLetterBank () {
@@ -179,6 +185,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         switch answerStatus {
         case "INCORRECT":
             rizzleManager.incorrectGuess()
+            setCurrentScore()
             break
         case "BLANK":
             //Cells can't be blank, show alert

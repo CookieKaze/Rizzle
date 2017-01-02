@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cV3-lM-16P">
-                                <rect key="frame" x="36" y="60" width="303" height="307"/>
+                                <rect key="frame" x="36" y="66" width="303" height="301"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -109,6 +109,12 @@
                                     <action selector="solveButtonTapped:" destination="2X3-cS-abI" eventType="touchUpInside" id="WrV-NN-hqr"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rV-Gq-VKR">
+                                <rect key="frame" x="36" y="46" width="303" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -116,16 +122,18 @@
                             <constraint firstItem="4t6-eL-P4c" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="8Rq-SG-yCc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cV3-lM-16P" secondAttribute="trailing" constant="20" id="9Yu-dH-oe6"/>
                             <constraint firstAttribute="trailing" secondItem="FFm-L7-QXU" secondAttribute="trailing" id="G0U-5g-9cF"/>
+                            <constraint firstItem="cV3-lM-16P" firstAttribute="top" secondItem="3rV-Gq-VKR" secondAttribute="bottom" constant="20" id="GoV-ih-hfK"/>
                             <constraint firstAttribute="trailing" secondItem="JtP-30-Nkb" secondAttribute="trailing" id="JKH-he-Fvc"/>
                             <constraint firstItem="FFm-L7-QXU" firstAttribute="width" secondItem="9g6-u4-B3r" secondAttribute="width" multiplier="0.5" id="NH1-Fc-tnQ"/>
                             <constraint firstItem="qf7-g6-CCV" firstAttribute="top" secondItem="FFm-L7-QXU" secondAttribute="bottom" id="V4a-kv-ujH"/>
                             <constraint firstItem="xa3-wb-mRB" firstAttribute="width" secondItem="9g6-u4-B3r" secondAttribute="width" multiplier="0.5" id="XTB-gJ-fUp"/>
                             <constraint firstItem="dMu-xs-JjP" firstAttribute="top" secondItem="JtP-30-Nkb" secondAttribute="bottom" id="XTG-7B-GZW"/>
                             <constraint firstItem="qf7-g6-CCV" firstAttribute="top" secondItem="xa3-wb-mRB" secondAttribute="bottom" id="Xm0-KQ-b4Z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3rV-Gq-VKR" secondAttribute="trailing" constant="20" id="ZRP-Me-3qk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4t6-eL-P4c" secondAttribute="trailing" constant="20" id="a7Z-ko-exa"/>
                             <constraint firstItem="cV3-lM-16P" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="aM0-DA-0Ve"/>
+                            <constraint firstItem="3rV-Gq-VKR" firstAttribute="top" secondItem="4t6-eL-P4c" secondAttribute="bottom" constant="6" id="bK0-Pd-zq0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bHq-bE-wSc" secondAttribute="trailing" constant="20" id="bbR-Zg-2e9"/>
-                            <constraint firstItem="cV3-lM-16P" firstAttribute="top" secondItem="4t6-eL-P4c" secondAttribute="bottom" constant="20" id="cJJ-5u-QPc"/>
                             <constraint firstItem="xa3-wb-mRB" firstAttribute="top" secondItem="dMu-xs-JjP" secondAttribute="bottom" id="j0h-y5-xyK"/>
                             <constraint firstItem="bHq-bE-wSc" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" constant="20" id="m5S-Es-m5c"/>
                             <constraint firstAttribute="trailing" secondItem="dMu-xs-JjP" secondAttribute="trailing" id="nEY-In-ATy"/>
@@ -135,6 +143,7 @@
                             <constraint firstItem="JtP-30-Nkb" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="rPx-2U-zXI"/>
                             <constraint firstItem="dMu-xs-JjP" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="vIB-GO-cuN"/>
                             <constraint firstItem="bHq-bE-wSc" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="xv7-zo-kfZ"/>
+                            <constraint firstItem="3rV-Gq-VKR" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="zHs-e2-r2u"/>
                             <constraint firstItem="JtP-30-Nkb" firstAttribute="top" secondItem="bHq-bE-wSc" secondAttribute="bottom" constant="20" id="zSR-MJ-NiF"/>
                         </constraints>
                     </view>
@@ -142,6 +151,7 @@
                         <outlet property="answerView" destination="dMu-xs-JjP" id="i1u-dV-U63"/>
                         <outlet property="letterBankCollectionView" destination="JtP-30-Nkb" id="ji6-QL-Ri7"/>
                         <outlet property="questionTextView" destination="cV3-lM-16P" id="8eY-lk-sVt"/>
+                        <outlet property="scoreLabel" destination="3rV-Gq-VKR" id="bFc-Uh-10U"/>
                         <outlet property="titleTextField" destination="4t6-eL-P4c" id="H3h-i8-U6e"/>
                     </connections>
                 </viewController>

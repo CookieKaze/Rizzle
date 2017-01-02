@@ -26,7 +26,9 @@ class RizzleManager: NSObject {
     let incorrectScoreDeduction = 10
     let minimumScore = 10
     
-    var currentScore = 1
+    var currentScore = 0
+    var maxScore = 0
+    
     var delegate: RizzleSolverDelegate?
     var currentUser: PFUser!
     var currentRizzlePFObject: PFObject?
@@ -70,7 +72,8 @@ class RizzleManager: NSObject {
                 
                 //Setup original score.
                 let difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
-                self.currentScore = difficultyLevel * self.defaultScore
+                self.currentScore = self.defaultScore * difficultyLevel
+                self.maxScore = self.defaultScore * difficultyLevel
             }
         }
         //Set Rizzle in SolverDelegate
@@ -117,8 +120,12 @@ class RizzleManager: NSObject {
         
         do {
             let rizzles = try query.findObjects()
-            let randomNumber = Int(arc4random_uniform(UInt32((rizzles.count))))
-            self.currentRizzlePFObject = rizzles[randomNumber]
+            if rizzles.count != 0 {
+                let randomNumber = Int(arc4random_uniform(UInt32((rizzles.count))))
+                self.currentRizzlePFObject = rizzles[randomNumber]
+            } else {
+                print("More rizzles coming soon!")
+            }
         } catch {
             print("Problem finding new rizzles \(error)")
         }
@@ -227,9 +234,9 @@ class RizzleManager: NSObject {
     //MARK: Continue Rizzle
     
     
-    //MARK: Score Manager 
+    //MARK: Score Manager
     func incorrectGuess() {
-       let difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
+        let difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
         if currentScore - incorrectScoreDeduction * difficultyLevel > minimumScore {
             currentScore -= incorrectScoreDeduction * difficultyLevel
         }
@@ -246,7 +253,7 @@ class RizzleManager: NSObject {
     
     func correctGuess() {
         guard let currentTracker = currentTracker else { return }
-
+        
         //Update and save rizzle tracker
         currentTracker["score"] = currentScore
         currentTracker["completed"] = true
@@ -256,5 +263,5 @@ class RizzleManager: NSObject {
             }
         }
     }
-
+    
 }
