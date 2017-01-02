@@ -24,7 +24,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     var letterBank = [String]()
     let letterBankLimit = 12
     
-    
+    @IBOutlet weak var hintView: HintView!
     @IBOutlet weak var answerView: UIView!
     @IBOutlet weak var letterBankCollectionView: UICollectionView!
     @IBOutlet weak var titleTextField: UILabel!
@@ -78,6 +78,11 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             self.questionTextView.text = rizzle.question
             self.answerViewController?.turnAnswerIntoWordViews(answer: rizzle.answer)
             self.letterBankCollectionView.reloadData()
+            
+            //Hint View
+            self.hintView.setupView()
+            self.hintView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            
             UIView.animate(withDuration: 1, animations: {
                 self.loadingView.frame = CGRect(x: self.view.frame.width, y: 0, width: self.loadingView.frame.width, height: self.loadingView.frame.height)
             })
@@ -176,11 +181,6 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         guard let answerStatus = answerViewController?.checkAnswer() else {
             return
         }
-        //Scoring System
-        //Start at 50 per puzzle
-        //Minimum score 10
-        //Cost 10 to use a hint
-        //5 difficulty levels
         
         switch answerStatus {
         case "INCORRECT":
@@ -199,11 +199,13 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             dismiss(animated: true, completion: nil)
             break
         default:
-            //
             break
         }
-        //reset if not correct
-        //let manager update tracker with score
-        //end game
+    }
+    
+    //MARK: Hints Control
+    
+    @IBAction func getHintTapped(_ sender: UIButton) {
+        hintView.showView()
     }
 }

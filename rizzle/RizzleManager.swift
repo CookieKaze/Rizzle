@@ -12,6 +12,7 @@ import Parse
 protocol RizzleSolverDelegate {
     func setCurrentRizzle(rizzle: Rizzle)
     func updateLoadStatus(update: String)
+    func setCurrentScore()
 }
 
 class RizzleManager: NSObject {
@@ -22,12 +23,15 @@ class RizzleManager: NSObject {
         return instance
     }()
     
+    //MARK: Properties
     let defaultScore = 50
-    let incorrectScoreDeduction = 10
+    let hintUnlockCost = 10
+    let incorrectScoreDeduction = 2
     let minimumScore = 10
     
     var currentScore = 0
     var maxScore = 0
+    var difficultyLevel = 1
     
     var delegate: RizzleSolverDelegate?
     var currentUser: PFUser!
@@ -50,39 +54,42 @@ class RizzleManager: NSObject {
     //MARK: New Rizzle
     func generateNewRizzle() {
         let rizzleQueue = DispatchQueue(label: "rizzleQueue", qos: .userInitiated)
+        
         //Get solved Rizzles
         rizzleQueue.async {
-            self.delegate?.updateLoadStatus(update: "Loading Rizzles")
             self.findSolvedRizzleIDs()
         }
+        
         //Get Unsolved Rizzles
         rizzleQueue.async {
             if self.solvedRizzleIDs != nil {
-                self.delegate?.updateLoadStatus(update: "Searching for new Rizzles")
-                self.findRandomUnsolvedRizzle()
-            }
-        }
-        //Create a new tracker for this rizzle and user.
-        rizzleQueue.async {
-            if self.currentRizzlePFObject != nil {
-                self.delegate?.updateLoadStatus(update: "Creating trackers")
-                self.createSolvedRizzleTracker()
-                self.delegate?.updateLoadStatus(update: "Generating new Rizzle")
-                self.generateRizzleObject()
-                
-                //Setup original score.
-                let difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
-                self.currentScore = self.defaultScore * difficultyLevel
-                self.maxScore = self.defaultScore * difficultyLevel
-            }
-        }
-        //Set Rizzle in SolverDelegate
-        rizzleQueue.async {
-            if self.currentRizzle != nil {
-                self.delegate?.setCurrentRizzle(rizzle: self.currentRizzle!)
+                if self.findRandomUnsolvedRizzle() {
+                    return
+                }
             }
         }
         
+        //Create a new tracker for this rizzle and user.
+        rizzleQueue.async {
+            if self.currentRizzlePFObject != nil {
+                self.createSolvedRizzleTracker()
+                self.generateRizzleObject()
+                
+                //Setup original score.
+                self.difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
+                self.currentScore = self.defaultScore * self.difficultyLevel
+                self.maxScore = self.defaultScore * self.difficultyLevel
+            }
+        }
+        
+        //Set Rizzle in SolverDelegate
+        rizzleQueue.async {
+            if self.currentRizzle != nil {
+                DispatchQueue.main.async {
+                    self.delegate?.setCurrentRizzle(rizzle: self.currentRizzle!)
+                }
+            }
+        }
     }
     
     func findSolvedRizzleIDs(){
@@ -111,7 +118,8 @@ class RizzleManager: NSObject {
         }
     }
     
-    func findRandomUnsolvedRizzle() {
+    func findRandomUnsolvedRizzle() -> Bool{
+        var success = true
         // Get 100 oldest Rizzles that haven't been started
         let query = PFQuery(className: "Rizzle")
         query.whereKey("objectId", notContainedIn: self.solvedRizzleIDs!)
@@ -125,10 +133,12 @@ class RizzleManager: NSObject {
                 self.currentRizzlePFObject = rizzles[randomNumber]
             } else {
                 print("More rizzles coming soon!")
+                success = false
             }
         } catch {
             print("Problem finding new rizzles \(error)")
         }
+        return success
     }
     
     func createSolvedRizzleTracker() {
@@ -231,13 +241,10 @@ class RizzleManager: NSObject {
         return banks
     }
     
-    //MARK: Continue Rizzle
-    
-    
-    //MARK: Score Manager
+    //MARK: Score Handler
     func incorrectGuess() {
-        let difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
-        if currentScore - incorrectScoreDeduction * difficultyLevel > minimumScore {
+        difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
+        if currentScore - incorrectScoreDeduction * difficultyLevel >= minimumScore * difficultyLevel {
             currentScore -= incorrectScoreDeduction * difficultyLevel
         }
         
@@ -263,5 +270,41 @@ class RizzleManager: NSObject {
             }
         }
     }
+    
+    //MARK: Score Handler
+    func unlockHint(hint: Int) {
+        guard let currentTracker = currentTracker else { return }
+        
+        //Update Rizzle tracker
+        switch hint {
+        case 1:
+            currentTracker["hint1Used"] = true
+            break
+        case 2:
+            currentTracker["hint2Used"] = true
+            break
+        case 3:
+            currentTracker["hint3Used"] = true
+            break
+        default:
+            break
+        }
+        
+        if currentScore > (difficultyLevel * hintUnlockCost) + minimumScore {
+            currentScore -= difficultyLevel * hintUnlockCost
+        }
+        currentTracker["score"] = currentScore
+        delegate?.setCurrentScore()
+        
+        
+        //Save Rizzle tracker
+        currentTracker.saveInBackground { (success, error) in
+            if error != nil {
+                print(error!)
+            }
+        }
+    }
+    
+    //MARK: Continue Rizzle
     
 }
