@@ -79,6 +79,8 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func continueRizzle(){
+        let continueRizzleView = UIStoryboard(name: "Rizzle", bundle: nil).instantiateViewController(withIdentifier: "continueRizzle") as! ContinueRizzleViewController
+        present(continueRizzleView, animated: true, completion: nil)
     }
     
     func createEditRizzle(rizzleToEdit: PFObject?) {

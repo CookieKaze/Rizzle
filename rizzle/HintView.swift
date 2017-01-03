@@ -23,11 +23,30 @@ class HintView: UIView {
     @IBOutlet weak var hint2: UIButton!
     @IBOutlet weak var hint3: UIButton!
     
+    required override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadNib()
+        setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: Setup Methods
+    func loadNib() {
+        let view = Bundle.main.loadNibNamed("HintView1", owner: self, options: nil)?[0] as! UIView
+        addSubview(view)
+        view.frame = self.bounds
+    }
+    
     func setupView() {
         unlockedHintView.isHidden = true
         setRemainingScore()
         hint1.backgroundColor = UIColor.orange
+        
+        //Check if the first hint is unlocked
+        hintButtonTapped(hint1)
     }
     
     func setRemainingScore() {
@@ -122,7 +141,7 @@ class HintView: UIView {
                 setRemainingScore()
                 return
             default:
-                return
+                 return
             }
         }
     }

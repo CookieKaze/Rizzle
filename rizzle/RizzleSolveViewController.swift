@@ -18,13 +18,15 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     var loadingView = UIView()
     var loadingLabel = UILabel()
     
+    var continueRizzlePF: PFObject?
+    var continueRizzleTrackerPF: PFObject?
+    
     var rizzle: Rizzle?
     var startingBank = [String]()
     var feedingBank = [String]()
     var letterBank = [String]()
     let letterBankLimit = 12
     
-    @IBOutlet weak var hintView: HintView!
     @IBOutlet weak var answerView: UIView!
     @IBOutlet weak var letterBankCollectionView: UICollectionView!
     @IBOutlet weak var titleTextField: UILabel!
@@ -54,7 +56,11 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         loadingLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
         loadingView.addSubview(loadingLabel)
         
-        rizzleManager.generateNewRizzle()
+        if continueRizzlePF == nil && continueRizzleTrackerPF == nil {
+            rizzleManager.generateNewRizzle()
+        } else {
+            rizzleManager.continueRizzle(rizzle: continueRizzlePF!, tracker: continueRizzleTrackerPF!)
+        }
     }
     
     func updateLoadStatus(update: String) {
@@ -78,10 +84,6 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             self.questionTextView.text = rizzle.question
             self.answerViewController?.turnAnswerIntoWordViews(answer: rizzle.answer)
             self.letterBankCollectionView.reloadData()
-            
-            //Hint View
-            self.hintView.setupView()
-            self.hintView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
             
             UIView.animate(withDuration: 1, animations: {
                 self.loadingView.frame = CGRect(x: self.view.frame.width, y: 0, width: self.loadingView.frame.width, height: self.loadingView.frame.height)
@@ -204,8 +206,16 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     //MARK: Hints Control
-    
     @IBAction func getHintTapped(_ sender: UIButton) {
+        let hintView = HintView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        view.addSubview(hintView)
         hintView.showView()
     }
+    
+    @IBAction func backTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
 }
