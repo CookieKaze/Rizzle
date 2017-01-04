@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -69,21 +70,37 @@
                                             <outlet property="delegate" destination="X7Z-0R-u1Z" id="3Pu-Ky-dKw"/>
                                         </connections>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4s-yd-ewF">
+                                        <rect key="frame" x="183" y="204" width="8" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="R78-5I-8T9">
+                                        <rect key="frame" x="140" y="235" width="94" height="29"/>
+                                        <connections>
+                                            <action selector="stepperValueChanged:" destination="X7Z-0R-u1Z" eventType="valueChanged" id="uwP-kB-bkL"/>
+                                        </connections>
+                                    </stepper>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Rev-mG-E3C" secondAttribute="trailing" id="0K6-s1-vVo"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="1PI-Rr-tCI" secondAttribute="trailing" constant="20" id="3Qn-LD-TFk"/>
+                                    <constraint firstItem="K4s-yd-ewF" firstAttribute="top" secondItem="1PI-Rr-tCI" secondAttribute="bottom" constant="20" id="3gP-ld-Tqq"/>
                                     <constraint firstItem="1PI-Rr-tCI" firstAttribute="top" secondItem="4IP-01-hc3" secondAttribute="bottom" constant="10" id="5Xw-1c-uwk"/>
                                     <constraint firstItem="Rev-mG-E3C" firstAttribute="top" secondItem="JXc-KX-Tb7" secondAttribute="top" id="Aep-Ox-bdE"/>
                                     <constraint firstItem="BLf-YS-vfZ" firstAttribute="leading" secondItem="JXc-KX-Tb7" secondAttribute="leadingMargin" constant="20" id="H28-cu-w55"/>
                                     <constraint firstItem="Rev-mG-E3C" firstAttribute="leading" secondItem="JXc-KX-Tb7" secondAttribute="leading" id="Phs-Z2-aVz"/>
+                                    <constraint firstItem="K4s-yd-ewF" firstAttribute="centerX" secondItem="JXc-KX-Tb7" secondAttribute="centerX" id="RkD-rl-20X"/>
                                     <constraint firstItem="1PI-Rr-tCI" firstAttribute="leading" secondItem="JXc-KX-Tb7" secondAttribute="leadingMargin" constant="20" id="Z9S-Qh-7Cf"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="BLf-YS-vfZ" secondAttribute="trailing" constant="20" id="Zuz-mE-u1C"/>
                                     <constraint firstItem="BLf-YS-vfZ" firstAttribute="top" secondItem="Rev-mG-E3C" secondAttribute="bottom" constant="30" id="Zxm-89-Fh7"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="4IP-01-hc3" secondAttribute="trailing" constant="20" id="aGp-TQ-zMg"/>
                                     <constraint firstItem="4IP-01-hc3" firstAttribute="top" secondItem="BLf-YS-vfZ" secondAttribute="bottom" constant="10" id="bjW-pa-9az"/>
+                                    <constraint firstItem="R78-5I-8T9" firstAttribute="top" secondItem="K4s-yd-ewF" secondAttribute="bottom" constant="10" id="kxs-mg-N1V"/>
                                     <constraint firstItem="4IP-01-hc3" firstAttribute="leading" secondItem="JXc-KX-Tb7" secondAttribute="leadingMargin" constant="20" id="wfd-O2-bLI"/>
+                                    <constraint firstItem="R78-5I-8T9" firstAttribute="centerX" secondItem="JXc-KX-Tb7" secondAttribute="centerX" id="wva-8A-b3w"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZK-MD-78s">
@@ -115,14 +132,25 @@
                                             <outlet property="delegate" destination="X7Z-0R-u1Z" id="bEc-OC-8nw"/>
                                         </connections>
                                     </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZLa-4C-w7E">
+                                        <rect key="frame" x="28" y="114" width="319" height="323.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="OLr-DA-vpc" secondAttribute="trailing" id="51r-wM-wEG"/>
                                     <constraint firstItem="OLr-DA-vpc" firstAttribute="leading" secondItem="sZK-MD-78s" secondAttribute="leading" id="BSa-2a-UkK"/>
                                     <constraint firstItem="Usb-6M-aEV" firstAttribute="top" secondItem="OLr-DA-vpc" secondAttribute="bottom" constant="30" id="QBS-NF-ZpC"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZLa-4C-w7E" secondAttribute="trailing" constant="28" id="UfP-aN-2qk"/>
+                                    <constraint firstItem="ZLa-4C-w7E" firstAttribute="top" secondItem="Usb-6M-aEV" secondAttribute="bottom" constant="10" id="Zu4-jn-LVu"/>
                                     <constraint firstItem="OLr-DA-vpc" firstAttribute="top" secondItem="sZK-MD-78s" secondAttribute="top" id="bvC-yX-VlZ"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="Usb-6M-aEV" secondAttribute="trailing" constant="20" id="iZo-c0-pVb"/>
+                                    <constraint firstItem="ZLa-4C-w7E" firstAttribute="height" secondItem="sZK-MD-78s" secondAttribute="height" multiplier="0.5" id="jmm-dl-Hc5"/>
+                                    <constraint firstItem="ZLa-4C-w7E" firstAttribute="leading" secondItem="sZK-MD-78s" secondAttribute="leading" constant="28" id="kNu-eP-9dX"/>
                                     <constraint firstItem="Usb-6M-aEV" firstAttribute="leading" secondItem="sZK-MD-78s" secondAttribute="leadingMargin" constant="20" id="yXP-nq-4Qz"/>
                                 </constraints>
                             </view>
@@ -273,6 +301,8 @@
                         <outlet property="activityIndicator" destination="Z2e-zG-a5a" id="qtK-np-qTF"/>
                         <outlet property="answerTextField" destination="Usb-6M-aEV" id="Y8f-lP-un4"/>
                         <outlet property="answerView" destination="sZK-MD-78s" id="YGC-rf-Ud2"/>
+                        <outlet property="difficultyLabel" destination="K4s-yd-ewF" id="UUb-Xh-yDT"/>
+                        <outlet property="explanationTextView" destination="ZLa-4C-w7E" id="km8-NZ-Q9Q"/>
                         <outlet property="hint1TextField" destination="BLf-YS-vfZ" id="ia5-kN-i4o"/>
                         <outlet property="hint2TextField" destination="4IP-01-hc3" id="IhA-M0-j10"/>
                         <outlet property="hint3TextField" destination="1PI-Rr-tCI" id="Rjb-kk-BTX"/>

@@ -30,10 +30,11 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var answerTextField: UITextField!
+    @IBOutlet weak var explanationTextView: UITextView!
     @IBOutlet weak var hint1TextField: UITextField!
     @IBOutlet weak var hint2TextField: UITextField!
     @IBOutlet weak var hint3TextField: UITextField!
-    
+    @IBOutlet weak var difficultyLabel: UILabel!
     
     //MARK: Methods
     override func viewDidLoad() {
@@ -52,9 +53,12 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             titleTextField.text = rizzleToEdit["title"] as? String
             questionTextView.text = rizzleToEdit["question"] as? String
             answerTextField.text = rizzleToEdit["answer"] as? String
+            explanationTextView.text = rizzleToEdit["explanation"] as? String
             hint1TextField.text = rizzleToEdit["hint1"] as? String
             hint2TextField.text = rizzleToEdit["hint2"] as? String
             hint3TextField.text = rizzleToEdit["hint3"] as? String
+            difficultyLabel.text = rizzleToEdit["difficultyLevel"] as? String
+            
             
             let rizzleImageFile = rizzleToEdit["imageFile"] as? PFFile
             rizzleImageFile?.getDataInBackground(block: {(imageData, error) in
@@ -111,6 +115,8 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             rizzle["hint1"] = hint1TextField.text
             rizzle["hint2"] = hint2TextField.text
             rizzle["hint3"] = hint3TextField.text
+            rizzle["explanation"] = explanationTextView.text
+            rizzle["difficultyLevel"] = Int(difficultyLabel.text!)
             
             if imageView.image != nil {
                 guard let imageData = UIImageJPEGRepresentation(imageView.image!, 0.75) else {
@@ -135,14 +141,13 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
         }
     }
     
-    
     func checkValidField() -> Bool {
         var shouldSave = false
         if hint1TextField.text == "" || hint2TextField.text == "" || hint3TextField.text == "" {
             showAlert(message: "The hint fields cannot be blank.")
             return shouldSave
-        } else if answerTextField.text == "" {
-            showAlert(message: "The answer field cannot be blank.")
+        }else if answerTextField.text == "" || explanationTextView.text == "" {
+            showAlert(message: "The answer fields cannot be blank.")
             restoreView(view: answerView)
             return shouldSave
         } else if questionTextView.text == "" {
@@ -164,6 +169,10 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
         
         alertView.addAction(defaultAction)
         present(alertView, animated: true, completion: nil)
+    }
+    
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        difficultyLabel.text = String(Int(sender.value))
     }
     
     //MARK: Image Upload
@@ -192,31 +201,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     
     @IBAction func removeImageBtnTapped(_ sender: UIButton) {
         imageView.image = nil
-//        deleteStoredImage()
     }
-    
-//    func deleteStoredImage() {
-//        if rizzleToEdit != nil {
-//            let storedImage = rizzleToEdit!["imageFile"] as! PFFile
-//            guard let storeImagePath = storedImage.url else {
-//                return
-//            }
-//            guard let storeImageURL = URL(string: storeImagePath) else {
-//                return
-//            }
-//            
-//            var request = URLRequest(url: NSURL(string: "http://rizzle-puzzle.herokuapp.com/parse/files/rizzle-puzzle/0351e06cedb4d056e1484a00fe3bf9f8_rizzleImage.jpeg")! as URL)
-//            
-//            request.httpMethod = "DELETE"
-//            request.setValue(Parse.getApplicationId(), forHTTPHeaderField: "X-Parse-Application-Id")
-//            request.setValue("LightHouseLabs2016", forHTTPHeaderField: "X-Parse-Master-Key")
-//            
-//            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-//                print("Response: \(response)")
-//            })
-//            task.resume()
-//        }
-//    }
     
     //MARK: Form Transitions
     @IBAction func cancelBtnTapped(_ sender: UIBarButtonItem) {
@@ -290,9 +275,11 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         questionTextView.resignFirstResponder()
         answerTextField.resignFirstResponder()
+        explanationTextView.resignFirstResponder()
         hint1TextField.resignFirstResponder()
         hint2TextField.resignFirstResponder()
         hint3TextField.resignFirstResponder()
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

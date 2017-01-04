@@ -81,7 +81,24 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         
         DispatchQueue.main.async {
             self.titleTextField.text = rizzle.title
-            self.questionTextView.text = rizzle.question
+            
+            //Add image to question view
+            if rizzle.image != nil {
+                let textAttachment = NSTextAttachment.init()
+                textAttachment.image = rizzle.image!
+                
+                let oldWidth = textAttachment.image!.size.width;
+                let scaleFactor = oldWidth / (self.questionTextView.frame.size.width);
+                textAttachment.image = UIImage(cgImage: textAttachment.image!.cgImage!, scale: scaleFactor, orientation: .up)
+                
+                let attStringImage = NSAttributedString(attachment: textAttachment)
+                let attributedString = NSMutableAttributedString.init(string: rizzle.question)
+                attributedString.append(attStringImage)
+                self.questionTextView.attributedText = attributedString
+            }else {
+                self.questionTextView.text = rizzle.question
+            }
+            
             self.answerViewController?.turnAnswerIntoWordViews(answer: rizzle.answer)
             self.letterBankCollectionView.reloadData()
             
@@ -96,17 +113,21 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func createLetterBank () {
-        let missingLetters = letterBankLimit - startingBank.count
+        var missingLetters = 0
         let allAlphaCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R" ,"S" ,"T" ,"U" ,"V" ,"W" ,"X" ,"Y" ,"Z"]
         
-        //Generate random letters for all missing letters
-        for _ in 1...missingLetters {
-            let randomNumber = Int(arc4random_uniform(UInt32(allAlphaCharacters.count)))
-            letterBank.append(allAlphaCharacters[randomNumber])
+        if letterBankLimit > startingBank.count {
+            missingLetters = letterBankLimit - startingBank.count
+            
+            //Generate random letters for all missing letters
+            for _ in 1...missingLetters {
+                let randomNumber = Int(arc4random_uniform(UInt32(allAlphaCharacters.count)))
+                letterBank.append(allAlphaCharacters[randomNumber])
+            }
+            
+            //Scramble new letter bank
+            letterBank = rizzleManager.scrambleLetters(array: letterBank)
         }
-        
-        //Scramble new letter bank
-        letterBank = rizzleManager.scrambleLetters(array: letterBank)
     }
     
     //MARK: Letter Bank Data Source

@@ -127,18 +127,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cV3-lM-16P">
-                                <rect key="frame" x="36" y="66" width="303" height="301"/>
+                                <rect key="frame" x="16" y="66" width="343" height="361"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHq-bE-wSc">
-                                <rect key="frame" x="36" y="387" width="303" height="30"/>
-                                <state key="normal" title="Get Hint"/>
-                                <connections>
-                                    <action selector="getHintTapped:" destination="2X3-cS-abI" eventType="touchUpInside" id="K91-5Y-hIm"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JtP-30-Nkb">
                                 <rect key="frame" x="0.0" y="437" width="375" height="57"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -215,13 +208,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHq-bE-wSc">
+                                <rect key="frame" x="302" y="20.5" width="57" height="30"/>
+                                <state key="normal" title="Get Hint"/>
+                                <connections>
+                                    <action selector="getHintTapped:" destination="2X3-cS-abI" eventType="touchUpInside" id="K91-5Y-hIm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dMu-xs-JjP" firstAttribute="height" secondItem="9g6-u4-B3r" secondAttribute="height" multiplier="0.2" id="2FV-Rn-41T"/>
                             <constraint firstItem="Ihw-Cl-whB" firstAttribute="top" secondItem="lsz-Cj-fhd" secondAttribute="bottom" id="2ZB-cV-suP"/>
                             <constraint firstItem="4t6-eL-P4c" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="8Rq-SG-yCc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cV3-lM-16P" secondAttribute="trailing" constant="20" id="9Yu-dH-oe6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cV3-lM-16P" secondAttribute="trailing" id="9Yu-dH-oe6"/>
                             <constraint firstAttribute="trailing" secondItem="FFm-L7-QXU" secondAttribute="trailing" id="G0U-5g-9cF"/>
                             <constraint firstItem="cV3-lM-16P" firstAttribute="top" secondItem="3rV-Gq-VKR" secondAttribute="bottom" constant="20" id="GoV-ih-hfK"/>
                             <constraint firstItem="Ihw-Cl-whB" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" id="HcC-PS-REi"/>
@@ -233,20 +233,19 @@
                             <constraint firstItem="qf7-g6-CCV" firstAttribute="top" secondItem="xa3-wb-mRB" secondAttribute="bottom" id="Xm0-KQ-b4Z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3rV-Gq-VKR" secondAttribute="trailing" constant="20" id="ZRP-Me-3qk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4t6-eL-P4c" secondAttribute="trailing" constant="20" id="a7Z-ko-exa"/>
-                            <constraint firstItem="cV3-lM-16P" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="aM0-DA-0Ve"/>
+                            <constraint firstItem="bHq-bE-wSc" firstAttribute="centerY" secondItem="Ihw-Cl-whB" secondAttribute="centerY" id="aLe-PG-bRC"/>
+                            <constraint firstItem="cV3-lM-16P" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" id="aM0-DA-0Ve"/>
                             <constraint firstItem="3rV-Gq-VKR" firstAttribute="top" secondItem="4t6-eL-P4c" secondAttribute="bottom" constant="6" id="bK0-Pd-zq0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bHq-bE-wSc" secondAttribute="trailing" constant="20" id="bbR-Zg-2e9"/>
+                            <constraint firstItem="JtP-30-Nkb" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" constant="10" id="hKq-0i-Lo3"/>
                             <constraint firstItem="xa3-wb-mRB" firstAttribute="top" secondItem="dMu-xs-JjP" secondAttribute="bottom" id="j0h-y5-xyK"/>
-                            <constraint firstItem="bHq-bE-wSc" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" constant="20" id="m5S-Es-m5c"/>
                             <constraint firstAttribute="trailing" secondItem="dMu-xs-JjP" secondAttribute="trailing" id="nEY-In-ATy"/>
                             <constraint firstItem="JtP-30-Nkb" firstAttribute="height" secondItem="9g6-u4-B3r" secondAttribute="height" multiplier="0.1" constant="-10" id="nds-CY-9qf"/>
                             <constraint firstItem="4t6-eL-P4c" firstAttribute="top" secondItem="lsz-Cj-fhd" secondAttribute="bottom" constant="20" id="ndv-tG-IlS"/>
                             <constraint firstItem="xa3-wb-mRB" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="pon-bn-wRJ"/>
                             <constraint firstItem="JtP-30-Nkb" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="rPx-2U-zXI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bHq-bE-wSc" secondAttribute="trailing" id="sTh-vg-2KI"/>
                             <constraint firstItem="dMu-xs-JjP" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leading" id="vIB-GO-cuN"/>
-                            <constraint firstItem="bHq-bE-wSc" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="xv7-zo-kfZ"/>
                             <constraint firstItem="3rV-Gq-VKR" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" constant="20" id="zHs-e2-r2u"/>
-                            <constraint firstItem="JtP-30-Nkb" firstAttribute="top" secondItem="bHq-bE-wSc" secondAttribute="bottom" constant="20" id="zSR-MJ-NiF"/>
                         </constraints>
                     </view>
                     <connections>

@@ -16,6 +16,7 @@ class Rizzle: NSObject {
     var hint2: String!
     var hint3: String!
     var letterBanks: Dictionary<String, Array<String>>!
+    var image: UIImage?
     
     init(title: String, question: String, answer: String, hint1: String, hint2: String, hint3: String, letterBanks: Dictionary<String, Array<String>>) {
         super.init()

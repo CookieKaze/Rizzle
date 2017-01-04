@@ -19,6 +19,11 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let currentUser = PFUser.current()
+        print(currentUser?.objectId)
+    }
+    
     
     @IBAction func FBLoginTapped(_ sender: UIButton) {
         parseFacebookSignIn()

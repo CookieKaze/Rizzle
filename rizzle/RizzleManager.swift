@@ -139,6 +139,7 @@ class RizzleManager: NSObject {
         // Get 100 oldest Rizzles that haven't been started
         let query = PFQuery(className: "Rizzle")
         query.whereKey("objectId", notContainedIn: self.solvedRizzleIDs!)
+        query.whereKey("user", notEqualTo: currentUser)
         query.order(byAscending: "createdAt")
         query.limit = 100
         
@@ -192,7 +193,7 @@ class RizzleManager: NSObject {
         self.maxScore = self.defaultScore * self.difficultyLevel
         
         self.generateRizzleObject()
-
+        
         //Set Rizzle in SolverDelegate
         rizzleQueue.async {
             if self.currentRizzle != nil {
@@ -213,6 +214,17 @@ class RizzleManager: NSObject {
                             hint3: (currentRizzlePFObject?.object(forKey: "hint3") as? String)!,
                             letterBanks: generateLetterBanks()
         )
+        
+        if currentRizzlePFObject?["imageFile"] != nil {
+            do {
+                let rizzleImageFile = currentRizzlePFObject?["imageFile"] as! PFFile
+                let imageData = try rizzleImageFile.getData()
+                let image = UIImage(data:imageData)
+                rizzle.image = image
+            }catch{
+                print("Could not get rizzle image")
+            }
+        }
         currentRizzle = rizzle
     }
     
