@@ -17,13 +17,15 @@ class Rizzle: NSObject {
     var hint3: String!
     var letterBanks: Dictionary<String, Array<String>>!
     var image: UIImage?
+    var explanation: String!
     
-    init(title: String, question: String, answer: String, hint1: String, hint2: String, hint3: String, letterBanks: Dictionary<String, Array<String>>) {
+    init(title: String, question: String, answer: String, explanation: String, hint1: String, hint2: String, hint3: String, letterBanks: Dictionary<String, Array<String>>) {
         super.init()
         
         self.title = title
         self.question = question
         self.answer = answer
+        self.explanation = explanation
         self.hint1 = hint1
         self.hint2 = hint2
         self.hint3 = hint3

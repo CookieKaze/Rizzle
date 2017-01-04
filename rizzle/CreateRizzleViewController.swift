@@ -27,6 +27,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var removeImageBtn: UIButton!
     
     //Form Fields
+    @IBOutlet weak var diffStepper: UIStepper!
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var answerTextField: UITextField!
@@ -50,6 +51,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             guard let rizzleToEdit = rizzleToEdit else {
                 return
             }
+            //Load rizzle fields
             titleTextField.text = rizzleToEdit["title"] as? String
             questionTextView.text = rizzleToEdit["question"] as? String
             answerTextField.text = rizzleToEdit["answer"] as? String
@@ -57,9 +59,15 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             hint1TextField.text = rizzleToEdit["hint1"] as? String
             hint2TextField.text = rizzleToEdit["hint2"] as? String
             hint3TextField.text = rizzleToEdit["hint3"] as? String
-            difficultyLabel.text = rizzleToEdit["difficultyLevel"] as? String
             
+            //Load difficulty level
+            let diffLevel = rizzleToEdit["difficultyLevel"] as? Int
+            if diffLevel != nil {
+                difficultyLabel.text = "\(diffLevel!)"
+                diffStepper.value = Double(diffLevel!)
+            }
             
+            //Load image
             let rizzleImageFile = rizzleToEdit["imageFile"] as? PFFile
             rizzleImageFile?.getDataInBackground(block: {(imageData, error) in
                 if error == nil {

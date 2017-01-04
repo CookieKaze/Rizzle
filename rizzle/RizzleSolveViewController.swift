@@ -27,6 +27,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     var letterBank = [String]()
     let letterBankLimit = 12
     
+    @IBOutlet weak var explanationView: UITextView!
     @IBOutlet weak var answerView: UIView!
     @IBOutlet weak var letterBankCollectionView: UICollectionView!
     @IBOutlet weak var titleTextField: UILabel!
@@ -200,6 +201,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         solveRizzle()
     }
     
+    @IBAction func closeCompleteTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func solveRizzle() {
         guard let answerStatus = answerViewController?.checkAnswer() else {
             return
@@ -219,12 +224,20 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             break
         case "CORRECT":
             rizzleManager.correctGuess()
-            dismiss(animated: true, completion: nil)
+            
+            //Display CorrectView
+            let correctView = Bundle.main.loadNibNamed("CorrectView", owner: self, options: nil)?[0] as! UIView
+            self.view.addSubview(correctView)
+            correctView.frame = self.view.bounds
+            explanationView.text = rizzle?.explanation
+            
+            
             break
         default:
             break
         }
     }
+    
     
     //MARK: Hints Control
     @IBAction func getHintTapped(_ sender: UIButton) {

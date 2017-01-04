@@ -9,15 +9,13 @@
 import UIKit
 import Parse
 
-class UserDashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UserDashboardViewController: UIViewController {
     //MARK: Properties
-    var myRizzles = [PFObject]()
     var rizzleManager: RizzleManager!
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var weeklyScoreLabel: UILabel!
     @IBOutlet weak var totalScoreLabel: UILabel!
-    @IBOutlet weak var myRizzleTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,46 +30,9 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
         usernameLabel.text = currentUser.object(forKey: "rizzleName") as! String?
         weeklyScoreLabel.text = String(describing: currentUser.object(forKey: "weeklyScore") ?? "0")
         totalScoreLabel.text = String(describing: currentUser.object(forKey: "totalScore") ?? "0")
-        
-        //Get My Rizzles
-        let query = PFQuery(className:"Rizzle")
-        query.whereKey("user", equalTo:currentUser)
-        query.findObjectsInBackground {
-            (objects, error) in
-            if error == nil {
-                // The find succeeded.
-                guard let objects = objects else { return }
-                
-                self.myRizzles = objects.reversed()
-                self.myRizzleTableView.reloadData()
-            } else {
-                // Log details of the failure
-                print("Error: \(error!)")
-            }
-        }
-    }
-    
-    //MARK: My Rizzle Table View
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myRizzles.count
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentRizzle = myRizzles[indexPath.row]
-        let cell = myRizzleTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        cell.textLabel?.text = currentRizzle["title"] as? String
-        cell.detailTextLabel?.text = currentRizzle["question"] as? String
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        createEditRizzle(rizzleToEdit: myRizzles[indexPath.row])
     }
     
     //MARK: Navigation and Segues
-    
     func newRizzle(){
         let newRizzleView = UIStoryboard(name: "Rizzle", bundle: nil).instantiateViewController(withIdentifier: "solveRizzle") as! RizzleSolveViewController
         rizzleManager.currentRizzlePFObject = nil
@@ -81,13 +42,6 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     func continueRizzle(){
         let continueRizzleView = UIStoryboard(name: "Rizzle", bundle: nil).instantiateViewController(withIdentifier: "continueRizzle") as! ContinueRizzleViewController
         present(continueRizzleView, animated: true, completion: nil)
-    }
-    
-    func createEditRizzle(rizzleToEdit: PFObject?) {
-        let createRizzleStoryboard = UIStoryboard(name: "CreateRizzle", bundle: nil)
-        let createRizzleView = createRizzleStoryboard.instantiateViewController(withIdentifier: "createRizzle") as! CreateRizzleViewController
-        createRizzleView.rizzleToEdit = rizzleToEdit
-        present(createRizzleView, animated: true, completion: nil)
     }
     
     func logout () {
@@ -100,10 +54,6 @@ class UserDashboardViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     //MARK: Button Actions
-    @IBAction func createRizzleTapped(_ sender: UIButton) {
-        createEditRizzle(rizzleToEdit: nil)
-    }
-    
     @IBAction func newRizzleTapped(_ sender: UIButton) {
         newRizzle()
     }
