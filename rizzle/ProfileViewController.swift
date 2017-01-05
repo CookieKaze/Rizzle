@@ -122,5 +122,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         totalMadeLabel.text = "Made: \(made)"
     }
     
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     
 }

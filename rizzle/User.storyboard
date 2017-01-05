@@ -182,6 +182,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whf-Sr-9mF">
+                                <rect key="frame" x="16" y="0.0" width="30" height="52"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <state key="normal" title="←"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="ygf-Sx-KEd" eventType="touchUpInside" id="fmb-wT-FJe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -190,6 +198,7 @@
                             <constraint firstItem="Xm1-Wz-Atx" firstAttribute="leading" secondItem="EFQ-kL-nKJ" secondAttribute="leadingMargin" id="80Q-Rg-a76"/>
                             <constraint firstItem="Xm1-Wz-Atx" firstAttribute="top" secondItem="i1h-XG-E4d" secondAttribute="bottom" constant="10" id="DuX-fa-Sv7"/>
                             <constraint firstItem="nF9-RP-6QS" firstAttribute="centerY" secondItem="Dbq-MZ-1LW" secondAttribute="centerY" id="F2a-yA-Seh"/>
+                            <constraint firstItem="whf-Sr-9mF" firstAttribute="top" secondItem="EFQ-kL-nKJ" secondAttribute="topMargin" id="HaB-i2-8WW"/>
                             <constraint firstItem="rEC-bL-xDu" firstAttribute="centerY" secondItem="Dbq-MZ-1LW" secondAttribute="centerY" id="I9I-3A-x3l"/>
                             <constraint firstItem="i1h-XG-E4d" firstAttribute="top" secondItem="bnu-hY-9hS" secondAttribute="bottom" constant="10" id="JhG-eu-aDc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Xm1-Wz-Atx" secondAttribute="trailing" id="Wqd-a9-9ph"/>
@@ -197,6 +206,7 @@
                             <constraint firstItem="Nbe-c2-W0N" firstAttribute="top" secondItem="nF9-RP-6QS" secondAttribute="bottom" constant="10" id="byE-fA-OHL"/>
                             <constraint firstItem="Nbe-c2-W0N" firstAttribute="leading" secondItem="EFQ-kL-nKJ" secondAttribute="leading" id="gfF-GI-dhw"/>
                             <constraint firstItem="4Xl-Hu-cgv" firstAttribute="top" secondItem="Xm1-Wz-Atx" secondAttribute="bottom" constant="10" id="gz6-GQ-cTW"/>
+                            <constraint firstItem="whf-Sr-9mF" firstAttribute="leading" secondItem="EFQ-kL-nKJ" secondAttribute="leadingMargin" id="hjs-xo-CtN"/>
                             <constraint firstItem="oTY-WG-Dga" firstAttribute="top" secondItem="Nbe-c2-W0N" secondAttribute="bottom" id="lnv-SK-cw4"/>
                             <constraint firstAttribute="trailing" secondItem="Nbe-c2-W0N" secondAttribute="trailing" id="lro-qq-noZ"/>
                             <constraint firstItem="Dbq-MZ-1LW" firstAttribute="top" secondItem="4Xl-Hu-cgv" secondAttribute="bottom" constant="10" id="nzx-yK-e0T"/>
@@ -224,7 +234,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="957.60000000000002" y="1156.3718140929536"/>
+            <point key="canvasLocation" x="972" y="1139"/>
         </scene>
         <!--My Rizzle View Controller-->
         <scene sceneID="K7E-bb-ry1">
@@ -653,12 +663,28 @@
                                 <rect key="frame" x="0.0" y="49" width="375" height="406"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="fz6-6a-d0M">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="7mz-MF-1Da" detailTextLabel="QVf-2h-GGc" style="IBUITableViewCellStyleSubtitle" id="fz6-6a-d0M">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fz6-6a-d0M" id="AuC-fN-bZN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7mz-MF-1Da">
+                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QVf-2h-GGc">
+                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>

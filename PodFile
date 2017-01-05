@@ -10,6 +10,7 @@ target 'rizzle' do
 	pod 'FacebookCore'
 	pod 'FacebookLogin'
 	pod 'ParseFacebookUtilsV4'
+	pod 'GSImageViewerController'
 	pod 'KTCenterFlowLayout'
   target 'rizzleTests' do
     inherit! :search_paths
