@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Parse
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
-    @IBOutlet weak var avatarImageView: UIImageView!
-    
+    var displayUser: PFUser?
+
+    @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var userInfoLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var totalScoreLabel: UILabel!
     @IBOutlet weak var totalSolvedLabel: UILabel!
@@ -22,23 +23,91 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let currentUser = PFUser.current() else{
+            print("No current user")
+            return
+        }
+        
+        photoImageView.layer.cornerRadius = photoImageView.frame.size.height/2;
+        
+        if displayUser != nil {
+            let userImageFile = displayUser?["userPhoto"] as! PFFile
+            userImageFile.getDataInBackground(block: { (imageData, error) in
+                if error == nil {
+                    if let imageData = imageData {
+                        self.photoImageView.image = UIImage(data: imageData)
+                    }
+                }
+            })
+            usernameLabel.text = displayUser?["rizzleName"] as? String
+            if displayUser == currentUser {
+                followButton.removeFromSuperview()
+                
+            }
+        }
         
     }
-    @IBAction func avatarTapped(_ sender: UITapGestureRecognizer) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        let cameraAction = UIAlertAction(title: "Take a New Profile Image", style: UIAlertActionStyle.default, handler: { action in
-            print("Cats")
-        })
-        let albumAction = UIAlertAction(title: "Select From Photos", style: UIAlertActionStyle.default, handler: { action in
-            print("Something")
-        })
+    @IBAction func photoTapped(_ sender: UITapGestureRecognizer) {
+        if displayUser == PFUser.current() {
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            let cameraAction = UIAlertAction(title: "Take a New Profile Image", style: UIAlertActionStyle.default, handler: { action in
+                let picker = UIImagePickerController.init()
+                picker.delegate = self
+                picker.allowsEditing = true
+                picker.sourceType = UIImagePickerControllerSourceType.camera
+                
+                self.present(picker, animated: true, completion: nil)
+            })
+            let albumAction = UIAlertAction(title: "Select From Photos", style: UIAlertActionStyle.default, handler: { action in
+                let picker = UIImagePickerController.init()
+                picker.delegate = self
+                picker.allowsEditing = true
+                picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                
+                self.present(picker, animated: true, completion: nil)
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            
+            alertController.addAction(cameraAction)
+            alertController.addAction(albumAction)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else {
+            print("Could not get image")
+            return
+        }
+        photoImageView.image = image
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        //Save photo
+        let currentUser = PFUser.current()
+        guard let imageData = UIImageJPEGRepresentation(image, 0.75) else {
+            print("Image cannot be converted to data. Image not stored.")
+            return
+        }
         
-        alertController.addAction(cameraAction)
-        alertController.addAction(albumAction)
-        alertController.addAction(cancelAction)
+        if currentUser != nil{
+            let imageFile = PFFile(name:"userPhoto.jpg", data:imageData)
+            currentUser?["userPhoto"] = imageFile
+            currentUser?.saveInBackground()
+        }
         
-        present(alertController, animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileTabView" {
+            let destination = segue.destination as! ProfileTabsViewController
+            destination.displayUser = displayUser
+        }
     }
 }

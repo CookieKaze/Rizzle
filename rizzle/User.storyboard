@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Hf-uY-rSP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Hf-uY-rSP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -88,7 +88,7 @@
                                 <rect key="frame" x="165" y="380" width="44" height="30"/>
                                 <state key="normal" title="Profile"/>
                                 <connections>
-                                    <segue destination="ygf-Sx-KEd" kind="show" id="jf6-h9-lKq"/>
+                                    <segue destination="ygf-Sx-KEd" kind="show" identifier="toProfile" id="jf6-h9-lKq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -138,7 +138,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i1h-XG-E4d">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i1h-XG-E4d">
                                 <rect key="frame" x="137.5" y="30" width="100" height="100"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -149,31 +149,25 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEC-bL-xDu">
-                                <rect key="frame" x="43.5" y="242" width="87" height="21"/>
+                                <rect key="frame" x="43.5" y="181" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xl-Hu-cgv">
-                                <rect key="frame" x="165.5" y="202" width="44" height="30"/>
+                                <rect key="frame" x="165.5" y="171" width="44" height="0.0"/>
                                 <state key="normal" title="Follow"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="profile description so the user can say a little bit about themself to their follwoers" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bq8-NS-DAu">
-                                <rect key="frame" x="10" y="171" width="355" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Solved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbq-MZ-1LW">
-                                <rect key="frame" x="140.5" y="242" width="94" height="21"/>
+                                <rect key="frame" x="140.5" y="181" width="94" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbe-c2-W0N">
-                                <rect key="frame" x="0.0" y="273" width="375" height="394"/>
+                                <rect key="frame" x="0.0" y="212" width="375" height="455"/>
                                 <connections>
-                                    <segue destination="JOm-Bc-vjN" kind="embed" id="WWH-t0-fMh"/>
+                                    <segue destination="JOm-Bc-vjN" kind="embed" identifier="profileTabView" id="WWH-t0-fMh"/>
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xm1-Wz-Atx">
@@ -183,7 +177,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Made" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nF9-RP-6QS">
-                                <rect key="frame" x="244.5" y="242" width="85" height="21"/>
+                                <rect key="frame" x="244.5" y="181" width="85" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -198,39 +192,35 @@
                             <constraint firstItem="nF9-RP-6QS" firstAttribute="centerY" secondItem="Dbq-MZ-1LW" secondAttribute="centerY" id="F2a-yA-Seh"/>
                             <constraint firstItem="rEC-bL-xDu" firstAttribute="centerY" secondItem="Dbq-MZ-1LW" secondAttribute="centerY" id="I9I-3A-x3l"/>
                             <constraint firstItem="i1h-XG-E4d" firstAttribute="top" secondItem="bnu-hY-9hS" secondAttribute="bottom" constant="10" id="JhG-eu-aDc"/>
-                            <constraint firstItem="Bq8-NS-DAu" firstAttribute="centerX" secondItem="EFQ-kL-nKJ" secondAttribute="centerX" id="MXl-lm-PMH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Xm1-Wz-Atx" secondAttribute="trailing" id="Wqd-a9-9ph"/>
-                            <constraint firstItem="Bq8-NS-DAu" firstAttribute="top" secondItem="Xm1-Wz-Atx" secondAttribute="bottom" constant="10" id="YBB-3p-VL2"/>
+                            <constraint firstItem="Dbq-MZ-1LW" firstAttribute="top" secondItem="Xm1-Wz-Atx" secondAttribute="bottom" priority="900" constant="10" id="ZD2-Nf-7NU"/>
                             <constraint firstItem="Nbe-c2-W0N" firstAttribute="top" secondItem="nF9-RP-6QS" secondAttribute="bottom" constant="10" id="byE-fA-OHL"/>
                             <constraint firstItem="Nbe-c2-W0N" firstAttribute="leading" secondItem="EFQ-kL-nKJ" secondAttribute="leading" id="gfF-GI-dhw"/>
+                            <constraint firstItem="4Xl-Hu-cgv" firstAttribute="top" secondItem="Xm1-Wz-Atx" secondAttribute="bottom" constant="10" id="gz6-GQ-cTW"/>
                             <constraint firstItem="oTY-WG-Dga" firstAttribute="top" secondItem="Nbe-c2-W0N" secondAttribute="bottom" id="lnv-SK-cw4"/>
                             <constraint firstAttribute="trailing" secondItem="Nbe-c2-W0N" secondAttribute="trailing" id="lro-qq-noZ"/>
-                            <constraint firstAttribute="trailing" secondItem="Bq8-NS-DAu" secondAttribute="trailing" constant="10" id="m8W-YH-fo5"/>
                             <constraint firstItem="Dbq-MZ-1LW" firstAttribute="top" secondItem="4Xl-Hu-cgv" secondAttribute="bottom" constant="10" id="nzx-yK-e0T"/>
                             <constraint firstItem="4Xl-Hu-cgv" firstAttribute="centerX" secondItem="EFQ-kL-nKJ" secondAttribute="centerX" id="pRX-Al-MdU"/>
                             <constraint firstItem="Dbq-MZ-1LW" firstAttribute="centerX" secondItem="EFQ-kL-nKJ" secondAttribute="centerX" id="sLv-W0-MI7"/>
-                            <constraint firstItem="Bq8-NS-DAu" firstAttribute="leading" secondItem="EFQ-kL-nKJ" secondAttribute="leading" constant="10" id="tiA-E9-C9b"/>
                             <constraint firstItem="Xm1-Wz-Atx" firstAttribute="centerX" secondItem="EFQ-kL-nKJ" secondAttribute="centerX" id="wsT-hA-eRw"/>
                             <constraint firstItem="i1h-XG-E4d" firstAttribute="height" secondItem="EFQ-kL-nKJ" secondAttribute="height" multiplier="0.15" id="yVQ-yH-AfN"/>
-                            <constraint firstItem="4Xl-Hu-cgv" firstAttribute="top" secondItem="Bq8-NS-DAu" secondAttribute="bottom" constant="10" id="zAQ-Yh-y0k"/>
                             <constraint firstItem="i1h-XG-E4d" firstAttribute="centerX" secondItem="EFQ-kL-nKJ" secondAttribute="centerX" id="zH9-PU-wIU"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="avatarImageView" destination="i1h-XG-E4d" id="QMW-Zh-znU"/>
                         <outlet property="followButton" destination="4Xl-Hu-cgv" id="xOl-il-aOo"/>
+                        <outlet property="photoImageView" destination="i1h-XG-E4d" id="cmt-GZ-sNk"/>
                         <outlet property="tabView" destination="Nbe-c2-W0N" id="YRO-B9-gCN"/>
                         <outlet property="totalMadeLabel" destination="nF9-RP-6QS" id="oPR-2R-XoO"/>
                         <outlet property="totalScoreLabel" destination="rEC-bL-xDu" id="Zau-sA-oTw"/>
                         <outlet property="totalSolvedLabel" destination="Dbq-MZ-1LW" id="H78-T5-IvJ"/>
-                        <outlet property="userInfoLabel" destination="Bq8-NS-DAu" id="yOt-fN-yhU"/>
                         <outlet property="usernameLabel" destination="Xm1-Wz-Atx" id="XHg-tO-rHH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qm-rt-FPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="S6H-Vq-KsY">
                     <connections>
-                        <action selector="avatarTapped:" destination="ygf-Sx-KEd" id="4wK-bG-kpe"/>
+                        <action selector="photoTapped:" destination="ygf-Sx-KEd" id="cTj-vJ-36r"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -640,27 +630,34 @@
         <scene sceneID="rHD-v8-JER">
             <objects>
                 <viewController id="JOm-Bc-vjN" customClass="ProfileTabsViewController" customModule="rizzle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gYm-ZO-p5w"/>
+                        <viewControllerLayoutGuide type="bottom" id="ARm-Dd-Lcb"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0li-FD-FEm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="394"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4G-yz-s2X">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="XUA-1y-i2m"/>
-                                    <tabBarItem systemItem="more" id="8G8-1t-HH8"/>
+                                    <tabBarItem title="Rizzles" id="XUA-1y-i2m"/>
+                                    <tabBarItem title="Completed" id="8G8-1t-HH8"/>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="JOm-Bc-vjN" id="ot8-4C-p6n"/>
+                                </connections>
                             </tabBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Fx-tz-sGe">
-                                <rect key="frame" x="0.0" y="49" width="375" height="345"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="406"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="fz6-6a-d0M">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fz6-6a-d0M" id="AuC-fN-bZN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -683,6 +680,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tabView" destination="N4G-yz-s2X" id="tqW-Zu-o6a"/>
                         <outlet property="tableView" destination="6Fx-tz-sGe" id="ZSv-b8-qHl"/>
                     </connections>
                 </viewController>

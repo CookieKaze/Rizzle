@@ -65,4 +65,11 @@ class UserDashboardViewController: UIViewController {
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
         logout()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toProfile" {
+            let destination = segue.destination as! ProfileViewController
+            destination.displayUser = PFUser.current()
+        }
+    }
 }
