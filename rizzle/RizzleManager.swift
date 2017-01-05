@@ -13,6 +13,7 @@ protocol RizzleSolverDelegate {
     func setCurrentRizzle(rizzle: Rizzle)
     func updateLoadStatus(update: String)
     func setCurrentScore()
+    func noRizzleDismiss()
 }
 
 class RizzleManager: NSObject {
@@ -79,33 +80,29 @@ class RizzleManager: NSObject {
         rizzleQueue.async {
             if self.solvedRizzleIDs != nil {
                 if self.findRandomUnsolvedRizzle() {
-                    return
+                    //Create a new tracker for this rizzle and user.
+                    if self.currentRizzlePFObject != nil {
+                        
+                        //Setup original score.
+                        self.difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
+                        self.currentScore = self.defaultScore * self.difficultyLevel
+                        self.maxScore = self.defaultScore * self.difficultyLevel
+                        
+                        self.createSolvedRizzleTracker()
+                        self.generateRizzleObject()
+                        //Set Rizzle in SolverDelegate
+                        if self.currentRizzle != nil {
+                            DispatchQueue.main.async {
+                                self.delegate?.setCurrentRizzle(rizzle: self.currentRizzle!)
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
         
-        //Create a new tracker for this rizzle and user.
-        rizzleQueue.async {
-            if self.currentRizzlePFObject != nil {
-                
-                //Setup original score.
-                self.difficultyLevel = self.currentRizzlePFObject?["difficultyLevel"] as! Int
-                self.currentScore = self.defaultScore * self.difficultyLevel
-                self.maxScore = self.defaultScore * self.difficultyLevel
-                
-                self.createSolvedRizzleTracker()
-                self.generateRizzleObject()
-            }
-        }
         
-        //Set Rizzle in SolverDelegate
-        rizzleQueue.async {
-            if self.currentRizzle != nil {
-                DispatchQueue.main.async {
-                    self.delegate?.setCurrentRizzle(rizzle: self.currentRizzle!)
-                }
-            }
-        }
     }
     
     func findSolvedRizzleIDs(){
@@ -150,6 +147,9 @@ class RizzleManager: NSObject {
                 self.currentRizzlePFObject = rizzles[randomNumber]
             } else {
                 print("More rizzles coming soon!")
+                DispatchQueue.main.async {
+                    self.delegate?.noRizzleDismiss()
+                }
                 success = false
             }
         } catch {
@@ -215,7 +215,7 @@ class RizzleManager: NSObject {
                             hint3: (currentRizzlePFObject?.object(forKey: "hint3") as? String)!,
                             letterBanks: generateLetterBanks()
         )
-        
+        print("Generated Rizzle")
         if currentRizzlePFObject?["imageFile"] != nil {
             do {
                 let rizzleImageFile = currentRizzlePFObject?["imageFile"] as! PFFile
@@ -319,11 +319,13 @@ class RizzleManager: NSObject {
         //Update and save rizzle tracker
         currentTracker["score"] = currentScore
         currentTracker["completed"] = true
-        currentTracker.saveInBackground { (success, error) in
-            if error != nil {
-                print(error!)
-            }
-        }
+        currentTracker.saveInBackground()
+        
+        //Save user score
+        var score = currentUser["totalScore"] as! Int
+        score += currentScore
+        currentUser["totalScore"] = score
+        currentUser.saveInBackground()
     }
     
     //MARK: Hint Handler

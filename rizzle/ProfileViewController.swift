@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ProfileTabDelegate{
     
     var displayUser: PFUser?
 
@@ -44,6 +44,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 followButton.removeFromSuperview()
                 
             }
+            totalScoreLabel.text = "Score: \(displayUser?["totalScore"] as! Int)"
         }
         
     }
@@ -104,10 +105,22 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         picker.dismiss(animated: true, completion: nil)
     }
     
+    //MARK: Tab View
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileTabView" {
             let destination = segue.destination as! ProfileTabsViewController
             destination.displayUser = displayUser
+            destination.delegate = self
         }
     }
+    
+    func updateTotalSolved(solve: Int) {
+            totalSolvedLabel.text = "Solved: \(solve)"
+    }
+    
+    func updateTotalMade(made: Int) {
+        totalMadeLabel.text = "Made: \(made)"
+    }
+    
+    
 }

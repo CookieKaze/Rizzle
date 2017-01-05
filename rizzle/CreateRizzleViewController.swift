@@ -127,12 +127,14 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             rizzle["difficultyLevel"] = Int(difficultyLabel.text!)
             
             if imageView.image != nil {
-                guard let imageData = UIImageJPEGRepresentation(imageView.image!, 0.75) else {
-                    print("Image cannot be converted to data. Image not stored.")
-                    return
+                if resizeWith(image: imageView.image!, width: 1024) != nil {
+                    guard let imageData = UIImageJPEGRepresentation(resizeWith(image: imageView.image!, width: 1024)!, 0.75) else {
+                        print("Image cannot be converted to data. Image not stored.")
+                        return
+                    }
+                    let imageFile = PFFile(name:"rizzleImage.jpeg", data:imageData)
+                    rizzle["imageFile"] = imageFile
                 }
-                let imageFile = PFFile(name:"rizzleImage.jpeg", data:imageData)
-                rizzle["imageFile"] = imageFile
             } else {
                 rizzle.remove(forKey:"imageFile")
             }
@@ -209,6 +211,18 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     
     @IBAction func removeImageBtnTapped(_ sender: UIButton) {
         imageView.image = nil
+    }
+    
+    func resizeWith(image: UIImage, width: CGFloat) -> UIImage? {
+        let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/image.size.width * image.size.height)))))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, image.scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.render(in: context)
+        guard let result = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+        return result
     }
     
     //MARK: Form Transitions

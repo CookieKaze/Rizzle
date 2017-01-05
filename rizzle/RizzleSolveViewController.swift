@@ -131,6 +131,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
+    func noRizzleDismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     //MARK: Letter Bank Data Source
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return letterBank.count

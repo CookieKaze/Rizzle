@@ -293,7 +293,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Erin Luu";
 				TargetAttributes = {
 					1DEB3FEE1E030618008BE0B7 = {
