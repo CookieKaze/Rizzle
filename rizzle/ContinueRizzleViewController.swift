@@ -86,18 +86,13 @@ class ContinueRizzleViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "continueToSolve", sender: indexPath.row)
+        let solveRizzleView = UIStoryboard(name: "Rizzle", bundle: nil).instantiateViewController(withIdentifier: "solveRizzle") as! RizzleSolveViewController
+        solveRizzleView.continueRizzlePF = incompleteRizzles[indexPath.row]
+        solveRizzleView.continueRizzleTrackerPF = incompleteRizzleTrackers[indexPath.row]
+        present(solveRizzleView, animated: true, completion: nil)
+
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "continueToSolve" {
-            let index = sender as! Int
-            let destination = segue.destination as! RizzleSolveViewController
-            destination.continueRizzlePF = incompleteRizzles[index]
-            destination.continueRizzleTrackerPF = incompleteRizzleTrackers[index]
-        }
-    }
-    
+
     @IBAction func backToDashTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }

@@ -12,7 +12,7 @@ import Parse
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ProfileTabDelegate{
     
     var displayUser: PFUser?
-
+    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
@@ -31,14 +31,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         photoImageView.layer.cornerRadius = photoImageView.frame.size.height/2;
         
         if displayUser != nil {
-            let userImageFile = displayUser?["userPhoto"] as! PFFile
-            userImageFile.getDataInBackground(block: { (imageData, error) in
-                if error == nil {
-                    if let imageData = imageData {
-                        self.photoImageView.image = UIImage(data: imageData)
+            if displayUser?["userPhoto"] != nil {
+                let userImageFile = displayUser?["userPhoto"] as! PFFile
+                userImageFile.getDataInBackground(block: { (imageData, error) in
+                    if error == nil {
+                        if let imageData = imageData {
+                            self.photoImageView.image = UIImage(data: imageData)
+                        }
                     }
-                }
-            })
+                })
+            }else {
+                self.photoImageView.image = UIImage(named: "defaultProfileImage")
+            }
             usernameLabel.text = displayUser?["rizzleName"] as? String
             if displayUser == currentUser {
                 followButton.removeFromSuperview()
@@ -115,7 +119,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func updateTotalSolved(solve: Int) {
-            totalSolvedLabel.text = "Solved: \(solve)"
+        totalSolvedLabel.text = "Solved: \(solve)"
     }
     
     func updateTotalMade(made: Int) {

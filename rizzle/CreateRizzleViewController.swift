@@ -127,7 +127,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             rizzle["difficultyLevel"] = Int(difficultyLabel.text!)
             
             if imageView.image != nil {
-                if resizeWith(image: imageView.image!, width: 1024) != nil {
+                if resizeWith(image: imageView.image!, width: 1024) != nil && (imageView.image?.size.width)! > CGFloat(1024) {
                     guard let imageData = UIImageJPEGRepresentation(resizeWith(image: imageView.image!, width: 1024)!, 0.75) else {
                         print("Image cannot be converted to data. Image not stored.")
                         return

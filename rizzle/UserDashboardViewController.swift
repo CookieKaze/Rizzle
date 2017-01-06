@@ -14,7 +14,6 @@ class UserDashboardViewController: UIViewController {
     var rizzleManager: RizzleManager!
     
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var weeklyScoreLabel: UILabel!
     @IBOutlet weak var totalScoreLabel: UILabel!
     
     override func viewDidLoad() {
@@ -28,7 +27,6 @@ class UserDashboardViewController: UIViewController {
         
         //Setup View
         usernameLabel.text = currentUser.object(forKey: "rizzleName") as! String?
-        weeklyScoreLabel.text = String(describing: currentUser.object(forKey: "weeklyScore") ?? "0")
         totalScoreLabel.text = String(describing: currentUser.object(forKey: "totalScore") ?? "0")
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import GSImageViewerController
 
 class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, RizzleSolverDelegate, AnswerCollectionDelegate {
     
@@ -33,6 +34,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var titleTextField: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionTextView: UITextView!
+    @IBOutlet weak var rizzleImage: UIImageView!
     
     //MARK: Setup Methods
     override func viewDidLoad() {
@@ -82,22 +84,23 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         
         DispatchQueue.main.async {
             self.titleTextField.text = rizzle.title
+            self.questionTextView.text = rizzle.question
             
             //Add image to question view
             if rizzle.image != nil {
-                let textAttachment = NSTextAttachment.init()
-                textAttachment.image = rizzle.image!
-                
-                let oldWidth = textAttachment.image!.size.width;
-                let scaleFactor = oldWidth / (self.questionTextView.frame.size.width);
-                textAttachment.image = UIImage(cgImage: textAttachment.image!.cgImage!, scale: scaleFactor, orientation: .up)
-                
-                let attStringImage = NSAttributedString(attachment: textAttachment)
-                let attributedString = NSMutableAttributedString.init(string: rizzle.question)
-                attributedString.append(attStringImage)
-                self.questionTextView.attributedText = attributedString
-            }else {
-                self.questionTextView.text = rizzle.question
+                self.rizzleImage.image = rizzle.image!
+//                let textAttachment = NSTextAttachment.init()
+//                textAttachment.image = rizzle.image!
+//                
+//                let oldWidth = textAttachment.image!.size.width;
+//                let scaleFactor = oldWidth / (self.questionTextView.frame.size.width);
+//                textAttachment.image = UIImage(cgImage: textAttachment.image!.cgImage!, scale: scaleFactor, orientation: .up)
+//                
+//                let attStringImage = NSAttributedString(attachment: textAttachment)
+//                let attributedString = NSMutableAttributedString.init(string: rizzle.question)
+//                attributedString.append(attStringImage)
+            } else {
+                self.rizzleImage.removeFromSuperview()
             }
             
             self.answerViewController?.turnAnswerIntoWordViews(answer: rizzle.answer)
@@ -254,6 +257,14 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         dismiss(animated: true, completion: nil)
     }
     
+    //MARK: Image Control
+    @IBAction func rizzleImageTapped(_ sender: UITapGestureRecognizer) {
+        let imageInfo      = GSImageInfo(image: (rizzle?.image)!, imageMode: .aspectFill, imageHD: nil)
+        let transitionInfo = GSTransitionInfo(fromView: rizzleImage)
+        let imageViewer    = GSImageViewerController(imageInfo: imageInfo, transitionInfo: transitionInfo)
+        present(imageViewer, animated: true, completion: nil)
+
+    }
     
     
 }
