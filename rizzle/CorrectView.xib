@@ -49,18 +49,26 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5h1-vg-rKq">
                     <rect key="frame" x="0.0" y="533.5" width="375" height="133.5"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yeI-9W-rTo">
+                        <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yeI-9W-rTo">
                             <rect key="frame" x="137" y="-50" width="100" height="100"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="yeI-9W-rTo" secondAttribute="height" multiplier="1:1" id="BAV-jE-W5J"/>
                                 <constraint firstAttribute="width" constant="100" id="xTc-1b-Rty"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="78q-cr-Bnu" appends="YES" id="Oyb-1q-HQa"/>
+                            </connections>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6W-FW-mLl">
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6W-FW-mLl">
                             <rect key="frame" x="0.0" y="70" width="375" height="21"/>
+                            <gestureRecognizers/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="zjK-TZ-ph2" appends="YES" id="bhi-zk-DeK"/>
+                            </connections>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.3260075684" green="0.61599021939999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,5 +99,15 @@
                 <constraint firstItem="5h1-vg-rKq" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.2" id="tKG-jd-amR"/>
             </constraints>
         </view>
+        <tapGestureRecognizer id="78q-cr-Bnu">
+            <connections>
+                <action selector="creatorProfileTapped:" destination="-1" id="Hbb-xT-ul1"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="zjK-TZ-ph2">
+            <connections>
+                <action selector="creatorProfileTapped:" destination="-1" id="Qd9-R4-BZ6"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

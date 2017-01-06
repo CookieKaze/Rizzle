@@ -44,6 +44,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var difficultyLevelLabel: UILabel!
     
     //Complete View
+    var creator: PFUser?
     var creatorImage: UIImage?
     var creatorUsername: String?
     @IBOutlet weak var explanationView: UITextView!
@@ -84,9 +85,9 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         let completeViewQueue = DispatchQueue(label: "completeViewQueue", qos: .utility)
         completeViewQueue.sync {
             do {
-                let creator = try self.rizzle?.creator.fetch()
-                self.creatorUsername = creator?["rizzleName"] as? String
-                guard let userImageFile = creator?["userPhoto"] as? PFFile else {
+                self.creator = try self.rizzle?.creator.fetch()
+                self.creatorUsername = self.creator?["rizzleName"] as? String
+                guard let userImageFile = self.creator?["userPhoto"] as? PFFile else {
                     return
                 }
                 userImageFile.getDataInBackground(block: { (imageData, error) in
@@ -271,6 +272,12 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             break
         }
     }
+    @IBAction func creatorProfileTapped(_ sender: UITapGestureRecognizer) {
+        let creatorProfileView = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userProfile") as! ProfileViewController
+        creatorProfileView.displayUser = creator
+        present(creatorProfileView, animated: true, completion: nil)
+
+    }
     
     
     //MARK: Hints Control
@@ -286,12 +293,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     
     //MARK: Image Control
     @IBAction func rizzleImageTapped(_ sender: UITapGestureRecognizer) {
-        let imageInfo      = GSImageInfo(image: (rizzle?.image)!, imageMode: .aspectFill, imageHD: nil)
+        let imageInfo = GSImageInfo(image: (rizzle?.image)!, imageMode: .aspectFill, imageHD: nil)
         let transitionInfo = GSTransitionInfo(fromView: rizzleImage)
-        let imageViewer    = GSImageViewerController(imageInfo: imageInfo, transitionInfo: transitionInfo)
+        let imageViewer = GSImageViewerController(imageInfo: imageInfo, transitionInfo: transitionInfo)
         present(imageViewer, animated: true, completion: nil)
         
     }
-    
-    
 }
