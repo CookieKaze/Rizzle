@@ -209,11 +209,12 @@ class RizzleManager: NSObject {
         let rizzle = Rizzle(title: (currentRizzlePFObject?.object(forKey: "title") as? String)!,
                             question: (currentRizzlePFObject?.object(forKey: "question") as? String)!,
                             answer: (currentRizzlePFObject?.object(forKey: "answer") as? String)!,
-                            explanation: (currentRizzlePFObject?.object(forKey: "explanation") as? String)!,
-                            hint1: (currentRizzlePFObject?.object(forKey: "hint1") as? String)!,
-                            hint2: (currentRizzlePFObject?.object(forKey: "hint2") as? String)!,
-                            hint3: (currentRizzlePFObject?.object(forKey: "hint3") as? String)!,
-                            letterBanks: generateLetterBanks()
+                            explanation: (currentRizzlePFObject?.object(forKey: "explanation") as? String) ?? "No Solution Explanation.",
+                            hint1: (currentRizzlePFObject?.object(forKey: "hint1") as? String) ?? "No Hints Available",
+                            hint2: (currentRizzlePFObject?.object(forKey: "hint2") as? String) ?? "No Hints Available",
+                            hint3: (currentRizzlePFObject?.object(forKey: "hint3") as? String) ?? "No Hints Available",
+                            letterBanks: generateLetterBanks(),
+                            creator: (currentRizzlePFObject?.object(forKey: "user") as? PFUser)!
         )
         print("Generated Rizzle")
         if currentRizzlePFObject?["imageFile"] != nil {

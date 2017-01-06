@@ -50,29 +50,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RE6-DZ-b8k">
-                                <rect key="frame" x="172" y="262" width="31" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RE6-DZ-b8k">
+                                <rect key="frame" x="172" y="222" width="31" height="30"/>
                                 <state key="normal" title="New"/>
                                 <connections>
                                     <action selector="newRizzleTapped:" destination="1Hf-uY-rSP" eventType="touchUpInside" id="3BX-df-Y8G"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTM-BS-GBn">
-                                <rect key="frame" x="156" y="300" width="62" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTM-BS-GBn">
+                                <rect key="frame" x="156" y="260" width="62" height="30"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
                                     <action selector="continueRizzleTapped:" destination="1Hf-uY-rSP" eventType="touchUpInside" id="4vL-gn-CiC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrH-Yw-Ymj">
-                                <rect key="frame" x="150" y="340" width="74" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrH-Yw-Ymj">
+                                <rect key="frame" x="150" y="300" width="74" height="30"/>
                                 <state key="normal" title="My Rizzles"/>
                                 <connections>
                                     <segue destination="uu4-5P-s2Z" kind="show" id="Jah-Q4-2Nu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeF-bH-33W">
-                                <rect key="frame" x="165" y="380" width="44" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeF-bH-33W">
+                                <rect key="frame" x="165" y="340" width="44" height="30"/>
                                 <state key="normal" title="Profile"/>
                                 <connections>
                                     <segue destination="ygf-Sx-KEd" kind="show" identifier="toProfile" id="jf6-h9-lKq"/>
@@ -107,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J28-js-vKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957.60000000000002" y="439.43028485757122"/>
+            <point key="canvasLocation" x="1183" y="307"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="omt-a4-tiH">

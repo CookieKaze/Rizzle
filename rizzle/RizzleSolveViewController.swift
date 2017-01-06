@@ -13,29 +13,43 @@ import GSImageViewerController
 class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, RizzleSolverDelegate, AnswerCollectionDelegate {
     
     //MARK: Properties
+    
+    //Defaults
+    let letterBankLimit = 12
+    
+    //Rizzle Solve View
+    var rizzle: Rizzle?
     var currentUser: PFUser!
     let rizzleManager = RizzleManager.sharedInstance
     var answerViewController: RizzleAnswerViewController?
     var loadingView = UIView()
     var loadingLabel = UILabel()
     
-    var continueRizzlePF: PFObject?
-    var continueRizzleTrackerPF: PFObject?
-    
-    var rizzle: Rizzle?
+    //Letter Banks
     var startingBank = [String]()
     var feedingBank = [String]()
     var letterBank = [String]()
-    let letterBankLimit = 12
     
-    @IBOutlet weak var explanationView: UITextView!
+    //Continue
+    var continueRizzlePF: PFObject?
+    var continueRizzleTrackerPF: PFObject?
+    
+    //Solve View
     @IBOutlet weak var answerView: UIView!
     @IBOutlet weak var letterBankCollectionView: UICollectionView!
     @IBOutlet weak var titleTextField: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var rizzleImage: UIImageView!
+    @IBOutlet weak var difficultyLevelLabel: UILabel!
     
+    //Complete View
+    var creatorImage: UIImage?
+    var creatorUsername: String?
+    @IBOutlet weak var explanationView: UITextView!
+    @IBOutlet weak var creatorImageView: UIImageView!
+    
+    @IBOutlet weak var creatorUsernameLabel: UILabel!
     //MARK: Setup Methods
     override func viewDidLoad() {
         guard let currentUser = PFUser.current() else{
@@ -66,6 +80,27 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
+    func getCompleteViewData() {
+        let completeViewQueue = DispatchQueue(label: "completeViewQueue", qos: .utility)
+        completeViewQueue.sync {
+            do {
+                let creator = try self.rizzle?.creator.fetch()
+                self.creatorUsername = creator?["rizzleName"] as? String
+                guard let userImageFile = creator?["userPhoto"] as? PFFile else {
+                    return
+                }
+                userImageFile.getDataInBackground(block: { (imageData, error) in
+                    if error == nil {
+                        if let imageData = imageData {
+                            self.creatorImage = UIImage(data: imageData)
+                        }
+                    }
+                })
+                            }
+            catch {}
+        }
+    }
+    
     func updateLoadStatus(update: String) {
         loadingLabel.text = update
     }
@@ -85,20 +120,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         DispatchQueue.main.async {
             self.titleTextField.text = rizzle.title
             self.questionTextView.text = rizzle.question
-            
+            self.difficultyLevelLabel.text = "Difficulty Level: \(self.rizzleManager.difficultyLevel)"
             //Add image to question view
             if rizzle.image != nil {
                 self.rizzleImage.image = rizzle.image!
-//                let textAttachment = NSTextAttachment.init()
-//                textAttachment.image = rizzle.image!
-//                
-//                let oldWidth = textAttachment.image!.size.width;
-//                let scaleFactor = oldWidth / (self.questionTextView.frame.size.width);
-//                textAttachment.image = UIImage(cgImage: textAttachment.image!.cgImage!, scale: scaleFactor, orientation: .up)
-//                
-//                let attStringImage = NSAttributedString(attachment: textAttachment)
-//                let attributedString = NSMutableAttributedString.init(string: rizzle.question)
-//                attributedString.append(attStringImage)
             } else {
                 self.rizzleImage.removeFromSuperview()
             }
@@ -110,6 +135,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
                 self.loadingView.frame = CGRect(x: self.view.frame.width, y: 0, width: self.loadingView.frame.width, height: self.loadingView.frame.height)
             })
         }
+        getCompleteViewData()
     }
     
     func setCurrentScore() {
@@ -234,11 +260,12 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             
             //Display CorrectView
             let correctView = Bundle.main.loadNibNamed("CorrectView", owner: self, options: nil)?[0] as! UIView
-            self.view.addSubview(correctView)
             correctView.frame = self.view.bounds
             explanationView.text = rizzle?.explanation
-            
-            
+            creatorImageView.image = creatorImage ?? UIImage(named: "defaultProfileImage")
+            creatorImageView.layer.cornerRadius = creatorImageView.frame.size.height/2;
+            creatorUsernameLabel.text = creatorUsername ?? ""
+            self.view.addSubview(correctView)
             break
         default:
             break
@@ -263,7 +290,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         let transitionInfo = GSTransitionInfo(fromView: rizzleImage)
         let imageViewer    = GSImageViewerController(imageInfo: imageInfo, transitionInfo: transitionInfo)
         present(imageViewer, animated: true, completion: nil)
-
+        
     }
     
     

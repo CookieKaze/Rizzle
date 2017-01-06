@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class Rizzle: NSObject {
     var title: String!
@@ -18,8 +19,9 @@ class Rizzle: NSObject {
     var letterBanks: Dictionary<String, Array<String>>!
     var image: UIImage?
     var explanation: String!
+    var creator: PFUser!
     
-    init(title: String, question: String, answer: String, explanation: String, hint1: String, hint2: String, hint3: String, letterBanks: Dictionary<String, Array<String>>) {
+    init(title: String, question: String, answer: String, explanation: String, hint1: String, hint2: String, hint3: String, letterBanks: Dictionary<String, Array<String>>, creator: PFUser) {
         super.init()
         
         self.title = title
@@ -30,6 +32,7 @@ class Rizzle: NSObject {
         self.hint2 = hint2
         self.hint3 = hint3
         self.letterBanks = letterBanks
+        self.creator = creator
     }
     
     
