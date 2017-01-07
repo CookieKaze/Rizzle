@@ -18,102 +18,226 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
     
     var displayUser: PFObject?
     var userRizzles = [PFObject]()
-    var rizzlesSolved = [PFObject]()
-    var delegate: ProfileTabDelegate?
+    var userFollowing = [PFObject]()
+    var userFollowers = [PFObject]()
+    var rizzlesCompleted = [PFObject]()
+    var displayTab = "userRizzles"
     
+    @IBOutlet weak var rizzleLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var completedLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tabView: UITabBar!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if displayUser != nil {
-            getUserRizzles()
-            getCompletedRizzles()
+            getTableData()
         }
-        
-        let tabItem = tabView.items?[0]
-        tabView.selectedItem = tabItem
+    }
+    
+    //MARK: Data Setup
+    func getTableData() {
+        let tableDataQueue = DispatchQueue(label: "tableDataQueue", qos: .userInitiated)
+        tableDataQueue.async {
+            //Get rizzles created by user
+            self.getUserRizzles()
+            //Get following and followers
+            self.getFollowers()
+            self.getFollowing()
+            //Get completed
+            self.getCompletedRizzles()
+            self.setupViewWithData()
+        }
     }
     
     func getUserRizzles () {
-        userRizzles = [PFObject]()
         let query = PFQuery(className:"Rizzle")
         query.whereKey("user", equalTo: displayUser!)
-        query.findObjectsInBackground {
-            (objects, error) in
-            if error == nil {
-                // The find succeeded.
-                guard let objects = objects else { return }
-                self.userRizzles = objects.reversed()
-                DispatchQueue.main.async {
-                    self.delegate?.updateTotalMade(made: self.userRizzles.count)
-                    self.tableView.reloadData()
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!)")
+        query.order(byAscending: "updatedAt")
+        do {
+            self.userRizzles = try query.findObjects()
+            print("Got user rizzles")
+        } catch {
+            print("Can't get users rizzles: \(error)")
+        }
+        
+    }
+    
+    func getFollowers () {
+        let query = PFQuery(className:"Subscriptions")
+        query.whereKey("user", equalTo: displayUser!)
+        query.order(byAscending: "updatedAt")
+        do {
+            let subscriptions = try query.findObjects()
+            for subscription in subscriptions {
+                let user = subscription.object(forKey: "follower") as! PFUser
+                user.fetchInBackground()
+                self.userFollowers.append(user)
             }
+            print("Got user followers")
+        } catch {
+            print("Can't get users followers: \(error)")
+        }
+    }
+    
+    func getFollowing () {
+        let query = PFQuery(className:"Subscriptions")
+        query.whereKey("follower", equalTo: displayUser!)
+        query.order(byAscending: "updatedAt")
+        do {
+            let subscriptions = try query.findObjects()
+            for subscription in subscriptions {
+                let user = subscription.object(forKey: "user") as! PFUser
+                user.fetchInBackground()
+                self.userFollowing.append(user)
+            }
+            print("Got user followings")
+        } catch {
+            print("Can't get users following: \(error)")
         }
     }
     
     func getCompletedRizzles() {
-        rizzlesSolved = [PFObject]()
-        let query = PFQuery(className:"SolvedRizzles")
+        let query = PFQuery(className:"SolvedRizzle")
         query.whereKey("completed", equalTo: true)
         query.whereKey("user", equalTo: displayUser!)
-        query.findObjectsInBackground {
-            (objects, error) in
-            if error == nil {
-                // The find succeeded.
-                guard let objects = objects else { return }
-                for tracker in objects {
-                    self.rizzlesSolved.append(tracker.object(forKey: "rizzle") as! PFObject)
-                }
-                DispatchQueue.main.async {
-                    self.delegate?.updateTotalSolved(solve: self.rizzlesSolved.count)
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!)")
+        query.order(byAscending: "updatedAt")
+        do {
+            let trackers = try query.findObjects()
+            for tracker in trackers {
+                let rizzle = tracker.object(forKey: "rizzle") as! PFObject
+                rizzle.fetchInBackground()
+                self.rizzlesCompleted.append(rizzle)
             }
+            print("Got user completed rizzles")
+        } catch {
+            print("Can't get completed rizzles: \(error)")
         }
+    }
+    
+    func setupViewWithData() {
+        DispatchQueue.main.async {
+            self.rizzleLabel.text = String(self.userRizzles.count)
+            self.followersLabel.text = String(self.userFollowers.count)
+            self.followingLabel.text = String(self.userFollowing.count)
+            self.completedLabel.text = String(self.rizzlesCompleted.count)
+            self.rizzleLabel.backgroundColor = UIColor.orange
+            self.displayTab = "userRizzles"
+            self.tableView.reloadData()
+            print("view done setting up")
+        }
+    }
+    
+    //MARK: Gesture Handler
+    @IBAction func userRizzleTabTapped(_ sender: UITapGestureRecognizer) {
+        resetTabColors()
+        rizzleLabel.backgroundColor = UIColor.orange
+        displayTab = "userRizzles"
+        tableView.reloadData()
+    }
+    @IBAction func userFollowingTabTapped(_ sender: UITapGestureRecognizer) {
+        resetTabColors()
+        followingLabel.backgroundColor = UIColor.orange
+        displayTab = "userFollowing"
+        tableView.reloadData()
+    }
+    @IBAction func userFollowersTabTapped(_ sender: UITapGestureRecognizer) {
+        resetTabColors()
+        followersLabel.backgroundColor = UIColor.orange
+        displayTab = "userFollowers"
+        tableView.reloadData()
+    }
+    @IBAction func userCompletedTabTapped(_ sender: UITapGestureRecognizer) {
+        resetTabColors()
+        completedLabel.backgroundColor = UIColor.orange
+        displayTab = "userCompleted"
+        tableView.reloadData()
+    }
+    
+    func resetTabColors() {
+        rizzleLabel.backgroundColor = UIColor.lightGray
+        followingLabel.backgroundColor = UIColor.lightGray
+        followersLabel.backgroundColor = UIColor.lightGray
+        completedLabel.backgroundColor = UIColor.lightGray
     }
     
     //MARK: TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 1
-        if tabView.selectedItem?.title == "Rizzles" {
+        switch displayTab {
+        case "userRizzles":
             count = userRizzles.count
-        } else if tabView.selectedItem?.title == "Completed" {
-            count = rizzlesSolved.count
+            break
+        case "userFollowing":
+            count = userFollowing.count
+            break
+        case "userFollowers":
+            count = userFollowers.count
+            break
+        case "userCompleted":
+            count = rizzlesCompleted.count
+            break
+        default:
+            break
         }
+        
+        if count < 1 {
+            count = 1
+        }
+        
         return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var currentRizzle: PFObject?
-        if tabView.selectedItem?.title == "Rizzles" && userRizzles.count > 0{
-            currentRizzle = userRizzles[indexPath.row]
-            cell.textLabel?.text = currentRizzle?["title"] as? String
-            cell.detailTextLabel?.text = currentRizzle?["question"] as? String
+        if displayTab == "userRizzles" && userRizzles.count != 0 {
+            let rizzle = userRizzles[indexPath.row]
+            let rizzleCell = tableView.dequeueReusableCell(withIdentifier: "rizzleCell", for: indexPath) as! ProfileRizzleTableViewCell
+            rizzleCell.rizzleTitleLabel.text = rizzle["title"] as? String
+            return rizzleCell
             
-        } else if tabView.selectedItem?.title == "Completed" && rizzlesSolved.count > 0 {
-            currentRizzle = rizzlesSolved[indexPath.row]
-            cell.textLabel?.text = currentRizzle?["title"] as? String
-            cell.detailTextLabel?.text = currentRizzle?["question"] as? String
+        }else if displayTab == "userCompleted" && rizzlesCompleted.count != 0 {
+            let rizzle = rizzlesCompleted[indexPath.row]
+            let rizzleCell = tableView.dequeueReusableCell(withIdentifier: "rizzleCell", for: indexPath) as! ProfileRizzleTableViewCell
+            rizzleCell.rizzleTitleLabel.text = rizzle["title"] as? String
+            return rizzleCell
+            
+        }else if displayTab == "userFollowing" && userFollowing.count != 0 {
+            let user = userFollowing[indexPath.row]
+            let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileUserTableViewCell
+            profileCell.usernameLabel.text = user["rizzleName"] as? String
+            let userImageFile = user["userPhoto100"] as! PFFile
+            userImageFile.getDataInBackground(block: { (imageData, error) in
+                if error == nil {
+                    if let imageData = imageData {
+                        profileCell.userImageView.image = UIImage(data: imageData)
+                    }
+                }else {
+                    profileCell.userImageView.image = UIImage(named: "defaultProfileImage")
+                }
+            })
+            return profileCell
+            
+        }else if  displayTab == "userFollowers" && userFollowers.count != 0 {
+            let user = userFollowers[indexPath.row]
+            let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileUserTableViewCell
+            profileCell.usernameLabel.text = user["rizzleName"] as? String
+            let userImageFile = user["userPhoto100"] as! PFFile
+            userImageFile.getDataInBackground(block: { (imageData, error) in
+                if error == nil {
+                    if let imageData = imageData {
+                        profileCell.userImageView.image = UIImage(data: imageData)
+                    }
+                }else {
+                    profileCell.userImageView.image = UIImage(named: "defaultProfileImage")
+                }
+            })
+            return profileCell
+            
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = "No Results"
+            return cell
         }
-        return cell
     }
-    
-    //MARK: TabBar Delegate
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title == "Rizzles" {
-            self.tableView.reloadData()
-        } else if item.title == "Completed" {
-            self.tableView.reloadData()
-        }
-    }
-    
 }

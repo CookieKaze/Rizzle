@@ -66,7 +66,8 @@ class UserDashboardViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toProfile" {
-            let destination = segue.destination as! ProfileViewController
+            let navController = segue.destination as! UINavigationController
+            let destination = navController.viewControllers[0] as! ProfileViewController
             destination.displayUser = PFUser.current()
         }
     }

@@ -83,7 +83,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     
     func getCompleteViewData() {
         let completeViewQueue = DispatchQueue(label: "completeViewQueue", qos: .utility)
-        completeViewQueue.sync {
+        completeViewQueue.async {
             do {
                 self.creator = try self.rizzle?.creator.fetch()
                 self.creatorUsername = self.creator?["rizzleName"] as? String
@@ -93,7 +93,9 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
                 userImageFile.getDataInBackground(block: { (imageData, error) in
                     if error == nil {
                         if let imageData = imageData {
-                            self.creatorImage = UIImage(data: imageData)
+                            DispatchQueue.main.async {
+                                self.creatorImage = UIImage(data: imageData)
+                            }
                         }
                     }
                 })

@@ -192,10 +192,11 @@ class RizzleManager: NSObject {
         self.currentScore = currentTracker?.object(forKey: "score") as! Int
         self.maxScore = self.defaultScore * self.difficultyLevel
         
-        self.generateRizzleObject()
+        
         
         //Set Rizzle in SolverDelegate
         rizzleQueue.async {
+            self.generateRizzleObject()
             if self.currentRizzle != nil {
                 DispatchQueue.main.async {
                     self.delegate?.setCurrentRizzle(rizzle: self.currentRizzle!)

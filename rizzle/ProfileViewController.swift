@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ProfileTabDelegate{
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     var displayUser: PFUser?
     var subscription: PFObject?
@@ -18,14 +18,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var totalScoreLabel: UILabel!
-    @IBOutlet weak var totalSolvedLabel: UILabel!
-    @IBOutlet weak var totalMadeLabel: UILabel!
     @IBOutlet weak var tabView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Round User Image
         photoImageView.layer.cornerRadius = photoImageView.frame.size.height/2;
         
+        //Setup follow button, user image, name and total score
         if displayUser != nil {
             setupFollowButton()
             if displayUser?["userPhoto"] != nil {
@@ -66,6 +66,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             if error == nil {
                 if (objects?.count)! > 0 {
                     self.subscription = objects?.first
+                    //Setup follow button
+                    if self.subscription?["active"] as! Bool == false {
+                        self.followButton.setTitle("Follow", for: .normal)
+                    } else {
+                        self.followButton.setTitle("Unfollow", for: .normal)
+                    }
                 }
             }else {
                 //Create new subscription record
@@ -73,13 +79,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.subscription?["user"] = self.displayUser
                 self.subscription?["follower"] = PFUser.current()
                 self.subscription?["active"] = false
-                self.subscription?.saveInBackground()
-            }
-            //Setup follow button
-            if self.subscription?["active"] as! Bool == false {
-                self.followButton.setTitle("Follow", for: .normal)
-            } else {
-                self.followButton.setTitle("Unfollow", for: .normal)
+                self.subscription?.saveInBackground(block: { (success, error) in
+                    //Setup follow button
+                    if self.subscription?["active"] as! Bool == false {
+                        self.followButton.setTitle("Follow", for: .normal)
+                    } else {
+                        self.followButton.setTitle("Unfollow", for: .normal)
+                    }
+                })
             }
         }
     }
@@ -139,13 +146,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             print("Image cannot be converted to data. Image not stored.")
             return
         }
+        guard let imageData100 = UIImageJPEGRepresentation(resizeWith(image: image, width: 100)!, 0.75) else {
+            print("Image cannot be converted to data. Image not stored.")
+            return
+        }
         
         if currentUser != nil{
             let imageFile = PFFile(name:"userPhoto.jpg", data:imageData)
+            let imageFile100 = PFFile(name:"userPhoto100.jpg", data:imageData100)
             currentUser?["userPhoto"] = imageFile
+            currentUser?["userPhoto100"] = imageFile100
             currentUser?.saveInBackground()
         }
-        
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -153,25 +165,29 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         picker.dismiss(animated: true, completion: nil)
     }
     
+    func resizeWith(image: UIImage, width: CGFloat) -> UIImage? {
+        let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/image.size.width * image.size.height)))))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, image.scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.render(in: context)
+        guard let result = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+        return result
+    }
+    
     //MARK: Tab View
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileTabView" {
             let destination = segue.destination as! ProfileTabsViewController
             destination.displayUser = displayUser
-            destination.delegate = self
         }
     }
     
-    func updateTotalSolved(solve: Int) {
-        totalSolvedLabel.text = "Solved: \(solve)"
-    }
-    
-    func updateTotalMade(made: Int) {
-        totalMadeLabel.text = "Made: \(made)"
-    }
-    
-    @IBAction func backButtonTapped(_ sender: UIButton) {
+    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
     
 }

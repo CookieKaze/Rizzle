@@ -21,6 +21,8 @@
 		1D8D55641E047E8300EAB3A0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D55631E047E8300EAB3A0 /* User.storyboard */; };
 		1D8D55681E0487A300EAB3A0 /* Rizzle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D55671E0487A300EAB3A0 /* Rizzle.storyboard */; };
 		1D8D556D1E04974C00EAB3A0 /* RizzleLetterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D556A1E04974C00EAB3A0 /* RizzleLetterCell.swift */; };
+		1D9C0FC91E2174B100AA7AFA /* ProfileUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C0FC81E2174B100AA7AFA /* ProfileUserTableViewCell.swift */; };
+		1D9C0FCB1E2174BC00AA7AFA /* ProfileRizzleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C0FCA1E2174BC00AA7AFA /* ProfileRizzleTableViewCell.swift */; };
 		1DDDACE41E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDDACE31E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift */; };
 		1DDDACE81E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDDACE71E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift */; };
 		1DDDACEA1E0C438B0030D0E6 /* RizzleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDDACE91E0C438B0030D0E6 /* RizzleManager.swift */; };
@@ -64,6 +66,8 @@
 		1D8D55631E047E8300EAB3A0 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		1D8D55671E0487A300EAB3A0 /* Rizzle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rizzle.storyboard; sourceTree = "<group>"; };
 		1D8D556A1E04974C00EAB3A0 /* RizzleLetterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleLetterCell.swift; sourceTree = "<group>"; };
+		1D9C0FC81E2174B100AA7AFA /* ProfileUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUserTableViewCell.swift; sourceTree = "<group>"; };
+		1D9C0FCA1E2174BC00AA7AFA /* ProfileRizzleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRizzleTableViewCell.swift; sourceTree = "<group>"; };
 		1DDDACE31E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleAnswerViewController.swift; sourceTree = "<group>"; };
 		1DDDACE71E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DDDACE91E0C438B0030D0E6 /* RizzleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleManager.swift; sourceTree = "<group>"; };
@@ -132,9 +136,8 @@
 		1D8D55621E047E5C00EAB3A0 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				1D9C0FC71E20974500AA7AFA /* Profile */,
 				1D8D55631E047E8300EAB3A0 /* User.storyboard */,
-				1D6EAED51E1D99E800BAC19D /* ProfileViewController.swift */,
-				1D6EAED71E1D99F500BAC19D /* ProfileTabsViewController.swift */,
 				1D57CEE31E033B3100D29B7E /* User.swift */,
 				1D57CEE51E033FE400D29B7E /* UserManager.swift */,
 				1D57CEE71E034CBD00D29B7E /* UserDashboardViewController.swift */,
@@ -166,6 +169,17 @@
 				1DEFF9E81E1B0E14004A9AC7 /* Continue */,
 			);
 			name = Rizzle;
+			sourceTree = "<group>";
+		};
+		1D9C0FC71E20974500AA7AFA /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1D6EAED51E1D99E800BAC19D /* ProfileViewController.swift */,
+				1D6EAED71E1D99F500BAC19D /* ProfileTabsViewController.swift */,
+				1D9C0FC81E2174B100AA7AFA /* ProfileUserTableViewCell.swift */,
+				1D9C0FCA1E2174BC00AA7AFA /* ProfileRizzleTableViewCell.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		1DEB3FE61E030618008BE0B7 = {
@@ -458,6 +472,7 @@
 				1DEFF9EA1E1B0E35004A9AC7 /* ContinueRizzleViewController.swift in Sources */,
 				1DEB3FFB1E030618008BE0B7 /* rizzle.xcdatamodeld in Sources */,
 				1D8D556D1E04974C00EAB3A0 /* RizzleLetterCell.swift in Sources */,
+				1D9C0FCB1E2174BC00AA7AFA /* ProfileRizzleTableViewCell.swift in Sources */,
 				1D6EAED41E1D8F3300BAC19D /* MyRizzleViewController.swift in Sources */,
 				1D6EAED61E1D99E800BAC19D /* ProfileViewController.swift in Sources */,
 				1DDDACE81E0C2E670030D0E6 /* RizzleAnswerCollectionViewCell.swift in Sources */,
@@ -470,6 +485,7 @@
 				1DDDACEC1E0C48340030D0E6 /* Rizzle.swift in Sources */,
 				1D57CEEA1E034F6700D29B7E /* FirstTimeUserViewController.swift in Sources */,
 				95FCB1231E05A8FE00FDBA2B /* RizzleSolveViewController.swift in Sources */,
+				1D9C0FC91E2174B100AA7AFA /* ProfileUserTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
