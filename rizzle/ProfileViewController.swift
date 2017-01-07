@@ -12,6 +12,7 @@ import Parse
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ProfileTabDelegate{
     
     var displayUser: PFUser?
+    var subscription: PFObject?
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -23,14 +24,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let currentUser = PFUser.current() else{
-            print("No current user")
-            return
-        }
-        
         photoImageView.layer.cornerRadius = photoImageView.frame.size.height/2;
         
         if displayUser != nil {
+            setupFollowButton()
             if displayUser?["userPhoto"] != nil {
                 let userImageFile = displayUser?["userPhoto"] as! PFFile
                 userImageFile.getDataInBackground(block: { (imageData, error) in
@@ -44,14 +41,61 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.photoImageView.image = UIImage(named: "defaultProfileImage")
             }
             usernameLabel.text = displayUser?["rizzleName"] as? String
-            if displayUser == currentUser {
-                followButton.removeFromSuperview()
-                
-            }
             totalScoreLabel.text = "Score: \(displayUser?["totalScore"] as! Int)"
         }
-        
     }
+    
+    //MARK: Follow
+    func setupFollowButton() {
+        guard let currentUser = PFUser.current() else{
+            print("No current user")
+            return
+        }
+        if displayUser == currentUser {
+            followButton.removeFromSuperview()
+        }else {
+            checkFollowStatus()
+        }
+    }
+    
+    func checkFollowStatus() {
+        let query = PFQuery(className: "Subscriptions")
+        query.whereKey("user", equalTo: displayUser!)
+        query.whereKey("follower", equalTo: PFUser.current()!)
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil {
+                if (objects?.count)! > 0 {
+                    self.subscription = objects?.first
+                }
+            }else {
+                //Create new subscription record
+                self.subscription = PFObject(className: "Subscriptions")
+                self.subscription?["user"] = self.displayUser
+                self.subscription?["follower"] = PFUser.current()
+                self.subscription?["active"] = false
+                self.subscription?.saveInBackground()
+            }
+            //Setup follow button
+            if self.subscription?["active"] as! Bool == false {
+                self.followButton.setTitle("Follow", for: .normal)
+            } else {
+                self.followButton.setTitle("Unfollow", for: .normal)
+            }
+        }
+    }
+    
+    @IBAction func followButtonTapped(_ sender: UIButton) {
+        if sender.titleLabel?.text == "Follow" {
+            sender.setTitle("Unfollow", for: .normal)
+            self.subscription?["active"] = true
+        } else {
+            sender.setTitle("Follow", for: .normal)
+            self.subscription?["active"] = false
+        }
+        self.subscription?.saveInBackground()
+    }
+    
+    //MARK: Image Picker
     @IBAction func photoTapped(_ sender: UITapGestureRecognizer) {
         if displayUser == PFUser.current() {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
