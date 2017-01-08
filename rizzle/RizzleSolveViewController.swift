@@ -99,7 +99,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
                         }
                     }
                 })
-                            }
+            }
             catch {}
         }
     }
@@ -260,15 +260,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             break
         case "CORRECT":
             rizzleManager.correctGuess()
-            
-            //Display CorrectView
-            let correctView = Bundle.main.loadNibNamed("CorrectView", owner: self, options: nil)?[0] as! UIView
-            correctView.frame = self.view.bounds
-            explanationView.text = rizzle?.explanation
-            creatorImageView.image = creatorImage ?? UIImage(named: "defaultProfileImage")
-            creatorImageView.layer.cornerRadius = creatorImageView.frame.size.height/2;
-            creatorUsernameLabel.text = creatorUsername ?? ""
-            self.view.addSubview(correctView)
+            performSegue(withIdentifier: "toCorrectView", sender: nil)
             break
         default:
             break
@@ -279,7 +271,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         let creatorProfileView = navController.viewControllers[0] as! ProfileViewController
         creatorProfileView.displayUser = creator
         present(navController, animated: true, completion: nil)
-
+        
     }
     
     
