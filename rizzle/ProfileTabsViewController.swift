@@ -18,7 +18,7 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
     
     var displayUser: PFObject?
     var userRizzles = [PFObject]()
-    var userFollowing = [PFObject]()
+    var userFollowings = [PFObject]()
     var userFollowers = [PFObject]()
     var rizzlesCompleted = [PFObject]()
     var displayTab = "userRizzles"
@@ -90,7 +90,7 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
             for subscription in subscriptions {
                 let user = subscription.object(forKey: "user") as! PFUser
                 user.fetchInBackground()
-                self.userFollowing.append(user)
+                self.userFollowings.append(user)
             }
             print("Got user followings")
         } catch {
@@ -120,7 +120,7 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
         DispatchQueue.main.async {
             self.rizzleLabel.text = String(self.userRizzles.count)
             self.followersLabel.text = String(self.userFollowers.count)
-            self.followingLabel.text = String(self.userFollowing.count)
+            self.followingLabel.text = String(self.userFollowings.count)
             self.completedLabel.text = String(self.rizzlesCompleted.count)
             self.rizzleLabel.backgroundColor = UIColor.orange
             self.displayTab = "userRizzles"
@@ -139,7 +139,7 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func userFollowingTabTapped(_ sender: UITapGestureRecognizer) {
         resetTabColors()
         followingLabel.backgroundColor = UIColor.orange
-        displayTab = "userFollowing"
+        displayTab = "userFollowings"
         tableView.reloadData()
     }
     @IBAction func userFollowersTabTapped(_ sender: UITapGestureRecognizer) {
@@ -169,8 +169,8 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
         case "userRizzles":
             count = userRizzles.count
             break
-        case "userFollowing":
-            count = userFollowing.count
+        case "userFollowings":
+            count = userFollowings.count
             break
         case "userFollowers":
             count = userFollowers.count
@@ -202,8 +202,8 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
             rizzleCell.rizzleTitleLabel.text = rizzle["title"] as? String
             return rizzleCell
             
-        }else if displayTab == "userFollowing" && userFollowing.count != 0 {
-            let user = userFollowing[indexPath.row]
+        }else if displayTab == "userFollowings" && userFollowings.count != 0 {
+            let user = userFollowings[indexPath.row]
             let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileUserTableViewCell
             profileCell.usernameLabel.text = user["rizzleName"] as? String
             let userImageFile = user["userPhoto100"] as! PFFile
@@ -238,6 +238,19 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = "No Results"
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "userProfile") as! ProfileViewController
+        
+        if displayTab == "userFollowers" {
+            viewController.displayUser = userFollowers[indexPath.row] as? PFUser
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }else if displayTab == "userFollowings" {
+            viewController.displayUser = userFollowings[indexPath.row] as? PFUser
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }

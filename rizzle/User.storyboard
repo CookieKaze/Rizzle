@@ -181,7 +181,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3Yv-mj-etC">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="NoF-xC-81W">
+                        <barButtonItem key="rightBarButtonItem" title="Dashboard" id="NoF-xC-81W">
                             <connections>
                                 <action selector="backButtonTapped:" destination="ygf-Sx-KEd" id="x6a-yc-Bmz"/>
                             </connections>
