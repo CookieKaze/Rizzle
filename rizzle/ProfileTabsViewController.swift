@@ -65,12 +65,12 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func getFollowers () {
-        let query = PFQuery(className:"Subscriptions")
+        let query = PFQuery(className:"Subscription")
         query.whereKey("user", equalTo: displayUser!)
         query.order(byAscending: "updatedAt")
         do {
-            let subscriptions = try query.findObjects()
-            for subscription in subscriptions {
+            let subscription = try query.findObjects()
+            for subscription in subscription {
                 let user = subscription.object(forKey: "follower") as! PFUser
                 user.fetchInBackground()
                 self.userFollowers.append(user)
@@ -82,12 +82,12 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func getFollowing () {
-        let query = PFQuery(className:"Subscriptions")
+        let query = PFQuery(className:"Subscription")
         query.whereKey("follower", equalTo: displayUser!)
         query.order(byAscending: "updatedAt")
         do {
-            let subscriptions = try query.findObjects()
-            for subscription in subscriptions {
+            let subscription = try query.findObjects()
+            for subscription in subscription {
                 let user = subscription.object(forKey: "user") as! PFUser
                 user.fetchInBackground()
                 self.userFollowings.append(user)

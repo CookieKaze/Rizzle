@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func checkFollowStatus() {
-        let query = PFQuery(className: "Subscriptions")
+        let query = PFQuery(className: "Subscription")
         query.whereKey("user", equalTo: displayUser!)
         query.whereKey("follower", equalTo: PFUser.current()!)
         query.findObjectsInBackground { (objects, error) in
@@ -75,7 +75,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 }
             }else {
                 //Create new subscription record
-                self.subscription = PFObject(className: "Subscriptions")
+                self.subscription = PFObject(className: "Subscription")
                 self.subscription?["user"] = self.displayUser
                 self.subscription?["follower"] = PFUser.current()
                 self.subscription?["active"] = false

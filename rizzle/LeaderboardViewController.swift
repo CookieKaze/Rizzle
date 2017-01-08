@@ -33,7 +33,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             do {
                 self.users = try query?.findObjects() as! [PFUser]
                 //Load Image
-                let imageFile = self.users[0]["imageFile"] as? PFFile
+                let imageFile = self.users[0]["userPhoto"] as? PFFile
                 if imageFile != nil {
                     imageFile?.getDataInBackground(block: {(imageData, error) in
                         if error == nil {
@@ -68,18 +68,54 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     
     //MARK: Table Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if users.count > 0  {
+            var count = users.count
+            count -= 1
+            return count
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! LeaderboardTableViewCell
-        //        cell.positionLabel.text = ""
-        //        cell.userImageView.image = UIImage
-        //        cell.usernameLabel.text = ""
-        //        cell.scoreLabel.text = ""
+        if users.count > 0  {
+            cell.positionLabel.text = String(indexPath.row + 2)
+            cell.usernameLabel.text = users[indexPath.row + 1]["rizzleName"] as? String
+            cell.scoreLabel.text = users[indexPath.row + 1]["totalScore"] as? String
+            
+            //Load Image
+            let imageFile = self.users[indexPath.row + 1]["userPhoto100"] as? PFFile
+            if imageFile != nil {
+                imageFile?.getDataInBackground(block: {(imageData, error) in
+                    if error == nil {
+                        if let imageData = imageData {
+                            let image = UIImage(data:imageData)
+                            cell.userImageView.image = image
+                        }
+                    }
+                })
+            }else {
+                cell.userImageView.image = UIImage(named: "defaultProfileImage")
+            }
+        } else {
+            cell.positionLabel.text = ""
+            cell.usernameLabel.text = "Please try again later."
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let navController = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "ProfileNavController") as! UINavigationController
+        let creatorProfileView = navController.viewControllers[0] as! ProfileViewController
+        creatorProfileView.displayUser = users[indexPath.row + 1]
+        present(navController, animated: true, completion: nil)
+    }
     
-    
+    @IBAction func leaderTapped(_ sender: UITapGestureRecognizer) {
+        let navController = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "ProfileNavController") as! UINavigationController
+        let creatorProfileView = navController.viewControllers[0] as! ProfileViewController
+        creatorProfileView.displayUser = users[0]
+        present(navController, animated: true, completion: nil)
+    }
 }

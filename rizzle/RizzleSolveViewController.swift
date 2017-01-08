@@ -275,9 +275,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     @IBAction func creatorProfileTapped(_ sender: UITapGestureRecognizer) {
-        let creatorProfileView = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userProfile") as! ProfileViewController
+        let navController = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "ProfileNavController") as! UINavigationController
+        let creatorProfileView = navController.viewControllers[0] as! ProfileViewController
         creatorProfileView.displayUser = creator
-        present(creatorProfileView, animated: true, completion: nil)
+        present(navController, animated: true, completion: nil)
 
     }
     
