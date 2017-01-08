@@ -37,7 +37,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TBd-H3-FgB" id="Da4-O6-roc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVM-sn-Rxd">
@@ -127,7 +127,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cV3-lM-16P">
-                                <rect key="frame" x="16" y="66" width="343" height="370.5"/>
+                                <rect key="frame" x="16" y="66" width="343" height="227.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -242,7 +242,7 @@
                             <constraint firstAttribute="trailing" secondItem="JtP-30-Nkb" secondAttribute="trailing" id="JKH-he-Fvc"/>
                             <constraint firstItem="FFm-L7-QXU" firstAttribute="width" secondItem="9g6-u4-B3r" secondAttribute="width" multiplier="0.5" id="NH1-Fc-tnQ"/>
                             <constraint firstAttribute="trailing" secondItem="ukd-xB-Vff" secondAttribute="trailing" id="OM0-IZ-Glg"/>
-                            <constraint firstItem="ukd-xB-Vff" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" priority="999" constant="66" id="Smi-H3-v3X"/>
+                            <constraint firstItem="ukd-xB-Vff" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" constant="10" id="Smi-H3-v3X"/>
                             <constraint firstItem="qf7-g6-CCV" firstAttribute="top" secondItem="FFm-L7-QXU" secondAttribute="bottom" id="V4a-kv-ujH"/>
                             <constraint firstItem="xa3-wb-mRB" firstAttribute="width" secondItem="9g6-u4-B3r" secondAttribute="width" multiplier="0.5" id="XTB-gJ-fUp"/>
                             <constraint firstItem="dMu-xs-JjP" firstAttribute="top" secondItem="JtP-30-Nkb" secondAttribute="bottom" id="XTG-7B-GZW"/>
@@ -253,7 +253,7 @@
                             <constraint firstItem="cV3-lM-16P" firstAttribute="leading" secondItem="9g6-u4-B3r" secondAttribute="leadingMargin" id="aM0-DA-0Ve"/>
                             <constraint firstItem="eTz-cg-Eez" firstAttribute="top" secondItem="Ihw-Cl-whB" secondAttribute="bottom" id="bJ6-8c-F35"/>
                             <constraint firstItem="3rV-Gq-VKR" firstAttribute="top" secondItem="4t6-eL-P4c" secondAttribute="bottom" constant="6" id="bK0-Pd-zq0"/>
-                            <constraint firstItem="JtP-30-Nkb" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" id="hKq-0i-Lo3"/>
+                            <constraint firstItem="JtP-30-Nkb" firstAttribute="top" secondItem="cV3-lM-16P" secondAttribute="bottom" priority="999" constant="10" id="hKq-0i-Lo3"/>
                             <constraint firstItem="xa3-wb-mRB" firstAttribute="top" secondItem="dMu-xs-JjP" secondAttribute="bottom" id="j0h-y5-xyK"/>
                             <constraint firstAttribute="trailing" secondItem="dMu-xs-JjP" secondAttribute="trailing" id="nEY-In-ATy"/>
                             <constraint firstItem="JtP-30-Nkb" firstAttribute="height" secondItem="9g6-u4-B3r" secondAttribute="height" multiplier="0.1" constant="-10" id="nds-CY-9qf"/>
