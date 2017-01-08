@@ -63,7 +63,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         query.whereKey("user", equalTo: displayUser!)
         query.whereKey("follower", equalTo: PFUser.current()!)
         query.findObjectsInBackground { (objects, error) in
-            if error == nil {
+            if error == nil{
                 if (objects?.count)! > 0 {
                     self.subscription = objects?.first
                     //Setup follow button
@@ -72,21 +72,21 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                     } else {
                         self.followButton.setTitle("Unfollow", for: .normal)
                     }
+                }else {
+                    //Create new subscription record
+                    self.subscription = PFObject(className: "Subscription")
+                    self.subscription?["user"] = self.displayUser
+                    self.subscription?["follower"] = PFUser.current()
+                    self.subscription?["active"] = false
+                    self.subscription?.saveInBackground(block: { (success, error) in
+                        //Setup follow button
+                        if self.subscription?["active"] as! Bool == false {
+                            self.followButton.setTitle("Follow", for: .normal)
+                        } else {
+                            self.followButton.setTitle("Unfollow", for: .normal)
+                        }
+                    })
                 }
-            }else {
-                //Create new subscription record
-                self.subscription = PFObject(className: "Subscription")
-                self.subscription?["user"] = self.displayUser
-                self.subscription?["follower"] = PFUser.current()
-                self.subscription?["active"] = false
-                self.subscription?.saveInBackground(block: { (success, error) in
-                    //Setup follow button
-                    if self.subscription?["active"] as! Bool == false {
-                        self.followButton.setTitle("Follow", for: .normal)
-                    } else {
-                        self.followButton.setTitle("Unfollow", for: .normal)
-                    }
-                })
             }
         }
     }
