@@ -10,6 +10,8 @@
 		1D1B258C1E0997E200EABA00 /* CreateRizzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40C7001E06261900ECA190 /* CreateRizzleViewController.swift */; };
 		1D57CEE81E034CBD00D29B7E /* UserDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57CEE71E034CBD00D29B7E /* UserDashboardViewController.swift */; };
 		1D57CEEA1E034F6700D29B7E /* FirstTimeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57CEE91E034F6700D29B7E /* FirstTimeUserViewController.swift */; };
+		1D6DC8BF1E25806100BBCC50 /* PopupAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC8BD1E25806100BBCC50 /* PopupAlertViewController.swift */; };
+		1D6DC8C01E25806100BBCC50 /* PopupAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6DC8BE1E25806100BBCC50 /* PopupAlertViewController.xib */; };
 		1D6EAED01E1C38D600BAC19D /* HintView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6EAECF1E1C38D600BAC19D /* HintView1.xib */; };
 		1D6EAED21E1CB96E00BAC19D /* CorrectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6EAED11E1CB96E00BAC19D /* CorrectView.xib */; };
 		1D6EAED41E1D8F3300BAC19D /* MyRizzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6EAED31E1D8F3300BAC19D /* MyRizzleViewController.swift */; };
@@ -57,6 +59,8 @@
 		1D40C7001E06261900ECA190 /* CreateRizzleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRizzleViewController.swift; sourceTree = "<group>"; };
 		1D57CEE71E034CBD00D29B7E /* UserDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDashboardViewController.swift; sourceTree = "<group>"; };
 		1D57CEE91E034F6700D29B7E /* FirstTimeUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstTimeUserViewController.swift; sourceTree = "<group>"; };
+		1D6DC8BD1E25806100BBCC50 /* PopupAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupAlertViewController.swift; sourceTree = "<group>"; };
+		1D6DC8BE1E25806100BBCC50 /* PopupAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupAlertViewController.xib; sourceTree = "<group>"; };
 		1D6EAECF1E1C38D600BAC19D /* HintView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HintView1.xib; sourceTree = "<group>"; };
 		1D6EAED11E1CB96E00BAC19D /* CorrectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CorrectView.xib; sourceTree = "<group>"; };
 		1D6EAED31E1D8F3300BAC19D /* MyRizzleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRizzleViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				1DEB3FFE1E030618008BE0B7 /* LaunchScreen.storyboard */,
 				1DEB40011E030618008BE0B7 /* Info.plist */,
 				1DEB3FF91E030618008BE0B7 /* rizzle.xcdatamodeld */,
+				1D6DC8BD1E25806100BBCC50 /* PopupAlertViewController.swift */,
+				1D6DC8BE1E25806100BBCC50 /* PopupAlertViewController.xib */,
 			);
 			name = "Support Files";
 			sourceTree = "<group>";
@@ -372,6 +378,7 @@
 				1D8D55681E0487A300EAB3A0 /* Rizzle.storyboard in Resources */,
 				1DEB40001E030618008BE0B7 /* LaunchScreen.storyboard in Resources */,
 				1D8D55641E047E8300EAB3A0 /* User.storyboard in Resources */,
+				1D6DC8C01E25806100BBCC50 /* PopupAlertViewController.xib in Resources */,
 				1D6EAED01E1C38D600BAC19D /* HintView1.xib in Resources */,
 				1DEB3FFD1E030618008BE0B7 /* Assets.xcassets in Resources */,
 				1D6EAED21E1CB96E00BAC19D /* CorrectView.xib in Resources */,
@@ -509,6 +516,7 @@
 				1DDDACEC1E0C48340030D0E6 /* Rizzle.swift in Sources */,
 				1D57CEEA1E034F6700D29B7E /* FirstTimeUserViewController.swift in Sources */,
 				95FCB1231E05A8FE00FDBA2B /* RizzleSolveViewController.swift in Sources */,
+				1D6DC8BF1E25806100BBCC50 /* PopupAlertViewController.swift in Sources */,
 				1D9C0FC91E2174B100AA7AFA /* ProfileUserTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

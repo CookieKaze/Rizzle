@@ -12,6 +12,7 @@ target 'rizzle' do
 	pod 'ParseFacebookUtilsV4'
 	pod 'GSImageViewerController'
 	pod 'KTCenterFlowLayout'
+	pod 'HCSStarRatingView', '~> 1.4.5'
   target 'rizzleTests' do
     inherit! :search_paths
     # Pods for testing

@@ -13,17 +13,9 @@ import ParseFacebookUtilsV4
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var statusLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let currentUser = PFUser.current()
-        print(currentUser?.objectId)
-    }
-    
     
     @IBAction func FBLoginTapped(_ sender: UIButton) {
         parseFacebookSignIn()
@@ -47,7 +39,9 @@ class LoginViewController: UIViewController {
                 }
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
-                self.statusLabel.text = "The user cancelled the Facebook login"
+                let alertView = PopupAlertViewController(nibName: "PopupAlertViewController", bundle: nil)
+                alertView.bodyText = "Facebook login cancelled.\nPlease try again."
+                self.present(alertView, animated: false, completion: nil)
             }
         })
     }

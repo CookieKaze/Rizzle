@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "solved.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "background.jpg",
       "scale" : "2x"
     },
     {

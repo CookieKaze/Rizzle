@@ -9,6 +9,7 @@
 
 import UIKit
 import Parse
+import HCSStarRatingView
 
 class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -16,6 +17,7 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
     var rizzlePF: PFObject?
     var rizzle: Rizzle?
     var comments = [PFObject]()
+    @IBOutlet weak var ratingView: UIView!
     
     @IBOutlet weak var creatorImageView: UIImageView!
     @IBOutlet weak var creatorUsernameLabel: UILabel!
@@ -31,7 +33,9 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
         creatorImageView.layer.cornerRadius = creatorImageView.frame.size.height/2
         rizzle = rizzleManager.currentRizzle
         rizzlePF = rizzleManager.currentRizzlePFObject
+        
         setupView()
+        //setupRating()
         getComments()
         
     }
@@ -69,6 +73,17 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+//    func setupRating() {
+//        let starRatingView = HCSStarRatingView.init(frame: CGRect(x: 0, y: 0, width: ratingView.frame.width, height: ratingView.frame.height))
+//            
+//            starRatingView.maximumValue = 5
+//            starRatingView.minimumValue = 0
+//            starRatingView.value = 3;
+//            starRatingView.tintColor = UIColor.yellow
+//            [starRatingView addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
+//            [self.view addSubview:starRatingView];
+//    }
+    
     func getComments() {
         let commentViewQueue = DispatchQueue(label: "completeViewQueue", qos: .utility)
         commentViewQueue.async {
@@ -96,9 +111,24 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func commentSubmitTapped(_ sender: UIButton) {
-        //Get comment from field
-        //Submit to Parse
-        //Update table with new comment
+        commentTextField.resignFirstResponder()
+        view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        if commentTextField.text != "" && commentTextField.text != nil {
+            let comment = commentTextField.text
+            
+            //Submit to Parse
+            let rizzleComment = PFObject(className: "RizzleComment")
+            rizzleComment["comment"] = comment
+            rizzleComment["user"] = PFUser.current()
+            rizzleComment["rizzle"] = rizzlePF
+            rizzleComment["creatorName"] = PFUser.current()?["rizzleName"] as! String
+            rizzleComment.saveInBackground()
+            commentTextField.text = ""
+            
+            //Update table with new comment
+            getComments()
+            
+        }
     }
     @IBAction func closedButtonTapped(_ sender: UIButton) {
         //Returns to dash
@@ -120,15 +150,31 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
             cell.usernameLabel.text = comment["creatorName"] as? String
             cell.commentLabel.text = comment["comment"] as? String
             
-            let commentDate = comment["createdAt"] as? Date
+            let commentDate = comment.createdAt
             if commentDate != nil {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateStyle = .medium
                 dateFormatter.timeStyle = .none
-                dateFormatter.dateFormat = "MMMM dd yyyy"
+                dateFormatter.dateFormat = "dd.MM.yy"
                 dateFormatter.locale = Locale(identifier: "en_US")
                 cell.dateLabel.text = dateFormatter.string(from:commentDate!)
             }
+            
+            //Get Image
+            //            let user = comment["user"] as? PFUser
+            //            if user != nil {
+            //                let userImageFile = user!["userPhoto100"] as? PFFile
+            //                userImageFile?.getDataInBackground(block: { (imageData, error) in
+            //                    if error == nil {
+            //                        if let imageData = imageData {
+            //                            DispatchQueue.main.async {
+            //                                cell.?.image = UIImage(data: imageData)
+            //                            }
+            //                        }
+            //                    }
+            //                })
+            //            }
+            
         }else {
             cell.commentLabel.text = "No comments found"
         }

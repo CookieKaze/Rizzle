@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="toT-Bk-EyR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="toT-Bk-EyR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,43 +23,104 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kid-vB-rcH">
-                                <rect key="frame" x="133" y="319" width="108" height="30"/>
-                                <state key="normal" title="Facebook Login"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunsetBG" translatesAutoresizingMaskIntoConstraints="NO" id="U40-ZS-ZBC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rizzle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpf-c7-iDg">
+                                <rect key="frame" x="128" y="178" width="119" height="58"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="48"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qQ-wX-3mn">
+                                <rect key="frame" x="36" y="244" width="303" height="38"/>
+                                <string key="text">Puzzles and riddles created for the
+community by the community</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vb5-53-yff">
+                                <rect key="frame" x="61" y="331.5" width="254" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Vb5-53-yff" secondAttribute="height" multiplier="318:55" id="MZl-Fm-32v"/>
+                                    <constraint firstAttribute="height" constant="44" id="Zjm-vd-IIs"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <state key="normal" backgroundImage="fbLogin">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="FBLoginTapped:" destination="toT-Bk-EyR" eventType="touchUpInside" id="qdy-LI-McM"/>
+                                    <action selector="FBLoginTapped:" destination="toT-Bk-EyR" eventType="touchUpInside" id="PMC-kB-oHG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPc-H4-RdV">
-                                <rect key="frame" x="187" y="357" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKa-Hw-ZTI">
+                                <rect key="frame" x="60" y="385.5" width="254" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tKa-Hw-ZTI" secondAttribute="height" multiplier="318:55" id="1Ph-fc-G4u"/>
+                                    <constraint firstAttribute="height" constant="44" id="kc4-tA-IO5"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <state key="normal" backgroundImage="twLogin">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By signing in I agree to Rizzle’s " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MID-We-Zpu">
+                                <rect key="frame" x="36" y="613" width="303" height="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN PAGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZh-0Y-9Bf">
-                                <rect key="frame" x="134" y="50" width="107" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AVG-6S-d2e">
+                                <rect key="frame" x="36" y="597" width="303" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="4tt-3a-XBo"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iij-70-kdE">
+                                <rect key="frame" x="128" y="627" width="118" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="FWM-9s-09p"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <state key="normal" title="Terms and Conditions">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.73842969260000002" blue="0.27904716800000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="kid-vB-rcH" firstAttribute="centerX" secondItem="aQg-dj-pJm" secondAttribute="centerX" id="9YL-1s-Vnb"/>
-                            <constraint firstItem="kid-vB-rcH" firstAttribute="centerY" secondItem="aQg-dj-pJm" secondAttribute="centerY" id="C2n-eZ-NkL"/>
-                            <constraint firstItem="VZh-0Y-9Bf" firstAttribute="top" secondItem="SCF-Ik-oEM" secondAttribute="bottom" constant="30" id="FA7-gG-blZ"/>
-                            <constraint firstItem="XPc-H4-RdV" firstAttribute="centerX" secondItem="aQg-dj-pJm" secondAttribute="centerX" id="JAe-87-Sm4"/>
-                            <constraint firstItem="VZh-0Y-9Bf" firstAttribute="centerX" secondItem="aQg-dj-pJm" secondAttribute="centerX" id="ZKe-kh-KTs"/>
-                            <constraint firstItem="XPc-H4-RdV" firstAttribute="top" secondItem="kid-vB-rcH" secondAttribute="bottom" constant="8" id="pB5-tF-xyt"/>
+                            <constraint firstItem="tKa-Hw-ZTI" firstAttribute="top" secondItem="Vb5-53-yff" secondAttribute="bottom" constant="10" id="02p-Ie-epy"/>
+                            <constraint firstItem="U40-ZS-ZBC" firstAttribute="top" secondItem="aQg-dj-pJm" secondAttribute="top" id="0wP-nU-9XC"/>
+                            <constraint firstItem="2qQ-wX-3mn" firstAttribute="leading" secondItem="aQg-dj-pJm" secondAttribute="leadingMargin" constant="20" id="CHi-P7-bJ1"/>
+                            <constraint firstItem="MID-We-Zpu" firstAttribute="centerX" secondItem="aQg-dj-pJm" secondAttribute="centerX" id="DHZ-na-76u"/>
+                            <constraint firstItem="AVG-6S-d2e" firstAttribute="leading" secondItem="aQg-dj-pJm" secondAttribute="leadingMargin" constant="20" id="Gem-xg-Is0"/>
+                            <constraint firstItem="Vb5-53-yff" firstAttribute="top" secondItem="2qQ-wX-3mn" secondAttribute="bottom" constant="50" id="H1v-6m-REi"/>
+                            <constraint firstItem="tKa-Hw-ZTI" firstAttribute="centerX" secondItem="aQg-dj-pJm" secondAttribute="centerX" id="PDc-Ka-Zw9"/>
+                            <constraint firstItem="Vb5-53-yff" firstAttribute="centerX" secondItem="aQg-dj-pJm" secondAttribute="centerX" id="SKA-Zb-rdR"/>
+                            <constraint firstItem="U40-ZS-ZBC" firstAttribute="leading" secondItem="aQg-dj-pJm" secondAttribute="leading" id="TM1-RM-qzG"/>
+                            <constraint firstItem="ezv-nl-806" firstAttribute="top" secondItem="Iij-70-kdE" secondAttribute="bottom" constant="25" id="Uiz-6s-HW3"/>
+                            <constraint firstItem="ezv-nl-806" firstAttribute="top" secondItem="U40-ZS-ZBC" secondAttribute="bottom" id="VHo-3o-muX"/>
+                            <constraint firstItem="Iij-70-kdE" firstAttribute="top" secondItem="MID-We-Zpu" secondAttribute="bottom" id="ZKV-Nz-o1f"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AVG-6S-d2e" secondAttribute="trailing" constant="20" id="a6M-GY-mfi"/>
+                            <constraint firstItem="2qQ-wX-3mn" firstAttribute="top" secondItem="Fpf-c7-iDg" secondAttribute="bottom" constant="8" id="d7p-d4-RXW"/>
+                            <constraint firstItem="Fpf-c7-iDg" firstAttribute="top" secondItem="SCF-Ik-oEM" secondAttribute="bottom" constant="158" id="lF0-9U-hWj"/>
+                            <constraint firstItem="Iij-70-kdE" firstAttribute="centerX" secondItem="aQg-dj-pJm" secondAttribute="centerX" id="ld1-aj-92M"/>
+                            <constraint firstItem="MID-We-Zpu" firstAttribute="top" secondItem="AVG-6S-d2e" secondAttribute="bottom" constant="15" id="ou5-0n-wCy"/>
+                            <constraint firstItem="MID-We-Zpu" firstAttribute="leading" secondItem="aQg-dj-pJm" secondAttribute="leadingMargin" constant="20" id="tbA-WM-S5x"/>
+                            <constraint firstAttribute="trailing" secondItem="U40-ZS-ZBC" secondAttribute="trailing" id="v5L-iV-hTM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MID-We-Zpu" secondAttribute="trailing" constant="20" id="wBq-Rf-vXd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2qQ-wX-3mn" secondAttribute="trailing" constant="20" id="wdV-oh-mfj"/>
+                            <constraint firstItem="Fpf-c7-iDg" firstAttribute="centerX" secondItem="aQg-dj-pJm" secondAttribute="centerX" id="zWg-UJ-KPM"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="statusLabel" destination="XPc-H4-RdV" id="CbN-e9-Fk8"/>
                         <segue destination="AL7-LX-2N8" kind="show" identifier="firstTimeUser" id="dt7-5C-bPF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kjg-ht-EnY" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="99.400299850074973"/>
         </scene>
         <!--First Time User View Controller-->
         <scene sceneID="EOu-2z-HRF">
@@ -143,7 +205,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bqt-kq-KEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="767" y="90"/>
+            <point key="canvasLocation" x="962" y="743"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fbLogin" width="638" height="114"/>
+        <image name="sunsetBG" width="420" height="499"/>
+        <image name="twLogin" width="638" height="114"/>
+    </resources>
 </document>
