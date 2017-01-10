@@ -11,19 +11,17 @@ import Parse
 
 class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
     
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var rizzleNameField: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         rizzleNameField.delegate = self
-        
+        usernameLabel.isHidden = true
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     @IBAction func saveNameTapped(_ sender: UIButton) {
         let unCheckedUsername = rizzleNameField.text
         
@@ -67,7 +65,16 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
-    //MARK: Keyboard resign
+    //MARK: Keyboard
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        usernameLabel.frame = CGRect(x: usernameLabel.frame.origin.x, y: usernameLabel.frame.origin.y + 20, width: usernameLabel.frame.size.width, height: usernameLabel.frame.size.height)
+        usernameLabel.isHidden = false
+        
+        UIView.animate(withDuration: 0.5, animations: {
+        self.usernameLabel.frame = CGRect(x: self.usernameLabel.frame.origin.x, y: self.usernameLabel.frame.origin.y - 20, width: self.usernameLabel.frame.size.width, height: self.usernameLabel.frame.size.height)
+        })
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
