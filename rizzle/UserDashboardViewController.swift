@@ -13,8 +13,18 @@ class UserDashboardViewController: UIViewController {
     //MARK: Properties
     var rizzleManager: RizzleManager!
     
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var myRizzleButton: UIButton!
+    @IBOutlet weak var ProfileButton: UIButton!
+    @IBOutlet weak var leaderboardButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
+    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var totalScoreLabel: UILabel!
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var outterUserImageView: UIView!
+    @IBOutlet weak var newRizzleView: UIView!
+    @IBOutlet weak var continueRizzleView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +38,18 @@ class UserDashboardViewController: UIViewController {
         //Setup View
         usernameLabel.text = currentUser.object(forKey: "rizzleName") as! String?
         totalScoreLabel.text = String(describing: currentUser.object(forKey: "totalScore") ?? "0")
+        
+        userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+        outterUserImageView.layer.cornerRadius = outterUserImageView.frame.size.height/2
+        newRizzleView.layer.borderColor = UIColor.white.cgColor
+        newRizzleView.layer.borderWidth = 1
+        continueRizzleView.layer.borderColor = UIColor.white.cgColor
+        continueRizzleView.layer.borderWidth = 1
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        menuView.isHidden = true
+        menuView.frame = CGRect(x: menuView.frame.origin.x - menuView.frame.width, y: menuView.frame.origin.y, width: menuView.frame.size.width, height: menuView.frame.size.height)
     }
     
     //MARK: Navigation and Segues
@@ -71,4 +93,22 @@ class UserDashboardViewController: UIViewController {
             destination.displayUser = PFUser.current()
         }
     }
+    @IBAction func menuButtonTapped(_ sender: UIButton) {
+        menuView.frame = CGRect(x: menuView.frame.origin.x - menuView.frame.width, y: menuView.frame.origin.y, width: menuView.frame.size.width, height: menuView.frame.size.height)
+        menuView.isHidden = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.menuView.frame = CGRect(x: 0, y: 0, width: self.menuView.frame.size.width, height: self.menuView.frame.size.height)
+        })
+        
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.menuView.frame = CGRect(x: self.menuView.frame.origin.x - self.menuView.frame.width, y: self.menuView.frame.origin.y, width: self.menuView.frame.size.width, height: self.menuView.frame.size.height)
+        }) { (success) in
+            self.menuView.isHidden = true
+        }
+        
+    }
+    
 }
