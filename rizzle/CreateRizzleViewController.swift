@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     //MARK: Properties
     var currentPageCount = 0
     var animationDuration = 0.3
@@ -19,7 +19,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //Form Views
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var questionView: UIView!
     @IBOutlet weak var imageUploadView: UIView!
     @IBOutlet weak var answerView: UIView!
@@ -27,19 +27,45 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var removeImageBtn: UIButton!
     
     //Form Fields
-    @IBOutlet weak var diffStepper: UIStepper!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
+    var questionPlaceHolderLabel: UILabel?
+    @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var answerTextField: UITextField!
+    @IBOutlet weak var explanationLabel: UILabel!
     @IBOutlet weak var explanationTextView: UITextView!
+    @IBOutlet weak var hint1Label: UILabel!
     @IBOutlet weak var hint1TextField: UITextField!
+    @IBOutlet weak var hint2Label: UILabel!
     @IBOutlet weak var hint2TextField: UITextField!
+    @IBOutlet weak var hint3Label: UILabel!
     @IBOutlet weak var hint3TextField: UITextField!
     @IBOutlet weak var difficultyLabel: UILabel!
+    @IBOutlet weak var diffStepper: UIStepper!
     
     //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Listen for keyboard appearances and disappearances
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(sender:)), name: .UIKeyboardWillShow, object: nil)
+        
+        titleLabel.isHidden = true
+        questionLabel.isHidden = true
+        questionPlaceHolderLabel = UILabel.init()
+        guard let placeholderLabel = questionPlaceHolderLabel else {
+            return
+        }
+        
+        placeholderLabel.text = "Start typing your rizzle question here…"
+        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (questionTextView.font?.pointSize)!)
+        placeholderLabel.sizeToFit()
+        questionTextView.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (questionTextView.font?.pointSize)! / 2)
+        placeholderLabel.textColor = UIColor.lightGray
+        placeholderLabel.isHidden = !questionTextView.text.isEmpty
         
         activityIndicator.stopAnimating()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
@@ -52,6 +78,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
                 return
             }
             //Load rizzle fields
+            titleLabel.isHidden = false
             titleTextField.text = rizzleToEdit["title"] as? String
             questionTextView.text = rizzleToEdit["question"] as? String
             answerTextField.text = rizzleToEdit["answer"] as? String
@@ -105,7 +132,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
         animationDuration = 0.3
     }
     
-    @IBAction func saveRizzle(_ sender: UIBarButtonItem) {
+    @IBAction func saveRizzle(_ sender: UIButton) {
         if checkValidField() {
             self.activityIndicator.startAnimating()
             let rizzle: PFObject!
@@ -226,12 +253,17 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
     }
     
     //MARK: Form Transitions
-    @IBAction func cancelBtnTapped(_ sender: UIBarButtonItem) {
+    @IBAction func cancelBtnTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func nextBtnPressed(_ sender: UIBarButtonItem) {
+    @IBAction func nextBtnPressed(_ sender: UIButton) {
         switch sender.tag {
+        case 0:
+            //Remove title View
+            titleTextField.resignFirstResponder()
+            removeViews(view: titleView)
+            break
         case 1:
             //Remove Question View
             questionTextView.resignFirstResponder()
@@ -260,7 +292,7 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
         currentPageCount += 1
     }
     
-    @IBAction func backBtnPressed(_ sender: UIBarButtonItem) {
+    @IBAction func backBtnPressed(_ sender: UIButton) {
         switch sender.tag {
         case 1:
             //Return Answer View
@@ -279,6 +311,11 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
             //Restore Question View
             restoreView(view: questionView)
             break
+        case 4:
+            //Restore Title View
+            questionTextView.resignFirstResponder()
+            restoreView(view: titleView)
+            break
         default:
             break
         }
@@ -293,7 +330,45 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
         currentPageCount -= 1
     }
     
-    //MARK: Keyboard Resign
+    //MARK: Keyboard controls
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 1 {
+            moveTextFieldLabel(label: titleLabel)
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        questionLabel.frame = CGRect(x: questionLabel.frame.origin.x, y: questionLabel.frame.origin.y + 20, width: questionLabel.frame.size.width, height: questionLabel.frame.size.height)
+        questionLabel.isHidden = false
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.questionLabel.frame = CGRect(x: self.questionLabel.frame.origin.x, y: self.questionLabel.frame.origin.y - 20, width: self.questionLabel.frame.size.width, height: self.questionLabel.frame.size.height)
+        })
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        questionPlaceHolderLabel?.isHidden = !textView.text.isEmpty
+    }
+    
+    func moveTextFieldLabel (label: UILabel) {
+        label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y + 20, width: label.frame.size.width, height: label.frame.size.height)
+        label.isHidden = false
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y - 20, width: label.frame.size.width, height: label.frame.size.height)
+        })
+    }
+    
+    func keyboardWillAppear(sender: NSNotification) {
+        let userInfo = sender.userInfo!
+        if let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            UIView.animate(withDuration: 1, animations: {
+                self.view.frame = CGRect(x: 0, y: keyboardHeight * -1, width: self.view.frame.width, height: self.view.frame.height)
+            })
+        }
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         questionTextView.resignFirstResponder()
         answerTextField.resignFirstResponder()
@@ -302,10 +377,16 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UINavig
         hint2TextField.resignFirstResponder()
         hint3TextField.resignFirstResponder()
         
+        UIView.animate(withDuration: 1, animations: {
+            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        })
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        UIView.animate(withDuration: 1, animations: {
+            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        })
         return true
     }
 }
