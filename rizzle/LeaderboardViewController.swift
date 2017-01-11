@@ -21,7 +21,12 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
         getGlobalLeaders()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        leaderImageVIew.layer.cornerRadius = leaderImageVIew.frame.size.height/2
     }
     
     func getGlobalLeaders() {
@@ -82,7 +87,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         if users.count > 0  {
             cell.positionLabel.text = String(indexPath.row + 2)
             cell.usernameLabel.text = users[indexPath.row + 1]["rizzleName"] as? String
-            cell.scoreLabel.text = users[indexPath.row + 1]["totalScore"] as? String
+            cell.scoreLabel.text = "\(users[indexPath.row + 1]["totalScore"] as? Int ?? 0)"
             
             //Load Image
             let imageFile = self.users[indexPath.row + 1]["userPhoto100"] as? PFFile
