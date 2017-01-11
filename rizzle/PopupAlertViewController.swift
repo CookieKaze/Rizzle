@@ -37,7 +37,7 @@ class PopupAlertViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         mainView.frame = CGRect(x: mainView.frame.origin.x, y: 0 - mainView.frame.size.height , width: mainView.frame.size.width, height: mainView.frame.size.height)
         self.mainView.isHidden = false
-        UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 20, options: UIViewAnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 10, options: UIViewAnimationOptions.curveEaseIn, animations: {
             //Main view animate in
             
             self.mainView.frame = CGRect(x: self.mainView.frame.origin.x, y: self.endPositionY!, width: self.mainView.frame.size.width, height: self.mainView.frame.size.height)

@@ -17,11 +17,18 @@ class MyRizzleViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         myRizzleTableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getMyRizzles()
+    }
+    
+    
+    func getMyRizzles() {
         guard let currentUser = PFUser.current() else{
             print("No current user")
             return
         }
-        
         //Get My Rizzles
         let query = PFQuery(className:"Rizzle")
         query.whereKey("user", equalTo: currentUser)

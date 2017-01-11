@@ -13,7 +13,6 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var rizzleNameField: UITextField!
-    @IBOutlet weak var statusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +42,10 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
                 
                 if objects.count > 0 {
                     // The find succeeded.
-                    self.statusLabel.text = "Username already exist"
+                    let alertView = PopupAlertViewController(nibName: "PopupAlertViewController", bundle: nil)
+                    alertView.bodyText = "Username already exist.\nPlease try again."
+                    self.present(alertView, animated: false, completion: nil)
+
                 } else {
                     currentUser["rizzleName"] = self.rizzleNameField.text
                     currentUser["weeklyScore"] = NSNumber(integerLiteral: 0)
@@ -54,14 +56,20 @@ class FirstTimeUserViewController: UIViewController, UITextFieldDelegate{
                                 let userDashboard = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userDashboard")
                                 self.present(userDashboard, animated: true, completion: nil)
                             } else {
-                                self.statusLabel.text = "Problem saving username. Please try again later."
+                                let alertView = PopupAlertViewController(nibName: "PopupAlertViewController", bundle: nil)
+                                alertView.bodyText = "Problem saving username.\nPlease try again later."
+                                self.present(alertView, animated: false, completion: nil)
+
                             }
                         }
                     })
                 }
             })
         }else {
-            self.statusLabel.text = "The username field cannot be blank"
+            let alertView = PopupAlertViewController(nibName: "PopupAlertViewController", bundle: nil)
+            alertView.bodyText = "Username field cannot be blank."
+            self.present(alertView, animated: false, completion: nil)
+
         }
     }
     
