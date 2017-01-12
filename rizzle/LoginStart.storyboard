@@ -147,12 +147,6 @@ community by the community</string>
                                     <action selector="saveNameTapped:" destination="AL7-LX-2N8" eventType="touchUpInside" id="Axu-W6-yG2"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2x-hX-SzZ">
-                                <rect key="frame" x="188" y="361.5" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69J-Wk-oFC">
                                 <rect key="frame" x="56" y="239" width="58" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -190,7 +184,6 @@ you a cool username</string>
                             <constraint firstAttribute="trailingMargin" secondItem="rxe-so-bfa" secondAttribute="trailing" constant="40" id="2f4-uX-MjK"/>
                             <constraint firstItem="69f-q8-tpu" firstAttribute="top" secondItem="rxe-so-bfa" secondAttribute="bottom" id="4cY-qo-uWs"/>
                             <constraint firstItem="rxe-so-bfa" firstAttribute="centerX" secondItem="LAJ-g9-3At" secondAttribute="centerX" id="9dB-el-cEy"/>
-                            <constraint firstItem="P2x-hX-SzZ" firstAttribute="top" secondItem="Jdw-bU-RXU" secondAttribute="bottom" constant="8" id="A6N-xl-noz"/>
                             <constraint firstItem="PWc-Wa-icl" firstAttribute="centerX" secondItem="LAJ-g9-3At" secondAttribute="centerX" id="MTh-OQ-oh7"/>
                             <constraint firstItem="69J-Wk-oFC" firstAttribute="top" secondItem="PWc-Wa-icl" secondAttribute="bottom" constant="45" id="PKm-sV-Tfk"/>
                             <constraint firstItem="PWc-Wa-icl" firstAttribute="leading" secondItem="LAJ-g9-3At" secondAttribute="leadingMargin" constant="20" id="XgV-8p-SnB"/>
@@ -199,7 +192,6 @@ you a cool username</string>
                             <constraint firstItem="Jdw-bU-RXU" firstAttribute="centerX" secondItem="LAJ-g9-3At" secondAttribute="centerX" id="b7c-Z2-dJU"/>
                             <constraint firstItem="Jdw-bU-RXU" firstAttribute="leading" secondItem="LAJ-g9-3At" secondAttribute="leadingMargin" constant="40" id="bNK-aA-XSQ"/>
                             <constraint firstItem="Jdw-bU-RXU" firstAttribute="centerY" secondItem="LAJ-g9-3At" secondAttribute="centerY" id="bdS-Ko-QUR"/>
-                            <constraint firstItem="P2x-hX-SzZ" firstAttribute="centerX" secondItem="LAJ-g9-3At" secondAttribute="centerX" id="oix-Qe-jqI"/>
                             <constraint firstItem="Jdw-bU-RXU" firstAttribute="top" secondItem="rxe-so-bfa" secondAttribute="bottom" constant="30" id="tG9-pd-PVh"/>
                             <constraint firstItem="rxe-so-bfa" firstAttribute="leading" secondItem="LAJ-g9-3At" secondAttribute="leadingMargin" constant="40" id="uJu-hM-z90"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jdw-bU-RXU" secondAttribute="trailing" constant="40" id="vAS-tq-W7j"/>
@@ -210,7 +202,6 @@ you a cool username</string>
                     </view>
                     <connections>
                         <outlet property="rizzleNameField" destination="rxe-so-bfa" id="Mhm-g7-DAG"/>
-                        <outlet property="statusLabel" destination="P2x-hX-SzZ" id="Kpy-TL-g5G"/>
                         <outlet property="usernameLabel" destination="69J-Wk-oFC" id="5fN-SB-97Q"/>
                     </connections>
                 </viewController>

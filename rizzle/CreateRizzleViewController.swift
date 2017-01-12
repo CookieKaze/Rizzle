@@ -216,14 +216,14 @@ class CreateRizzleViewController: UIViewController, UITextFieldDelegate, UITextV
             rizzle["difficultyLevel"] = Int(difficultyLabel.text!)
             
             if imageView.image != nil {
-                if resizeWith(image: imageView.image!, width: 1024) != nil && (imageView.image?.size.width)! > CGFloat(1024) {
-                    guard let imageData = UIImageJPEGRepresentation(resizeWith(image: imageView.image!, width: 1024)!, 0.75) else {
-                        print("Image cannot be converted to data. Image not stored.")
-                        return
-                    }
-                    let imageFile = PFFile(name:"rizzleImage.jpeg", data:imageData)
-                    rizzle["imageFile"] = imageFile
+                //                if resizeWith(image: imageView.image!, width: 1024) != nil && (imageView.image?.size.width)! > CGFloat(1024) {
+                guard let imageData = UIImageJPEGRepresentation(imageView.image!, 0.75) else {
+                    print("Image cannot be converted to data. Image not stored.")
+                    return
                 }
+                let imageFile = PFFile(name:"rizzleImage.jpeg", data:imageData)
+                rizzle["imageFile"] = imageFile
+                //                }
             } else {
                 rizzle.remove(forKey:"imageFile")
             }

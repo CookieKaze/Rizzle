@@ -17,6 +17,7 @@ class MyRizzleViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         myRizzleTableView.separatorStyle = .none
+        getMyRizzles()
     }
     
     override func viewWillAppear(_ animated: Bool) {
