@@ -79,6 +79,12 @@ class ContinueRizzleViewController: UIViewController, UITableViewDelegate, UITab
             let tracker = incompleteRizzleTrackers[indexPath.row]
             let rizzle = tracker.object(forKey: "rizzle") as! PFObject
             cell.titleLabel.text = rizzle.object(forKey: "title") as? String
+            cell.questionLabel.text = rizzle.object(forKey: "question") as? String
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 71/255, alpha: 1)
+            }else {
+                cell.backgroundColor = UIColor(red: 255/255, green: 163/255, blue: 0/255, alpha: 1)
+            }
         } else {
             cell.titleLabel.text = "No incomplete Rizzle found"
         }
@@ -92,6 +98,10 @@ class ContinueRizzleViewController: UIViewController, UITableViewDelegate, UITab
             solveRizzleView.continueRizzleTrackerPF = incompleteRizzleTrackers[indexPath.row]
             present(solveRizzleView, animated: true, completion: nil)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
     }
     
     @IBAction func backToDashTapped(_ sender: UIButton) {

@@ -10,7 +10,9 @@ import UIKit
 
 class ContinueRizzleCell: UITableViewCell {
 
+    
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var questionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
