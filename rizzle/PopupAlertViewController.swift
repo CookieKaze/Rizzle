@@ -46,6 +46,13 @@ class PopupAlertViewController: UIViewController {
         }
     }
     
+    @IBAction func mainViewTapped(_ sender: UITapGestureRecognizer) {
+    }
+    
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func alertButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }

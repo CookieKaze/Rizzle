@@ -87,6 +87,7 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="qIM-jS-w0h" firstAttribute="top" secondItem="g3N-28-lf1" secondAttribute="bottom" constant="20" id="2lq-uy-Mr5"/>
                         <constraint firstItem="Ecx-1x-sRT" firstAttribute="centerY" secondItem="KQZ-FR-Yu5" secondAttribute="centerY" id="Flg-FL-dq6"/>
@@ -100,9 +101,13 @@
                         <constraint firstAttribute="trailing" secondItem="Ecx-1x-sRT" secondAttribute="trailing" constant="30" id="jUr-RA-sTT"/>
                         <constraint firstItem="qIM-jS-w0h" firstAttribute="centerX" secondItem="KQZ-FR-Yu5" secondAttribute="centerX" id="vQN-lx-ZNE"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="nAE-Ah-5Oa" appends="YES" id="FvF-7e-CrP"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="KQZ-FR-Yu5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="20" id="FH0-xX-Wqv"/>
                 <constraint firstItem="KQZ-FR-Yu5" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="FS2-49-cad"/>
@@ -110,6 +115,19 @@
                 <constraint firstAttribute="trailingMargin" secondItem="KQZ-FR-Yu5" secondAttribute="trailing" constant="20" id="ozg-ku-aaX"/>
                 <constraint firstItem="KQZ-FR-Yu5" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.35" id="tNe-YO-cjH"/>
             </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="moz-wO-XwZ" appends="YES" id="yhf-oL-fkn"/>
+            </connections>
         </view>
+        <tapGestureRecognizer id="moz-wO-XwZ">
+            <connections>
+                <action selector="viewTapped:" destination="-1" id="KZP-ei-1wc"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="nAE-Ah-5Oa">
+            <connections>
+                <action selector="mainViewTapped:" destination="-1" id="otN-Uo-lUk"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

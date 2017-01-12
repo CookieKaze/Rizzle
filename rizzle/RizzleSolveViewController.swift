@@ -62,10 +62,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         
         //Show loading
         loadingView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        loadingView.backgroundColor = UIColor.black
+        loadingView.backgroundColor = UIColor.white
         view.addSubview(loadingView)
         
-        let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+        let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         loadingIndicator.center = view.center
         loadingIndicator.startAnimating()
         loadingView.addSubview(loadingIndicator)
@@ -128,14 +128,18 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             if rizzle.image != nil {
                 self.rizzleImage.image = rizzle.image!
             } else {
-                self.rizzleImage.removeFromSuperview()
+                if self.rizzleImage != nil {
+                 self.rizzleImage.removeFromSuperview()   
+                }
             }
             
             self.answerViewController?.turnAnswerIntoWordViews(answer: rizzle.answer)
             self.letterBankCollectionView.reloadData()
             
             UIView.animate(withDuration: 1, animations: {
-                self.loadingView.frame = CGRect(x: self.view.frame.width, y: 0, width: self.loadingView.frame.width, height: self.loadingView.frame.height)
+            self.loadingView.alpha = 0
+            }, completion: { (success) in
+                self.loadingView.isHidden = true
             })
         }
         getCompleteViewData()
@@ -253,10 +257,10 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
             break
         case "BLANK":
             //Cells can't be blank, show alert
-            let blankAlertMessageController = UIAlertController(title: "Blank Answer", message: "Please fill in all answer blocks and try again.", preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default)
-            blankAlertMessageController.addAction(okAction)
-            present(blankAlertMessageController, animated: true, completion: nil)
+            let alertView = PopupAlertViewController(nibName: "PopupAlertViewController", bundle: nil)
+            alertView.bodyText = "Please fill in all answer blocks and try again."
+            self.present(alertView, animated: false, completion: nil)
+
             break
         case "CORRECT":
             rizzleManager.correctGuess()

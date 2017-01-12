@@ -37,8 +37,8 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     
     //MARK: Answer Handle
     func turnAnswerIntoWordViews(answer: String) {
-        let maxBlockHeight: CGFloat = 30
-        let blockPadding = CGFloat(5)
+        let maxBlockHeight: CGFloat = 35
+        let blockPadding = CGFloat(3)
         
         //Convert string to word array
         let wordArray = answer.components(separatedBy: " ")
@@ -69,7 +69,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
                     position: positionCount,
                     delegate: self)
                 
-                blockvView.backgroundColor = UIColor.lightGray
+                blockvView.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
                 parentView.addSubview(blockvView)
                 answerLetterBlocksArray.append(blockvView)
                 positionCount += 1
@@ -114,6 +114,10 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         return cellSize
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        collectionView.contentInset.top = max((collectionView.frame.height - collectionView.contentSize.height) / 2, 0) - 5
+    }
+    
     //Take letter from letterbank and pass it to current answer cell
     func passLetterToCell (letter: String) -> Bool {
         var shouldRemoveLetterFrombank = true
@@ -122,14 +126,13 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
         if letterIndexTracker < answerLetterBlocksArray.count {
             if lastCellView?.letterLabel.text == "" || lastCellView?.letterLabel.text == nil {
                 lastCellView?.letterLabel.text = letter
-                lastCellView?.layer.borderWidth = 0
+                lastCellView?.imageView?.image = UIImage(named: letter)
                 letterIndexTracker += 1
                 if letterIndexTracker == answerLetterBlocksArray.count {
                     letterIndexTracker -= 1
                 }else {
                     lastCellView = answerLetterBlocksArray[letterIndexTracker]
-                    lastCellView?.layer.borderWidth = 1
-                    lastCellView?.layer.borderColor = UIColor.red.cgColor
+                    lastCellView?.backgroundColor = UIColor(red: 255/255, green: 198/255, blue: 119/255, alpha: 1)
                 }
             }else {
                 shouldRemoveLetterFrombank = false
@@ -143,7 +146,7 @@ class RizzleAnswerViewController: UIViewController, UICollectionViewDataSource, 
     func updateTracker(currentTracker: Int, lastCellView: RizzleAnswerCollectionViewCell) {
         letterIndexTracker = currentTracker
         if self.lastCellView != nil {
-            self.lastCellView?.layer.borderWidth = 0
+            self.lastCellView?.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         }
         self.lastCellView = lastCellView
         

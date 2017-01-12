@@ -12,7 +12,10 @@ class HintView: UIView {
     //MARK: Properties
     let rizzleManager = RizzleManager.sharedInstance
     var currentHintView: Int = 1
-
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var iconOutterCircle: UIView!
+    @IBOutlet weak var iconInnerCircle: UIView!
+    
     @IBOutlet weak var hintLabel: UILabel!
     @IBOutlet weak var remainingScoreLabel: UILabel!
     @IBOutlet weak var lockedHintView: UIView!
@@ -47,6 +50,9 @@ class HintView: UIView {
         
         //Check if the first hint is unlocked
         hintButtonTapped(hint1)
+        //Round Alert Icon
+        iconOutterCircle.layer.cornerRadius = iconOutterCircle.frame.size.height/2
+        iconInnerCircle.layer.cornerRadius = iconInnerCircle.frame.size.height/2
     }
     
     func setRemainingScore() {
@@ -147,6 +153,15 @@ class HintView: UIView {
     }
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 1, animations: {
+            self.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: self.frame.height)
+        },completion: { (success) in
+            self.isHidden = true
+        })
+    }
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+    }
+    @IBAction func bgTapped(_ sender: UITapGestureRecognizer) {
         UIView.animate(withDuration: 1, animations: {
             self.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: self.frame.height)
         },completion: { (success) in
