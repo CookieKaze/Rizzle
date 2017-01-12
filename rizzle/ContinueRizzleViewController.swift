@@ -23,6 +23,7 @@ class ContinueRizzleViewController: UIViewController, UITableViewDelegate, UITab
             return
         }
         self.currentUser = currentUser
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,8 +86,6 @@ class ContinueRizzleViewController: UIViewController, UITableViewDelegate, UITab
             }else {
                 cell.backgroundColor = UIColor(red: 255/255, green: 163/255, blue: 0/255, alpha: 1)
             }
-        } else {
-            cell.titleLabel.text = "No incomplete Rizzle found"
         }
         return cell
     }

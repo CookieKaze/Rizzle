@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TBd-H3-FgB" id="Da4-O6-roc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVM-sn-Rxd">
@@ -161,7 +161,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Tai-ky-2rD" customClass="RizzleLetterCell" customModule="rizzle" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="3.5" width="48" height="50"/>
+                                        <rect key="frame" x="0.0" y="3" width="48" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="48" height="50"/>
@@ -327,7 +327,6 @@
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BYF-vZ-xZz">
                                         <rect key="frame" x="30" y="87" width="295" height="173"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" white="0.36708369270000002" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -474,7 +473,7 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6da-13-rGc">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="302"/>
+                                        <rect key="frame" x="0.0" y="302" width="355" height="204"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qVl-tn-6Ea">
                                                 <rect key="frame" x="167" y="141" width="20" height="20"/>
@@ -532,7 +531,7 @@
                         <outlet property="commentTextField" destination="nq1-Ue-cuX" id="hi2-nI-1zQ"/>
                         <outlet property="creatorImageView" destination="BpW-E3-1IR" id="kRI-k4-TfE"/>
                         <outlet property="creatorUsernameLabel" destination="0ea-fZ-PhM" id="Gly-LX-Z20"/>
-                        <outlet property="explainationTextView" destination="BYF-vZ-xZz" id="bUs-tD-1fo"/>
+                        <outlet property="explanationTextView" destination="BYF-vZ-xZz" id="qdn-Dh-yhG"/>
                         <outlet property="iconInnerCircle" destination="vUj-Nr-llx" id="DbK-Jy-tt2"/>
                         <outlet property="iconOutterCircle" destination="sph-D9-HUA" id="mPC-of-clP"/>
                         <outlet property="loadingView" destination="6da-13-rGc" id="j8G-V0-lil"/>

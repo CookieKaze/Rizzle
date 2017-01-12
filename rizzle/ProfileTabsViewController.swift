@@ -23,6 +23,7 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
     var rizzlesCompleted = [PFObject]()
     var displayTab = "userRizzles"
     
+    @IBOutlet weak var tabLoadingVIew: UIView!
     @IBOutlet weak var rizzleMarker: UIView!
     @IBOutlet weak var followingMarker: UIView!
     @IBOutlet weak var followerMarker: UIView!
@@ -132,6 +133,11 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
             self.displayTab = "userRizzles"
             self.tableView.reloadData()
             print("view done setting up")
+            UIView.animate(withDuration: 1, animations: {
+                self.tabLoadingVIew.alpha = 0
+            }, completion: { (success) in
+                self.tabLoadingVIew.isHidden = true
+            })
         }
     }
     

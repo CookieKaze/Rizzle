@@ -53,17 +53,16 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5l-uo-sa1">
                                     <rect key="frame" x="5" y="5" width="91" height="91"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74h-xJ-1pv">
-                                            <rect key="frame" x="36" y="15.5" width="19" height="60"/>
-                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="50"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightbulbIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Di4-sQ-KqI">
+                                            <rect key="frame" x="20" y="20" width="51" height="51"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96862745100000003" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="74h-xJ-1pv" firstAttribute="centerY" secondItem="T5l-uo-sa1" secondAttribute="centerY" id="8nB-Sa-SdS"/>
-                                        <constraint firstItem="74h-xJ-1pv" firstAttribute="centerX" secondItem="T5l-uo-sa1" secondAttribute="centerX" id="sWo-NT-Ap5"/>
+                                        <constraint firstAttribute="bottom" secondItem="Di4-sQ-KqI" secondAttribute="bottom" constant="20" id="NEk-jc-bk4"/>
+                                        <constraint firstAttribute="trailing" secondItem="Di4-sQ-KqI" secondAttribute="trailing" constant="20" id="X3H-TT-Tsk"/>
+                                        <constraint firstItem="Di4-sQ-KqI" firstAttribute="leading" secondItem="T5l-uo-sa1" secondAttribute="leading" constant="20" id="zPn-mK-q8Z"/>
+                                        <constraint firstItem="Di4-sQ-KqI" firstAttribute="top" secondItem="T5l-uo-sa1" secondAttribute="top" constant="20" id="zpD-F9-SuZ"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -254,4 +253,7 @@ from your final score.</string>
             </connections>
         </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="lightbulbIcon" width="512" height="512"/>
+    </resources>
 </document>

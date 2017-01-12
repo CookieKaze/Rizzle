@@ -12,7 +12,6 @@ import Parse
 class UserDashboardViewController: UIViewController {
     //MARK: Properties
     var rizzleManager: RizzleManager!
-    
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var myRizzleButton: UIButton!
     @IBOutlet weak var ProfileButton: UIButton!
@@ -48,6 +47,19 @@ class UserDashboardViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+            if PFUser.current()?["userPhoto"] != nil {
+                let userImageFile = PFUser.current()?["userPhoto"] as! PFFile
+                userImageFile.getDataInBackground(block: { (imageData, error) in
+                    if error == nil {
+                        if let imageData = imageData {
+                            self.userImageView.image = UIImage(data: imageData)
+                        }
+                    }
+                })
+            }else {
+                self.userImageView.image = UIImage(named: "defaultProfileImage")
+            }
+        
         menuView.isHidden = true
         menuView.frame = CGRect(x: menuView.frame.origin.x - menuView.frame.width, y: menuView.frame.origin.y, width: menuView.frame.size.width, height: menuView.frame.size.height)
     }

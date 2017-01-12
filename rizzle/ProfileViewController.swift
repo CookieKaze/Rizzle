@@ -69,8 +69,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                     //Setup follow button
                     if self.subscription?["active"] as! Bool == false {
                         self.followButton.setTitle("Follow", for: .normal)
+                        self.followButton.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 71/255, alpha: 1)
                     } else {
                         self.followButton.setTitle("Unfollow", for: .normal)
+                        self.followButton.backgroundColor = UIColor.gray
                     }
                 }else {
                     //Create new subscription record
@@ -82,8 +84,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                         //Setup follow button
                         if self.subscription?["active"] as! Bool == false {
                             self.followButton.setTitle("Follow", for: .normal)
+                            self.followButton.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 71/255, alpha: 1)
                         } else {
                             self.followButton.setTitle("Unfollow", for: .normal)
+                            self.followButton.backgroundColor = UIColor.gray
                         }
                     })
                 }
@@ -95,9 +99,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         if sender.titleLabel?.text == "Follow" {
             sender.setTitle("Unfollow", for: .normal)
             self.subscription?["active"] = true
+            self.followButton.backgroundColor = UIColor.gray
         } else {
             sender.setTitle("Follow", for: .normal)
             self.subscription?["active"] = false
+            self.followButton.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 71/255, alpha: 1)
         }
         self.subscription?.saveInBackground()
     }

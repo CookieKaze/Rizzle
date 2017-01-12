@@ -18,6 +18,7 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     let letterBankLimit = 12
     
     //Rizzle Solve View
+    var creator: PFUser?
     var rizzle: Rizzle?
     var currentUser: PFUser!
     let rizzleManager = RizzleManager.sharedInstance
@@ -44,7 +45,6 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var difficultyLevelLabel: UILabel!
     
     //Complete View
-    var creator: PFUser?
     var creatorImage: UIImage?
     var creatorUsername: String?
     @IBOutlet weak var explanationView: UITextView!
@@ -79,6 +79,8 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         } else {
             rizzleManager.continueRizzle(rizzle: continueRizzlePF!, tracker: continueRizzleTrackerPF!)
         }
+        
+        
     }
     
     func getCompleteViewData() {
@@ -169,6 +171,9 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
     
     func noRizzleDismiss() {
         dismiss(animated: true, completion: nil)
+        let alertView = PopupAlertViewController(nibName: "PopupAlertViewController", bundle: nil)
+        alertView.bodyText = "Cannot find any new Rizzle\nPlease check back later."
+        self.present(alertView, animated: false, completion: nil)
     }
     
     //MARK: Letter Bank Data Source
@@ -190,6 +195,11 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         if segue.identifier == "answerView" {
             answerViewController = segue.destination as? RizzleAnswerViewController
             answerViewController?.delegate = self
+        }else if segue.identifier == "toCorrectView" {
+            let destination = segue.destination as! RizzleCorrectViewController
+            destination.creatorName = creatorUsername
+            destination.creatorImage = creatorImage
+            destination.creator = creator
         }
     }
     
@@ -254,6 +264,9 @@ class RizzleSolveViewController: UIViewController, UICollectionViewDelegate, UIC
         case "INCORRECT":
             rizzleManager.incorrectGuess()
             setCurrentScore()
+            let alertView = PopupAlertViewController(nibName: "PopupAlertViewController", bundle: nil)
+            alertView.bodyText = "Incorrect answer!\n\(rizzleManager.incorrectScoreDeduction * rizzleManager.difficultyLevel) points were deducted from your score."
+            self.present(alertView, animated: false, completion: nil)
             break
         case "BLANK":
             //Cells can't be blank, show alert

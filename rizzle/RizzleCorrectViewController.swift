@@ -14,6 +14,8 @@ import HCSStarRatingView
 class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var creator: PFUser?
+    var creatorImage: UIImage?
+    var creatorName: String?
     let rizzleManager = RizzleManager.sharedInstance
     var rizzlePF: PFObject?
     var rizzle: Rizzle?
@@ -23,7 +25,7 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var creatorImageView: UIImageView!
     @IBOutlet weak var creatorUsernameLabel: UILabel!
-    @IBOutlet weak var explainationTextView: UITextView!
+    @IBOutlet weak var explanationTextView: UITextView!
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var iconOutterCircle: UIView!
@@ -39,9 +41,17 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
         creatorImageView.layer.cornerRadius = creatorImageView.frame.size.height/2
         rizzle = rizzleManager.currentRizzle
         rizzlePF = rizzleManager.currentRizzlePFObject
+        explanationTextView.text = rizzlePF?["explanation"] as! String
         
         commentTableView.rowHeight = UITableViewAutomaticDimension
         commentTableView.estimatedRowHeight = 60
+        
+        if creatorImage == nil {
+            self.creatorImageView.image = UIImage(named: "defaultProfileImage")
+        }else {
+            self.creatorImageView.image = creatorImage!
+        }
+        self.creatorUsernameLabel.text = creatorName
         
         setupView()
         //setupRating()
@@ -49,38 +59,11 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func setupView() {
-        let completeViewQueue = DispatchQueue(label: "completeViewQueue", qos: .utility)
-        explainationTextView.text = rizzle?.explanation
-        completeViewQueue.async {
-            do {
-                guard let rizzle = self.rizzle else {
-                    return
-                }
-                let creator = try rizzle.creator.fetch()
-                self.creator = creator
-                //Try getting user image
-                guard let userImageFile = creator["userPhoto100"] as? PFFile else {
-                    return
-                }
-                userImageFile.getDataInBackground(block: { (imageData, error) in
-                    if error == nil {
-                        if let imageData = imageData {
-                            DispatchQueue.main.async {
-                                self.creatorImageView.image = UIImage(data: imageData)
-                                self.creatorUsernameLabel.text = creator["rizzleName"] as? String
-                            }
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.creatorImageView.image = UIImage(named: "defaultProfileImage")
-                            self.creatorUsernameLabel.text = creator["rizzleName"] as? String
-                        }
-                    }
-                })
-                self.getComments()
-            }
-            catch {}
+        let commentViewQueue = DispatchQueue(label: "commentViewQueue", qos: .utility)
+        commentViewQueue.sync {
+            self.getComments()
         }
+        
     }
     
     //    func setupRating() {
@@ -113,18 +96,23 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
                         self.commentTableView.reloadData()
                     }
                 }
-                UIView.animate(withDuration: 1, animations: {
-                    self.loadingView.alpha = 0
-                }, completion: { (success) in
-                    self.loadingView.isHidden = true
-                })
             }
             catch {
                 print("Problem finding comments: \(error)")
             }
+            DispatchQueue.main.async {
+                self.dismissLoadingView()
+            }
         }
     }
     
+    func dismissLoadingView() {
+        UIView.animate(withDuration: 1, animations: {
+            self.loadingView.alpha = 0
+        }, completion: { (success) in
+            self.loadingView.isHidden = true
+        })
+    }
     @IBAction func commentSubmitTapped(_ sender: UIButton) {
         commentTextField.resignFirstResponder()
         view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
@@ -180,7 +168,7 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
         }
         return cell
     }
-
+    
     //MARK: Keyboard controls
     func keyboardWillAppear(sender: NSNotification) {
         let userInfo = sender.userInfo!
@@ -190,7 +178,7 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-   
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -209,7 +197,9 @@ class RizzleCorrectViewController: UIViewController, UITableViewDelegate, UITabl
         let storyboard = UIStoryboard(name: "User", bundle: nil)
         let navController = storyboard.instantiateViewController(withIdentifier: "ProfileNavController") as! UINavigationController
         let viewController = storyboard.instantiateViewController(withIdentifier: "userProfile") as! ProfileViewController
-        viewController.displayUser = creator!
+        if creator != nil {
+            viewController.displayUser = creator!
+        }
         navController.viewControllers[0] = viewController
         present(navController, animated: true, completion: nil)
         

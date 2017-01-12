@@ -1707,6 +1707,19 @@ an image add it below</string>
                                     <constraint firstAttribute="height" constant="1" id="NTe-wQ-thG"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmt-Zp-8I7">
+                                <rect key="frame" x="0.0" y="1" width="375" height="371"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="z85-Iz-uYd">
+                                        <rect key="frame" x="177" y="175.5" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="z85-Iz-uYd" firstAttribute="centerY" secondItem="dmt-Zp-8I7" secondAttribute="centerY" id="Itu-I3-01k"/>
+                                    <constraint firstItem="z85-Iz-uYd" firstAttribute="centerX" secondItem="dmt-Zp-8I7" secondAttribute="centerX" id="RqC-pp-CkF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1723,14 +1736,18 @@ an image add it below</string>
                             <constraint firstItem="HEW-T7-rNi" firstAttribute="top" secondItem="l7F-jI-rT9" secondAttribute="bottom" id="Te7-3w-iLe"/>
                             <constraint firstAttribute="bottom" secondItem="6Fx-tz-sGe" secondAttribute="bottom" id="UuP-7k-FtW"/>
                             <constraint firstItem="5c1-o0-CyB" firstAttribute="width" secondItem="0li-FD-FEm" secondAttribute="width" multiplier="0.25" id="WHc-Z6-bW8"/>
+                            <constraint firstItem="dmt-Zp-8I7" firstAttribute="top" secondItem="h38-kd-FyH" secondAttribute="bottom" id="Yeo-G6-2pk"/>
                             <constraint firstItem="l7F-jI-rT9" firstAttribute="width" secondItem="0li-FD-FEm" secondAttribute="width" multiplier="0.25" id="cF9-3z-v1D"/>
                             <constraint firstItem="6Fx-tz-sGe" firstAttribute="leading" secondItem="0li-FD-FEm" secondAttribute="leading" id="cZD-a4-ltk"/>
                             <constraint firstItem="Jq0-yQ-ZhC" firstAttribute="top" secondItem="gYm-ZO-p5w" secondAttribute="bottom" id="e16-Uq-n3U"/>
                             <constraint firstItem="h38-kd-FyH" firstAttribute="leading" secondItem="0li-FD-FEm" secondAttribute="leading" id="g0J-MO-x3b"/>
                             <constraint firstItem="v9D-km-g8W" firstAttribute="leading" secondItem="0li-FD-FEm" secondAttribute="leading" id="g81-Tq-vkH"/>
                             <constraint firstAttribute="trailing" secondItem="l7F-jI-rT9" secondAttribute="trailing" id="g8l-g4-NfG"/>
+                            <constraint firstAttribute="trailing" secondItem="dmt-Zp-8I7" secondAttribute="trailing" id="huD-ea-AI2"/>
                             <constraint firstItem="v9D-km-g8W" firstAttribute="top" secondItem="gYm-ZO-p5w" secondAttribute="bottom" id="ivu-vP-ebN"/>
                             <constraint firstItem="Jq0-yQ-ZhC" firstAttribute="leading" secondItem="v9D-km-g8W" secondAttribute="trailing" id="lL7-oj-1fJ"/>
+                            <constraint firstItem="dmt-Zp-8I7" firstAttribute="leading" secondItem="0li-FD-FEm" secondAttribute="leading" id="mqd-ov-cBx"/>
+                            <constraint firstItem="ARm-Dd-Lcb" firstAttribute="top" secondItem="dmt-Zp-8I7" secondAttribute="bottom" id="wbJ-la-uqh"/>
                             <constraint firstItem="v9D-km-g8W" firstAttribute="width" secondItem="0li-FD-FEm" secondAttribute="width" multiplier="0.25" id="zyo-hU-seN"/>
                         </constraints>
                     </view>
@@ -1743,6 +1760,7 @@ an image add it below</string>
                         <outlet property="followingMarker" destination="2aN-qQ-sBJ" id="9M5-RH-Ow6"/>
                         <outlet property="rizzleLabel" destination="WnF-9Q-EqL" id="4sa-kJ-9Jn"/>
                         <outlet property="rizzleMarker" destination="g1d-47-tnL" id="grf-qy-1Mk"/>
+                        <outlet property="tabLoadingVIew" destination="dmt-Zp-8I7" id="Kwo-nO-DNb"/>
                         <outlet property="tableView" destination="6Fx-tz-sGe" id="ZSv-b8-qHl"/>
                     </connections>
                 </viewController>
@@ -1775,7 +1793,7 @@ an image add it below</string>
             <objects>
                 <navigationController storyboardIdentifier="ProfileNavController" automaticallyAdjustsScrollViewInsets="NO" id="LGC-Vn-Nyx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zUR-BR-BkZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zUR-BR-BkZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.36708369270000002" alpha="1" colorSpace="calibratedWhite"/>
