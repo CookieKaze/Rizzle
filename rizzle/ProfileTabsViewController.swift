@@ -23,6 +23,11 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
     var rizzlesCompleted = [PFObject]()
     var displayTab = "userRizzles"
     
+    @IBOutlet weak var rizzleMarker: UIView!
+    @IBOutlet weak var followingMarker: UIView!
+    @IBOutlet weak var followerMarker: UIView!
+    @IBOutlet weak var completedMarker: UIView!
+    
     @IBOutlet weak var rizzleLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
@@ -34,6 +39,7 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
         if displayUser != nil {
             getTableData()
         }
+        tableView.separatorStyle = .none
     }
     
     //MARK: Data Setup
@@ -122,7 +128,7 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
             self.followersLabel.text = String(self.userFollowers.count)
             self.followingLabel.text = String(self.userFollowings.count)
             self.completedLabel.text = String(self.rizzlesCompleted.count)
-            self.rizzleLabel.backgroundColor = UIColor.orange
+            self.rizzleMarker.backgroundColor = UIColor.orange
             self.displayTab = "userRizzles"
             self.tableView.reloadData()
             print("view done setting up")
@@ -132,34 +138,34 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
     //MARK: Gesture Handler
     @IBAction func userRizzleTabTapped(_ sender: UITapGestureRecognizer) {
         resetTabColors()
-        rizzleLabel.backgroundColor = UIColor.orange
+        rizzleMarker.backgroundColor = UIColor.orange
         displayTab = "userRizzles"
         tableView.reloadData()
     }
     @IBAction func userFollowingTabTapped(_ sender: UITapGestureRecognizer) {
         resetTabColors()
-        followingLabel.backgroundColor = UIColor.orange
+        followingMarker.backgroundColor = UIColor.orange
         displayTab = "userFollowings"
         tableView.reloadData()
     }
     @IBAction func userFollowersTabTapped(_ sender: UITapGestureRecognizer) {
         resetTabColors()
-        followersLabel.backgroundColor = UIColor.orange
+        followerMarker.backgroundColor = UIColor.orange
         displayTab = "userFollowers"
         tableView.reloadData()
     }
     @IBAction func userCompletedTabTapped(_ sender: UITapGestureRecognizer) {
         resetTabColors()
-        completedLabel.backgroundColor = UIColor.orange
+        completedMarker.backgroundColor = UIColor.orange
         displayTab = "userCompleted"
         tableView.reloadData()
     }
     
     func resetTabColors() {
-        rizzleLabel.backgroundColor = UIColor.lightGray
-        followingLabel.backgroundColor = UIColor.lightGray
-        followersLabel.backgroundColor = UIColor.lightGray
-        completedLabel.backgroundColor = UIColor.lightGray
+        rizzleMarker.backgroundColor = UIColor.white
+        followerMarker.backgroundColor = UIColor.white
+        followingMarker.backgroundColor = UIColor.white
+        completedMarker.backgroundColor = UIColor.white
     }
     
     //MARK: TableView DataSource
@@ -194,44 +200,75 @@ class ProfileTabsViewController: UIViewController, UITableViewDelegate, UITableV
             let rizzle = userRizzles[indexPath.row]
             let rizzleCell = tableView.dequeueReusableCell(withIdentifier: "rizzleCell", for: indexPath) as! ProfileRizzleTableViewCell
             rizzleCell.rizzleTitleLabel.text = rizzle["title"] as? String
+            if indexPath.row % 2 == 0 {
+                rizzleCell.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 71/255, alpha: 1)
+            }else {
+                rizzleCell.backgroundColor = UIColor(red: 255/255, green: 163/255, blue: 0/255, alpha: 1)
+            }
+            
             return rizzleCell
             
         }else if displayTab == "userCompleted" && rizzlesCompleted.count != 0 {
             let rizzle = rizzlesCompleted[indexPath.row]
             let rizzleCell = tableView.dequeueReusableCell(withIdentifier: "rizzleCell", for: indexPath) as! ProfileRizzleTableViewCell
             rizzleCell.rizzleTitleLabel.text = rizzle["title"] as? String
+            if indexPath.row % 2 == 0 {
+                rizzleCell.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 71/255, alpha: 1)
+            }else {
+                rizzleCell.backgroundColor = UIColor(red: 255/255, green: 163/255, blue: 0/255, alpha: 1)
+            }
+            
             return rizzleCell
             
         }else if displayTab == "userFollowings" && userFollowings.count != 0 {
             let user = userFollowings[indexPath.row]
             let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileUserTableViewCell
             profileCell.usernameLabel.text = user["rizzleName"] as? String
-            let userImageFile = user["userPhoto100"] as! PFFile
-            userImageFile.getDataInBackground(block: { (imageData, error) in
-                if error == nil {
-                    if let imageData = imageData {
-                        profileCell.userImageView.image = UIImage(data: imageData)
+            if user["userPhoto100"] != nil {
+                let userImageFile = user["userPhoto100"] as! PFFile
+                userImageFile.getDataInBackground(block: { (imageData, error) in
+                    if error == nil {
+                        if let imageData = imageData {
+                            profileCell.userImageView.image = UIImage(data: imageData)
+                        }
                     }
-                }else {
-                    profileCell.userImageView.image = UIImage(named: "defaultProfileImage")
-                }
-            })
+                })
+            }else {
+                profileCell.userImageView.image = UIImage(named: "defaultProfileImage")
+                
+            }
+            
+            if indexPath.row % 2 == 0 {
+                profileCell.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 71/255, alpha: 1)
+            }else {
+                profileCell.backgroundColor = UIColor(red: 255/255, green: 163/255, blue: 0/255, alpha: 1)
+            }
+            
             return profileCell
             
         }else if  displayTab == "userFollowers" && userFollowers.count != 0 {
             let user = userFollowers[indexPath.row]
             let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileUserTableViewCell
             profileCell.usernameLabel.text = user["rizzleName"] as? String
-            let userImageFile = user["userPhoto100"] as! PFFile
-            userImageFile.getDataInBackground(block: { (imageData, error) in
-                if error == nil {
-                    if let imageData = imageData {
-                        profileCell.userImageView.image = UIImage(data: imageData)
+            if user["userPhoto100"] != nil {
+                let userImageFile = user["userPhoto100"] as! PFFile
+                userImageFile.getDataInBackground(block: { (imageData, error) in
+                    if error == nil {
+                        if let imageData = imageData {
+                            profileCell.userImageView.image = UIImage(data: imageData)
+                        }
                     }
-                }else {
-                    profileCell.userImageView.image = UIImage(named: "defaultProfileImage")
-                }
-            })
+                })
+            }else {
+                profileCell.userImageView.image = UIImage(named: "defaultProfileImage")
+            }
+            
+            if indexPath.row % 2 == 0 {
+                profileCell.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 71/255, alpha: 1)
+            }else {
+                profileCell.backgroundColor = UIColor(red: 255/255, green: 163/255, blue: 0/255, alpha: 1)
+            }
+            
             return profileCell
             
         }else {
