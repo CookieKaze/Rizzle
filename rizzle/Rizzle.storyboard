@@ -472,8 +472,8 @@
                                             <outlet property="delegate" destination="8H1-Uv-ImJ" id="P0v-ky-bP3"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6da-13-rGc">
-                                        <rect key="frame" x="0.0" y="302" width="355" height="204"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6da-13-rGc">
+                                        <rect key="frame" x="0.0" y="275" width="355" height="302"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qVl-tn-6Ea">
                                                 <rect key="frame" x="167" y="141" width="20" height="20"/>
