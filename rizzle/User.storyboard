@@ -645,7 +645,7 @@ New Rizzle</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createRizzleTapped:" destination="uu4-5P-s2Z" eventType="touchUpInside" id="uvK-vW-ZFf"/>
+                                    <segue destination="URS-5V-Dzi" kind="show" id="InK-pa-x6L"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -665,7 +665,6 @@ New Rizzle</string>
                     </view>
                     <connections>
                         <outlet property="myRizzleTableView" destination="KcL-wE-Qbr" id="dxb-Vr-9Lv"/>
-                        <segue destination="kui-hX-62V" kind="show" identifier="createEditRizzle" id="ugK-Ef-S5M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Pr-Db-413" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1376,7 +1375,7 @@ an image add it below</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1405.5999999999999" y="399.85007496251876"/>
+            <point key="canvasLocation" x="2654" y="400"/>
         </scene>
         <!--Profile Tabs View Controller-->
         <scene sceneID="rHD-v8-JER">
@@ -1807,6 +1806,100 @@ an image add it below</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTn-3S-S9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-84" y="1098"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3r6-aO-qYZ">
+            <objects>
+                <viewController id="URS-5V-Dzi" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nb7-hG-Fav"/>
+                        <viewControllerLayoutGuide type="bottom" id="e7L-qw-jD1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="blA-WL-Ys0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rizzle Type" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ran-a4-1cT">
+                                <rect key="frame" x="145" y="191.5" width="85" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.36708369270000002" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The type is based on your Rizzle answer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaW-S1-1ec">
+                                <rect key="frame" x="62" y="216.5" width="252" height="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymb-5Z-JQ5">
+                                <rect key="frame" x="46" y="313.5" width="283" height="40"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Multiple Choice">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isg-g5-2SN">
+                                <rect key="frame" x="46" y="363.5" width="283" height="40"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="unK-Tk-X3B"/>
+                                </constraints>
+                                <state key="normal" title="Number Answer">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1c-2y-AK6">
+                                <rect key="frame" x="16" y="40" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="S2N-hN-OKo"/>
+                                    <constraint firstAttribute="width" constant="20" id="xum-gJ-TTH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="bXR-Ey-u5A" eventType="touchUpInside" id="vlk-Vp-Qms"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ds8-Qr-ybg">
+                                <rect key="frame" x="46" y="263.5" width="283" height="40"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="AMQ-9S-YoN"/>
+                                </constraints>
+                                <state key="normal" title="Word Answer">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kui-hX-62V" kind="show" id="RJR-gj-sbJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ymb-5Z-JQ5" firstAttribute="centerY" secondItem="blA-WL-Ys0" secondAttribute="centerY" id="9Zh-jY-KIY"/>
+                            <constraint firstItem="Ds8-Qr-ybg" firstAttribute="centerX" secondItem="blA-WL-Ys0" secondAttribute="centerX" id="Bsp-uP-uQQ"/>
+                            <constraint firstItem="oaW-S1-1ec" firstAttribute="centerX" secondItem="blA-WL-Ys0" secondAttribute="centerX" id="P9L-nc-w2e"/>
+                            <constraint firstItem="D1c-2y-AK6" firstAttribute="top" secondItem="nb7-hG-Fav" secondAttribute="bottom" constant="20" id="Pz9-cG-mqH"/>
+                            <constraint firstItem="ymb-5Z-JQ5" firstAttribute="top" secondItem="Ds8-Qr-ybg" secondAttribute="bottom" constant="15" id="TtX-A0-hur"/>
+                            <constraint firstItem="ymb-5Z-JQ5" firstAttribute="centerX" secondItem="blA-WL-Ys0" secondAttribute="centerX" id="Vym-wT-8Yz"/>
+                            <constraint firstItem="D1c-2y-AK6" firstAttribute="leading" secondItem="blA-WL-Ys0" secondAttribute="leadingMargin" id="aQi-F9-vI3"/>
+                            <constraint firstItem="oaW-S1-1ec" firstAttribute="top" secondItem="ran-a4-1cT" secondAttribute="bottom" constant="5" id="ad6-Ek-Byz"/>
+                            <constraint firstItem="ymb-5Z-JQ5" firstAttribute="leading" secondItem="blA-WL-Ys0" secondAttribute="leadingMargin" constant="30" id="neJ-Nf-9Wi"/>
+                            <constraint firstItem="Isg-g5-2SN" firstAttribute="width" secondItem="ymb-5Z-JQ5" secondAttribute="width" id="o9Z-ak-bS1"/>
+                            <constraint firstItem="Ds8-Qr-ybg" firstAttribute="width" secondItem="ymb-5Z-JQ5" secondAttribute="width" id="pou-ng-6hI"/>
+                            <constraint firstItem="Ds8-Qr-ybg" firstAttribute="top" secondItem="oaW-S1-1ec" secondAttribute="bottom" constant="30" id="qhb-pp-Mxd"/>
+                            <constraint firstItem="Isg-g5-2SN" firstAttribute="centerX" secondItem="blA-WL-Ys0" secondAttribute="centerX" id="sNw-NY-zFp"/>
+                            <constraint firstItem="Isg-g5-2SN" firstAttribute="top" secondItem="ymb-5Z-JQ5" secondAttribute="bottom" constant="15" id="upF-5S-E3b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ymb-5Z-JQ5" secondAttribute="trailing" constant="30" id="vBU-SI-cSB"/>
+                            <constraint firstItem="ran-a4-1cT" firstAttribute="centerX" secondItem="blA-WL-Ys0" secondAttribute="centerX" id="wdC-35-8ro"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bXR-Ey-u5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="400"/>
         </scene>
     </scenes>
     <resources>

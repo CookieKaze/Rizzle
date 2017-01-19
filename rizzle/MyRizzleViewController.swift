@@ -47,20 +47,12 @@ class MyRizzleViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func createEditRizzle(rizzleToEdit: PFObject?) {
-        performSegue(withIdentifier: "createEditRizzle", sender: rizzleToEdit)
-    }
-    
-    @IBAction func createRizzleTapped(_ sender: UIButton) {
-        createEditRizzle(rizzleToEdit: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "createEditRizzle" {
-            let createRizzleView = segue.destination as! CreateRizzleViewController
-            createRizzleView.rizzleToEdit = sender as? PFObject
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "createEditRizzle" {
+//            let createRizzleView = segue.destination as! CreateRizzleViewController
+//            createRizzleView.rizzleToEdit = sender as? PFObject
+//        }
+//    }
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -93,7 +85,7 @@ class MyRizzleViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        createEditRizzle(rizzleToEdit: myRizzles[indexPath.row])
+        //createEditRizzle(rizzleToEdit: myRizzles[indexPath.row])
         
     }
     
