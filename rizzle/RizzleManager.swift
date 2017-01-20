@@ -18,7 +18,6 @@ protocol RizzleSolverDelegate {
 
 class RizzleManager: NSObject {
     //MARK: Shared Instance
-    
     static let sharedInstance : RizzleManager = {
         let instance = RizzleManager()
         return instance

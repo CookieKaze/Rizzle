@@ -53,6 +53,12 @@ class MyRizzleViewController: UIViewController, UITableViewDataSource, UITableVi
 //            createRizzleView.rizzleToEdit = sender as? PFObject
 //        }
 //    }
+    @IBAction func createNewRizzle(_ sender: UIButton) {
+        let storyboard = UIStoryboard.init(name: "CreateRizzleStoryboard", bundle: nil)
+        let view = storyboard.instantiateViewController(withIdentifier: "createRizzleView")
+        present(view, animated: true, completion: nil)
+    }
+    
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -86,7 +92,6 @@ class MyRizzleViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //createEditRizzle(rizzleToEdit: myRizzles[indexPath.row])
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
