@@ -1,17 +1,18 @@
 //
-//  CreateQuestionViewController.swift
+//  CreateExplanationViewController.swift
 //  rizzle
 //
-//  Created by Erin Luu on 2017-01-18.
+//  Created by Erin Luu on 2017-01-23.
 //  Copyright © 2017 Erin Luu. All rights reserved.
 //
 
 import UIKit
 
-class CreateQuestionViewController: UIViewController, UITextViewDelegate {
-    @IBOutlet weak var questionView: UIView!
-    @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var questionTextView: UITextView!
+class CreateExplanationViewController: UIViewController {
+    var explanationPlaceHolderLabel: UILabel?
+    @IBOutlet weak var explanationLabel: UILabel!
+    @IBOutlet weak var explanationTextView: UITextView!
+    @IBOutlet weak var explanationView: UIView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     var nextButtonStart: CGPoint?
@@ -20,19 +21,18 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionLabel.isHidden = true
-        
-        questionPlaceHolderLabel = UILabel.init()
-        guard let placeholderLabel = questionPlaceHolderLabel else {
+        explanationLabel.isHidden = true
+        explanationPlaceHolderLabel = UILabel.init()
+        guard let placeholderLabel = explanationPlaceHolderLabel else {
             return
         }
-        placeholderLabel.text = "Start typing your rizzle question here…"
-        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (questionTextView.font?.pointSize)!)
+        placeholderLabel.text = "What are the steps you took to get the answer? Explainations will be shown at the end of a Rizzle once it has been completed."
+        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (explanationTextView.font?.pointSize)!)
         placeholderLabel.sizeToFit()
-        questionTextView.addSubview(placeholderLabel)
-        placeholderLabel.frame.origin = CGPoint(x: 5, y: (questionTextView.font?.pointSize)! / 2)
+        explanationTextView.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (explanationTextView.font?.pointSize)! / 2)
         placeholderLabel.textColor = UIColor.lightGray
-        placeholderLabel.isHidden = !questionTextView.text.isEmpty
+        placeholderLabel.isHidden = !explanationTextView.text.isEmpty
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,51 +44,47 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func loadFields() {
-        //        questionTextView.text = rizzleToEdit["question"] as? String
-        //        questionPlaceHolderLabel?.isHidden = true
-        //        questionLabel.isHidden = false
-        
-    }
+    //    func loadFields() {
+    //        answerTextField.text = rizzleToEdit["answer"] as? String
+    //        explanationTextView.text = rizzleToEdit["explanation"] as? String
+    //        explanationPlaceHolderLabel?.isHidden = true
+    //
+    //    }
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
-        questionTextView.resignFirstResponder()
-        //Check for blank question
-        if questionTextView.text == nil || questionTextView.text == "" {
+        explanationTextView.resignFirstResponder()
+        
+        //Check for blank fields
+        if explanationTextView.text == nil || explanationTextView.text == "" {
             let alertView = PopupAlertViewController(nibName: "PopupAlertViewController", bundle: nil)
-            alertView.bodyText = "Your Rizzle has to have a question."
+            alertView.bodyText = "Your Rizzle has to have an explanation."
             self.present(alertView, animated: false, completion: nil)
         } else {
-            performSegue(withIdentifier: "toImageView", sender: nil)
+            performSegue(withIdentifier: "toHintView", sender: nil)
         }
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
-        questionTextView.resignFirstResponder()
+        explanationTextView.resignFirstResponder()
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    //Keyboard controlls
+    //Keyboard controls
     func textViewDidChange(_ textView: UITextView) {
-        questionPlaceHolderLabel?.isHidden = !questionTextView.text.isEmpty
-        if questionTextView.text != nil {
-            if questionTextView.text!.characters.count == 1 {
-                questionLabel.isHidden = false
-                self.questionLabel.center = CGPoint(x: self.questionLabel.center.x, y: self.questionLabel.center.y + 20)
+        explanationPlaceHolderLabel?.isHidden = !explanationTextView.text.isEmpty
+        if explanationTextView.text != nil {
+            if explanationTextView.text!.characters.count == 1 {
+                explanationLabel.isHidden = false
+                self.explanationLabel.center = CGPoint(x: self.explanationLabel.center.x, y: self.explanationLabel.center.y + 20)
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.questionLabel.center = CGPoint(x: self.questionLabel.center.x, y: self.questionLabel.center.y - 20)
+                    self.explanationLabel.center = CGPoint(x: self.explanationLabel.center.x, y: self.explanationLabel.center.y - 20)
                 })
             }
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        questionTextView.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        questionTextView.resignFirstResponder()
-        return true
+        explanationTextView.resignFirstResponder()
     }
     
     func keyboardWillAppear(sender: NSNotification) {
@@ -102,7 +98,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
         }
         
         //Shift View
-        questionView.center = CGPoint(x: questionView.center.x, y: questionView.center.y - 100)
+        explanationView.center = CGPoint(x: explanationView.center.x, y: explanationView.center.y - 100)
     }
     
     func keyboardWillDisappear(sender: NSNotification) {
@@ -112,8 +108,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
         if backButtonStart != nil {
             backButton.center = backButtonStart!
         }
-        questionView.center = CGPoint(x: questionView.center.x, y: questionView.center.y + 100)
+        explanationView.center = CGPoint(x: explanationView.center.x, y: explanationView.center.y + 100)
     }
-    
     
 }

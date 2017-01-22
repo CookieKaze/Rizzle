@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D1B258C1E0997E200EABA00 /* CreateRizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40C7001E06261900ECA190 /* CreateRizzle.swift */; };
+		1D2186591E3572D100504E86 /* CreateWordAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2186581E3572D100504E86 /* CreateWordAnswerViewController.swift */; };
 		1D57CEE81E034CBD00D29B7E /* UserDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57CEE71E034CBD00D29B7E /* UserDashboardViewController.swift */; };
 		1D57CEEA1E034F6700D29B7E /* FirstTimeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57CEE91E034F6700D29B7E /* FirstTimeUserViewController.swift */; };
 		1D6DC8BF1E25806100BBCC50 /* PopupAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC8BD1E25806100BBCC50 /* PopupAlertViewController.swift */; };
@@ -25,6 +26,7 @@
 		1D9C0FCB1E2174BC00AA7AFA /* ProfileRizzleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C0FCA1E2174BC00AA7AFA /* ProfileRizzleTableViewCell.swift */; };
 		1D9C0FCF1E21C50900AA7AFA /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C0FCE1E21C50900AA7AFA /* LeaderboardViewController.swift */; };
 		1D9C0FD11E21CBA300AA7AFA /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C0FD01E21CBA300AA7AFA /* LeaderboardTableViewCell.swift */; };
+		1DB3109E1E36B0AC00F96B2E /* CreateExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3109D1E36B0AC00F96B2E /* CreateExplanationViewController.swift */; };
 		1DD427691E22E2BA00AF8398 /* RizzleCorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD427681E22E2BA00AF8398 /* RizzleCorrectViewController.swift */; };
 		1DD4276D1E22EA2E00AF8398 /* RizzleCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD4276C1E22EA2E00AF8398 /* RizzleCommentTableViewCell.swift */; };
 		1DDDACE41E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDDACE31E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift */; };
@@ -63,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D2186581E3572D100504E86 /* CreateWordAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWordAnswerViewController.swift; sourceTree = "<group>"; };
 		1D40C7001E06261900ECA190 /* CreateRizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRizzle.swift; sourceTree = "<group>"; };
 		1D57CEE71E034CBD00D29B7E /* UserDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDashboardViewController.swift; sourceTree = "<group>"; };
 		1D57CEE91E034F6700D29B7E /* FirstTimeUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstTimeUserViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 		1D9C0FCA1E2174BC00AA7AFA /* ProfileRizzleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRizzleTableViewCell.swift; sourceTree = "<group>"; };
 		1D9C0FCE1E21C50900AA7AFA /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		1D9C0FD01E21CBA300AA7AFA /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
+		1DB3109D1E36B0AC00F96B2E /* CreateExplanationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateExplanationViewController.swift; sourceTree = "<group>"; };
 		1DD427681E22E2BA00AF8398 /* RizzleCorrectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleCorrectViewController.swift; sourceTree = "<group>"; };
 		1DD4276C1E22EA2E00AF8398 /* RizzleCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleCommentTableViewCell.swift; sourceTree = "<group>"; };
 		1DDDACE31E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RizzleAnswerViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				1DE94D661E304DB800F25DFE /* CreateRizzleViewController.swift */,
 				1DE94D5E1E304CE300F25DFE /* CreateTitleViewController.swift */,
 				1DE94D601E304CEF00F25DFE /* CreateQuestionViewController.swift */,
+				1D2186581E3572D100504E86 /* CreateWordAnswerViewController.swift */,
+				1DB3109D1E36B0AC00F96B2E /* CreateExplanationViewController.swift */,
 				1DE94D621E304CF500F25DFE /* CreateImageViewController.swift */,
 				1DE94D641E304CFF00F25DFE /* CreateHintViewController.swift */,
 			);
@@ -523,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D57CEE81E034CBD00D29B7E /* UserDashboardViewController.swift in Sources */,
+				1D2186591E3572D100504E86 /* CreateWordAnswerViewController.swift in Sources */,
 				1DEFF9E61E19E2D8004A9AC7 /* HintView.swift in Sources */,
 				1DDDACE41E0B6AAE0030D0E6 /* RizzleAnswerViewController.swift in Sources */,
 				1DD427691E22E2BA00AF8398 /* RizzleCorrectViewController.swift in Sources */,
@@ -551,6 +558,7 @@
 				1DE94D5F1E304CE300F25DFE /* CreateTitleViewController.swift in Sources */,
 				95FCB1231E05A8FE00FDBA2B /* RizzleSolveViewController.swift in Sources */,
 				1DE94D671E304DB800F25DFE /* CreateRizzleViewController.swift in Sources */,
+				1DB3109E1E36B0AC00F96B2E /* CreateExplanationViewController.swift in Sources */,
 				1D7745EC1E25DA97003D2AC3 /* MyRizzleTableViewCell.swift in Sources */,
 				1D6DC8BF1E25806100BBCC50 /* PopupAlertViewController.swift in Sources */,
 				1D9C0FC91E2174B100AA7AFA /* ProfileUserTableViewCell.swift in Sources */,

@@ -55,7 +55,7 @@ class MyRizzleViewController: UIViewController, UITableViewDataSource, UITableVi
 //    }
     @IBAction func createNewRizzle(_ sender: UIButton) {
         let storyboard = UIStoryboard.init(name: "CreateRizzleStoryboard", bundle: nil)
-        let view = storyboard.instantiateViewController(withIdentifier: "createRizzleView")
+        let view = storyboard.instantiateViewController(withIdentifier: "createNavController")
         present(view, animated: true, completion: nil)
     }
     

@@ -14,14 +14,24 @@ class CreateTitleViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     var nextButtonStart: CGPoint?
+    var titleViewStart: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.isHidden = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(sender:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(sender:)), name: .UIKeyboardWillHide, object: nil)
-        
-        titleLabel.isHidden = true
-        
+
+        if titleViewStart != nil {
+            titleView.center = titleViewStart!
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func loadFields() {
@@ -39,11 +49,12 @@ class CreateTitleViewController: UIViewController, UITextFieldDelegate {
             alertView.bodyText = "The Title field cannot be blank."
             self.present(alertView, animated: false, completion: nil)
         } else {
-            performSegue(withIdentifier: "toCreateQuestionView", sender: nil)
+                        performSegue(withIdentifier: "toCreateQuestionView", sender: nil)
+            
         }
     }
     
-    //Keyboard controlls
+    //Keyboard controls
     @IBAction func titleFieldChanged(_ sender: UITextField) {
         if titleTextField.text != nil {
             if titleTextField.text!.characters.count == 1 {
@@ -70,7 +81,7 @@ class CreateTitleViewController: UIViewController, UITextFieldDelegate {
         let userInfo = sender.userInfo!
         if let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardSize.height
-            self.nextButton.center = CGPoint(x: nextButton.center.x, y: nextButton.center.y - keyboardHeight)
+            self.nextButton.center = CGPoint(x: nextButton.center.x, y: nextButton.center.y - keyboardHeight/1.4)
         }
         
         //Shift View
