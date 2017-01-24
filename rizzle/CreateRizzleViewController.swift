@@ -30,11 +30,11 @@ class CreateRizzleViewController: UIViewController {
             break
         //Multiple Choice
         case 2:
-            createRizzleManager.rizzleType = "multiple"
+            createRizzleManager.rizzleType = "word"
             break
         //Number Answer
         case 3:
-            createRizzleManager.rizzleType = "number"
+            createRizzleManager.rizzleType = "word"
             break
         default:
             break
