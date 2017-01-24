@@ -16,6 +16,7 @@ class CreateImageViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var imageView: UIImageView!
     
     var imageChanged: Bool = false
+    var createRizzleManager = CreateRizzleManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,14 @@ class CreateImageViewController: UIViewController, UINavigationControllerDelegat
         removeImageBtn.isEnabled = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        //Load field if value is not nil
+        if createRizzleManager.image != nil {
+            imageView.image = createRizzleManager.image
+            removeImageBtn.isHidden = false
+            removeImageBtn.isEnabled = true
+        }
+    }
     func loadImage() {
         //        //Load image
         //        let rizzleImageFile = rizzleToEdit["imageFile"] as? PFFile
@@ -82,11 +91,17 @@ class CreateImageViewController: UIViewController, UINavigationControllerDelegat
     
     //Navigation
     @IBAction func nextButtonTapped(_ sender: UIButton) {
+        if imageView.image != nil {
+            createRizzleManager.image = imageView.image!
+        }
         performSegue(withIdentifier: "toWordAnswerView", sender: nil)
         
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        if imageView.image != nil {
+            createRizzleManager.image = imageView.image!
+        }
         _ = self.navigationController?.popViewController(animated: true)
     }
 }

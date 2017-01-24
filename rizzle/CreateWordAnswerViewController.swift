@@ -16,21 +16,22 @@ class CreateWordAnswerViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var backButton: UIButton!
     var nextButtonStart: CGPoint?
     var backButtonStart: CGPoint?
+    var createRizzleManager = CreateRizzleManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         answerLabel.isHidden = true
-        //    func loadFields() {
-        //        answerTextField.text = rizzleToEdit["answer"] as? String
-        //        explanationTextView.text = rizzleToEdit["explanation"] as? String
-        //        explanationPlaceHolderLabel?.isHidden = true
-        //
-        //    }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(sender:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(sender:)), name: .UIKeyboardWillHide, object: nil)
+        
+        //Load field if value is not nil
+        if createRizzleManager.answer != nil {
+            answerTextField.text = createRizzleManager.answer
+            answerLabel.isHidden = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,11 +47,13 @@ class CreateWordAnswerViewController: UIViewController, UITextFieldDelegate {
             alertView.bodyText = "Your Rizzle has to have an answer."
             self.present(alertView, animated: false, completion: nil)
         } else {
+            createRizzleManager.answer = answerTextField.text
             performSegue(withIdentifier: "toExplanationView", sender: nil)
         }
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        createRizzleManager.answer = answerTextField.text
         _ = self.navigationController?.popViewController(animated: true)
     }
     

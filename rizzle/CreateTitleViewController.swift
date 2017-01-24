@@ -14,31 +14,26 @@ class CreateTitleViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     var nextButtonStart: CGPoint?
-    var titleViewStart: CGPoint?
+    var createRizzleManager = CreateRizzleManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.isHidden = true
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(sender:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(sender:)), name: .UIKeyboardWillHide, object: nil)
-
-        if titleViewStart != nil {
-            titleView.center = titleViewStart!
+        
+        //Load field if value is not nil
+        if createRizzleManager.title != nil {
+            titleTextField.text = createRizzleManager.title
+            titleLabel.isHidden = false
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    func loadFields() {
-        //Load title
-        //        titleTextField.text = rizzleToEdit["title"] as? String
-        //        titleLabel.isHidden = false
-        
     }
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
@@ -49,7 +44,8 @@ class CreateTitleViewController: UIViewController, UITextFieldDelegate {
             alertView.bodyText = "The Title field cannot be blank."
             self.present(alertView, animated: false, completion: nil)
         } else {
-                        performSegue(withIdentifier: "toCreateQuestionView", sender: nil)
+            createRizzleManager.title = titleTextField.text
+            performSegue(withIdentifier: "toCreateQuestionView", sender: nil)
             
         }
     }

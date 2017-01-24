@@ -17,7 +17,7 @@ class CreateExplanationViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     var nextButtonStart: CGPoint?
     var backButtonStart: CGPoint?
-    var questionPlaceHolderLabel: UILabel?
+    var createRizzleManager = CreateRizzleManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class CreateExplanationViewController: UIViewController {
         guard let placeholderLabel = explanationPlaceHolderLabel else {
             return
         }
-        placeholderLabel.text = "What are the steps you took to get the answer? Explainations will be shown at the end of a Rizzle once it has been completed."
+        placeholderLabel.text = "Start typing explanation here..."
         placeholderLabel.font = UIFont.italicSystemFont(ofSize: (explanationTextView.font?.pointSize)!)
         placeholderLabel.sizeToFit()
         explanationTextView.addSubview(placeholderLabel)
@@ -38,6 +38,13 @@ class CreateExplanationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(sender:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(sender:)), name: .UIKeyboardWillHide, object: nil)
+        
+        //Load field if value is not nil
+        if createRizzleManager.explanation != nil {
+            explanationTextView.text = createRizzleManager.explanation
+            explanationLabel.isHidden = false
+            explanationPlaceHolderLabel?.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,12 +67,14 @@ class CreateExplanationViewController: UIViewController {
             alertView.bodyText = "Your Rizzle has to have an explanation."
             self.present(alertView, animated: false, completion: nil)
         } else {
+            createRizzleManager.explanation = explanationTextView.text
             performSegue(withIdentifier: "toHintView", sender: nil)
         }
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
         explanationTextView.resignFirstResponder()
+        createRizzleManager.explanation = explanationTextView.text
         _ = self.navigationController?.popViewController(animated: true)
     }
     

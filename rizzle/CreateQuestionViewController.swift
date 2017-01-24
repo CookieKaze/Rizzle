@@ -17,6 +17,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     var nextButtonStart: CGPoint?
     var backButtonStart: CGPoint?
     var questionPlaceHolderLabel: UILabel?
+    var createRizzleManager = CreateRizzleManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,13 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(sender:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(sender:)), name: .UIKeyboardWillHide, object: nil)
+        
+        //Load field if value is not nil
+        if createRizzleManager.question != nil {
+            questionTextView.text = createRizzleManager.question
+            questionLabel.isHidden = false
+            questionPlaceHolderLabel?.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,12 +67,14 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
             alertView.bodyText = "Your Rizzle has to have a question."
             self.present(alertView, animated: false, completion: nil)
         } else {
+            createRizzleManager.question = questionTextView.text
             performSegue(withIdentifier: "toImageView", sender: nil)
         }
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
         questionTextView.resignFirstResponder()
+        createRizzleManager.question = questionTextView.text
         _ = self.navigationController?.popViewController(animated: true)
     }
     

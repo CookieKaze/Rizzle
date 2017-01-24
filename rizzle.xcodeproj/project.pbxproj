@@ -237,9 +237,9 @@
 				1DE94D661E304DB800F25DFE /* CreateRizzleViewController.swift */,
 				1DE94D5E1E304CE300F25DFE /* CreateTitleViewController.swift */,
 				1DE94D601E304CEF00F25DFE /* CreateQuestionViewController.swift */,
+				1DE94D621E304CF500F25DFE /* CreateImageViewController.swift */,
 				1D2186581E3572D100504E86 /* CreateWordAnswerViewController.swift */,
 				1DB3109D1E36B0AC00F96B2E /* CreateExplanationViewController.swift */,
-				1DE94D621E304CF500F25DFE /* CreateImageViewController.swift */,
 				1DE94D641E304CFF00F25DFE /* CreateHintViewController.swift */,
 			);
 			name = "Create Rizzle";

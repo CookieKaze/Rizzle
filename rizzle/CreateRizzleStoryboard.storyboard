@@ -173,10 +173,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wp-ci-WZn">
-                                        <rect key="frame" x="50" y="349" width="275" height="2"/>
+                                        <rect key="frame" x="50" y="349" width="275" height="1"/>
                                         <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="RO3-hV-IIL"/>
+                                            <constraint firstAttribute="height" constant="1" id="RO3-hV-IIL"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lets give your rizzle a creative title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyA-Rt-ca5">
@@ -307,10 +307,10 @@
                                         </connections>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTp-Tj-aAa">
-                                        <rect key="frame" x="50" y="410" width="275" height="2"/>
+                                        <rect key="frame" x="50" y="410" width="275" height="1"/>
                                         <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="xMg-p3-AbH"/>
+                                            <constraint firstAttribute="height" constant="1" id="xMg-p3-AbH"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6q-MN-lRn">
@@ -570,10 +570,10 @@ an image add it below</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xtv-mM-Jbp">
-                                        <rect key="frame" x="50" y="348.5" width="275" height="2"/>
+                                        <rect key="frame" x="50" y="348.5" width="275" height="0.0"/>
                                         <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="Dg1-XH-DFz"/>
+                                            <constraint firstAttribute="height" id="Dg1-XH-DFz"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02L-ua-H3O">
@@ -708,19 +708,19 @@ an image add it below</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Hints" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o85-kW-sly">
-                                        <rect key="frame" x="151" y="82" width="73" height="20"/>
+                                        <rect key="frame" x="151" y="101" width="73" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" white="0.36708369270000002" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Hint" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGM-G7-KhU">
-                                        <rect key="frame" x="50" y="144" width="52" height="15"/>
+                                        <rect key="frame" x="50" y="163" width="52" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Hint" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ieq-Bg-NCa">
-                                        <rect key="frame" x="50" y="159" width="275" height="30"/>
+                                        <rect key="frame" x="50" y="178" width="275" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="t5z-Vv-hVt"/>
@@ -740,19 +740,19 @@ an image add it below</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help some users out" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDk-Sk-7Dr">
-                                        <rect key="frame" x="123" y="107" width="130" height="17"/>
+                                        <rect key="frame" x="123" y="126" width="130" height="17"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Hint" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcC-ge-Mq9">
-                                        <rect key="frame" x="50" y="209" width="70" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Hint" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Orv-4f-uZN">
+                                        <rect key="frame" x="50" y="224" width="70" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Second Hint" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="xLf-md-I8z">
-                                        <rect key="frame" x="50" y="224" width="275" height="30"/>
+                                        <rect key="frame" x="50" y="239" width="275" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="yZn-tk-ofY"/>
@@ -765,10 +765,10 @@ an image add it below</string>
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upZ-VX-uEY">
-                                        <rect key="frame" x="50" y="254" width="275" height="2"/>
+                                        <rect key="frame" x="50" y="269" width="275" height="1"/>
                                         <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="H01-GM-K9t"/>
+                                            <constraint firstAttribute="height" constant="1" id="H01-GM-K9t"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third Hint" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMA-h3-Wre">
@@ -791,39 +791,39 @@ an image add it below</string>
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gE8-V2-RfW">
-                                        <rect key="frame" x="50" y="329" width="275" height="2"/>
+                                        <rect key="frame" x="50" y="329" width="275" height="1"/>
                                         <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="Dx9-Y0-s2d"/>
+                                            <constraint firstAttribute="height" constant="1" id="Dx9-Y0-s2d"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-UQ-uNT">
-                                        <rect key="frame" x="50" y="189" width="275" height="2"/>
+                                        <rect key="frame" x="50" y="208" width="275" height="1"/>
                                         <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="Xvz-VE-gam"/>
+                                            <constraint firstAttribute="height" constant="1" id="Xvz-VE-gam"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODv-4c-acU">
-                                        <rect key="frame" x="179" y="438" width="17" height="36"/>
+                                        <rect key="frame" x="179" y="437" width="17" height="36"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                         <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Difficulty Level" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDd-SF-mgz">
-                                        <rect key="frame" x="116" y="381" width="144" height="20"/>
+                                        <rect key="frame" x="116" y="380" width="144" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" white="0.36708369270000002" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harder Rizzles are worth more points" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDj-nu-Bx0">
-                                        <rect key="frame" x="72" y="406" width="232" height="17"/>
+                                        <rect key="frame" x="72" y="405" width="232" height="17"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="Fhv-7B-o8A">
-                                        <rect key="frame" x="141" y="494" width="94" height="29"/>
+                                        <rect key="frame" x="141" y="493" width="94" height="29"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.96862745100000003" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -866,6 +866,9 @@ an image add it below</string>
                                         <state key="normal" title="X">
                                             <color key="titleColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="VLZ-pu-LEd" kind="unwind" unwindAction="unwindToCreateRizzleWithSegue:" id="0of-fd-MEG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -873,16 +876,17 @@ an image add it below</string>
                                     <constraint firstItem="o85-kW-sly" firstAttribute="centerX" secondItem="XQu-Lu-dFN" secondAttribute="centerX" id="08K-2X-Lg1"/>
                                     <constraint firstItem="gE8-V2-RfW" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leading" constant="50" id="1PQ-QZ-DOU"/>
                                     <constraint firstItem="ODv-4c-acU" firstAttribute="top" secondItem="zDj-nu-Bx0" secondAttribute="bottom" constant="15" id="1oX-wK-qck"/>
+                                    <constraint firstItem="Orv-4f-uZN" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leading" constant="50" id="5g7-Sa-aul"/>
                                     <constraint firstAttribute="trailing" secondItem="9jt-8j-UJm" secondAttribute="trailing" constant="30" id="8D8-R2-u8F"/>
                                     <constraint firstItem="zDj-nu-Bx0" firstAttribute="centerX" secondItem="XQu-Lu-dFN" secondAttribute="centerX" id="9Bm-j4-fnJ"/>
                                     <constraint firstItem="cGM-G7-KhU" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leading" constant="50" id="9cu-MY-H8A"/>
                                     <constraint firstAttribute="trailing" secondItem="upZ-VX-uEY" secondAttribute="trailing" constant="50" id="AL4-wl-xp5"/>
                                     <constraint firstItem="xLf-md-I8z" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leading" constant="50" id="CL6-65-GRu"/>
-                                    <constraint firstItem="iMA-h3-Wre" firstAttribute="top" secondItem="xLf-md-I8z" secondAttribute="bottom" constant="30" id="HB6-8M-V0g"/>
+                                    <constraint firstItem="iMA-h3-Wre" firstAttribute="top" secondItem="xLf-md-I8z" secondAttribute="bottom" constant="15" id="HB6-8M-V0g"/>
                                     <constraint firstItem="zDj-nu-Bx0" firstAttribute="top" secondItem="VDd-SF-mgz" secondAttribute="bottom" constant="5" id="I1p-m9-etm"/>
                                     <constraint firstItem="iMA-h3-Wre" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leading" constant="50" id="ILZ-0h-DVU"/>
-                                    <constraint firstItem="ZcC-ge-Mq9" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leading" constant="50" id="ItD-sI-mXZ"/>
                                     <constraint firstItem="sZK-rI-Si2" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leadingMargin" id="Lua-aX-37F"/>
+                                    <constraint firstItem="xLf-md-I8z" firstAttribute="top" secondItem="Orv-4f-uZN" secondAttribute="bottom" id="OLP-NP-xPC"/>
                                     <constraint firstItem="upZ-VX-uEY" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leading" constant="50" id="ORM-jx-Ek3"/>
                                     <constraint firstItem="aDk-Sk-7Dr" firstAttribute="top" secondItem="o85-kW-sly" secondAttribute="bottom" constant="5" id="OUU-LC-VUF"/>
                                     <constraint firstItem="cGM-G7-KhU" firstAttribute="top" secondItem="aDk-Sk-7Dr" secondAttribute="bottom" constant="20" id="ObO-jw-1Xt"/>
@@ -892,6 +896,7 @@ an image add it below</string>
                                     <constraint firstItem="ODv-4c-acU" firstAttribute="centerX" secondItem="XQu-Lu-dFN" secondAttribute="centerX" id="QVw-wN-diP"/>
                                     <constraint firstItem="aDk-Sk-7Dr" firstAttribute="centerX" secondItem="XQu-Lu-dFN" secondAttribute="centerX" id="RGg-Qn-xey"/>
                                     <constraint firstItem="Ieq-Bg-NCa" firstAttribute="leading" secondItem="XQu-Lu-dFN" secondAttribute="leading" constant="50" id="TPc-2z-y6d"/>
+                                    <constraint firstItem="Orv-4f-uZN" firstAttribute="top" secondItem="7Z2-UQ-uNT" secondAttribute="bottom" constant="15" id="U8d-sU-WfT"/>
                                     <constraint firstItem="9jt-8j-UJm" firstAttribute="width" secondItem="XQu-Lu-dFN" secondAttribute="width" multiplier="0.55" id="XRO-0W-VZn"/>
                                     <constraint firstItem="9jt-8j-UJm" firstAttribute="leading" secondItem="6XQ-V5-rzp" secondAttribute="trailing" constant="10" id="XdR-ih-YFT"/>
                                     <constraint firstItem="9jt-8j-UJm" firstAttribute="leading" secondItem="6XQ-V5-rzp" secondAttribute="trailing" constant="10" id="Y2b-c1-0mU"/>
@@ -913,8 +918,6 @@ an image add it below</string>
                                     <constraint firstItem="Ieq-Bg-NCa" firstAttribute="centerX" secondItem="XQu-Lu-dFN" secondAttribute="centerX" id="qAW-Wd-GbB"/>
                                     <constraint firstItem="Ieq-Bg-NCa" firstAttribute="top" secondItem="cGM-G7-KhU" secondAttribute="bottom" id="qHV-uW-NZN"/>
                                     <constraint firstAttribute="bottom" secondItem="9jt-8j-UJm" secondAttribute="bottom" constant="30" id="rPb-je-QAe"/>
-                                    <constraint firstItem="ZcC-ge-Mq9" firstAttribute="top" secondItem="Ieq-Bg-NCa" secondAttribute="bottom" constant="20" id="s6M-TT-NpU"/>
-                                    <constraint firstItem="xLf-md-I8z" firstAttribute="top" secondItem="ZcC-ge-Mq9" secondAttribute="bottom" id="saL-0s-BXk"/>
                                     <constraint firstItem="VDd-SF-mgz" firstAttribute="top" secondItem="gE8-V2-RfW" secondAttribute="bottom" constant="50" id="uc4-9K-x2T"/>
                                 </constraints>
                             </view>
@@ -950,7 +953,7 @@ an image add it below</string>
                         <outlet property="difficultyLabel" destination="ODv-4c-acU" id="oBd-IX-iwU"/>
                         <outlet property="hint1Label" destination="cGM-G7-KhU" id="0AE-OZ-GaE"/>
                         <outlet property="hint1TextField" destination="Ieq-Bg-NCa" id="sNy-fJ-hXE"/>
-                        <outlet property="hint2Label" destination="ZcC-ge-Mq9" id="1JS-K8-94N"/>
+                        <outlet property="hint2Label" destination="Orv-4f-uZN" id="o0M-HE-neL"/>
                         <outlet property="hint2TextField" destination="xLf-md-I8z" id="vpT-df-B8L"/>
                         <outlet property="hint3Label" destination="iMA-h3-Wre" id="zdp-c5-gN1"/>
                         <outlet property="hint3TextField" destination="i0m-ai-6aF" id="vj1-hG-5VM"/>
@@ -958,8 +961,9 @@ an image add it below</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xd0-eB-zq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VLZ-pu-LEd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6864.8000000000002" y="399.85007496251876"/>
+            <point key="canvasLocation" x="6876" y="399.85007496251876"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KXr-iv-aAV">
@@ -1036,10 +1040,10 @@ an image add it below</string>
                                         </connections>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st5-pH-7Bw">
-                                        <rect key="frame" x="50" y="410" width="275" height="2"/>
+                                        <rect key="frame" x="50" y="410" width="275" height="1"/>
                                         <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="jc0-Hx-w6n"/>
+                                            <constraint firstAttribute="height" constant="1" id="jc0-Hx-w6n"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOm-jY-9Bf">

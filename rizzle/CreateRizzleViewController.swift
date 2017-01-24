@@ -14,7 +14,10 @@ class CreateRizzleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        createRizzleManager.clearProperties()
     }
     
     @IBAction func rizzleTypeTapped(_ sender: UIButton) {

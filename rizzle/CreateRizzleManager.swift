@@ -37,6 +37,10 @@ class CreateRizzleManager: NSObject {
         
     }
     
+    func saveRizzle() {
+        
+    }
+    
     func clearProperties() {
         rizzleType = nil
         title = nil
