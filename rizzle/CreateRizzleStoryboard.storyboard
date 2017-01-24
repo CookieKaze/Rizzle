@@ -570,10 +570,10 @@ an image add it below</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xtv-mM-Jbp">
-                                        <rect key="frame" x="50" y="348.5" width="275" height="0.0"/>
+                                        <rect key="frame" x="50" y="348.5" width="275" height="1"/>
                                         <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" id="Dg1-XH-DFz"/>
+                                            <constraint firstAttribute="height" constant="1" id="Dg1-XH-DFz"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02L-ua-H3O">

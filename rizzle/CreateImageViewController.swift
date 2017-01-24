@@ -94,7 +94,25 @@ class CreateImageViewController: UIViewController, UINavigationControllerDelegat
         if imageView.image != nil {
             createRizzleManager.image = imageView.image!
         }
-        performSegue(withIdentifier: "toWordAnswerView", sender: nil)
+        
+        guard let type = createRizzleManager.rizzleType else {
+            return
+        }
+        
+        switch type {
+        case "word":
+            performSegue(withIdentifier: "toWordAnswerView", sender: nil)
+            return
+        case "multiple":
+            performSegue(withIdentifier: "", sender: nil)
+            return
+        case "number":
+            performSegue(withIdentifier: "", sender: nil)
+            return
+        default:
+            break
+        }
+        
         
     }
     
